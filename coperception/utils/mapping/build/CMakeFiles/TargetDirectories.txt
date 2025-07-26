@@ -1,0 +1,3 @@
+/workspace/xuyifan/v2x/coperception/coperception/utils/mapping/build/CMakeFiles/mapping.dir
+/workspace/xuyifan/v2x/coperception/coperception/utils/mapping/build/CMakeFiles/edit_cache.dir
+/workspace/xuyifan/v2x/coperception/coperception/utils/mapping/build/CMakeFiles/rebuild_cache.dir

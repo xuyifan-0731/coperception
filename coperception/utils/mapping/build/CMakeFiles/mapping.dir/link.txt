@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -Os -DNDEBUG -flto -Wl,--dependency-file=CMakeFiles/mapping.dir/link.d -shared  -o mapping.cpython-311-x86_64-linux-gnu.so CMakeFiles/mapping.dir/mapping.cpp.o
