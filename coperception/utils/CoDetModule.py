@@ -8,7 +8,7 @@ import torch.nn.functional as F
 
 class FaFModule(object):
     def __init__(self, model, teacher, config, optimizer, criterion, kd_flag):
-        self.MGDA = config.MGDA
+        self.MGDA = config.MGDA #MGDA（多任务梯度下降）=True 时将 model 拆为 encoder + head。初始化各自的 optimizer 和 scheduler。
         if self.MGDA:
             self.encoder = model[0]
             self.head = model[1]
@@ -217,6 +217,7 @@ class FaFModule(object):
     def step(self, data, batch_size, num_agent):
 
         bev_seq = data["bev_seq"]
+        #print(len(bev_seq))
         labels = data["labels"]
         reg_targets = data["reg_targets"]
         reg_loss_mask = data["reg_loss_mask"]
@@ -251,6 +252,11 @@ class FaFModule(object):
                     bev_seq, trans_matrices, num_all_agents, batch_size=batch_size
                 )
             else:
+                #print("codetmodel-num_agent_tensor_length")
+                #print(len(num_all_agents))
+                #print("num_all_agents 类型:", type(num_all_agents))
+                #if isinstance(num_all_agents, torch.Tensor):
+                    #print("num_all_agents shape:", num_all_agents.shape)
                 result = self.model(
                     bev_seq, trans_matrices, num_all_agents, batch_size=batch_size
                 )
@@ -542,7 +548,7 @@ class FaFModule(object):
             x = self.encoder(bev_seq)
             result = self.head(x)
         else:
-            result = self.model(bev_seq, trans_matrices, num_agent_tensor, batch_size=1)
+            result = self.model(bev_seq, trans_matrices, num_agent_tensor, batch_size=2)
 
         N = bev_seq.shape[0]
 

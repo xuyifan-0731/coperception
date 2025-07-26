@@ -91,6 +91,42 @@ class DetModelBase(nn.Module):
         feature_maps = torch.flip(feature_maps, (2,))
         return feature_maps, size
 
+    #修改
+    
+    @staticmethod
+    def pad_features_to_match(feat_list):
+        """
+        Ensure all tensors in the feature list have the same shape (including batch size).
+        If a tensor is empty or has smaller batch size, pad with zeros.
+        """
+        # 先找出目标 shape：最大 batch size 和每个维度的最大值
+        max_shape = list(feat_list[0].shape)
+        for feat in feat_list[1:]:
+            for i in range(len(max_shape)):  # 包括 dim=0 (batch)
+                max_shape[i] = max(max_shape[i], feat.shape[i])
+
+        padded_feats = []
+        for i, feat in enumerate(feat_list):
+            # 处理 batch size 为 0
+            if feat.shape[0] == 0:
+                #print(f"⚠️ Agent {i} has empty feature (batch size 0), replacing with zeros.")
+                feat = torch.zeros(max_shape, dtype=feat_list[0].dtype, device=feat_list[0].device)
+                padded_feats.append(feat)
+                continue
+
+            pad_sizes = []
+            for d in reversed(range(len(max_shape))):  # reverse for F.pad
+                diff = max_shape[d] - feat.shape[d]
+                pad_sizes.extend([0, diff])
+
+            feat = F.pad(feat, pad_sizes, mode='constant', value=0)
+            padded_feats.append(feat)
+
+        return padded_feats
+
+
+        #
+
     def build_feature_list(self, batch_size: int, feat_maps) -> list:
         """Get the feature maps for each agent
 
@@ -124,6 +160,44 @@ class DetModelBase(nn.Module):
         Returns:
             A tensor of concatenated features.
         """
+        # #存在一些agent的特征维度不对齐的问题
+        # clean_feature_list = []
+
+        # for idx, feat in enumerate(feature_list):
+        #     # 1. 检查是否为 None 或非法类型
+        #     if feat is None or not isinstance(feat, torch.Tensor):
+        #         print(f"🚫 Agent {idx} 的特征无效（None 或非 tensor），使用 zeros 替代")
+        #         feat = torch.zeros(
+        #             (1, 1, 256, 32, 32), dtype=torch.float32, device=feature_list[0].device
+        #         )
+
+        #     # 2. 检查 shape 是否为空
+        #     elif feat.shape[0] == 0:
+        #         print(f"⚠️ Warning: Empty feature for agent {idx}, using zeros instead")
+        #         feat = torch.zeros(
+        #             (1, 1, 256, 32, 32), dtype=torch.float32, device=feature_list[0].device
+        #         )
+
+        #     # 3. 加入列表
+        #     clean_feature_list.append(feat)
+
+        # # 4. 检查维度一致性
+        # shapes = [f.shape for f in clean_feature_list]
+        # if not all(s == shapes[0] for s in shapes):
+        #     print(f"❌ Feature shape mismatch detected:")
+        #     for i, s in enumerate(shapes):
+        #         print(f"  Agent {i}: shape = {s}")
+        #     raise RuntimeError("All features must have the same shape for torch.cat")
+
+        # # 5. 拼接特征：在维度 1（agent）上拼接 这个是原代码
+        # #
+        #return torch.cat(tuple(clean_feature_list), dim=1)
+        #for idx, feat in enumerate(feature_list):
+            #print(f"Feature {idx} shape before padding: {feat.shape}")
+        #feature_list = DetModelBase.pad_features_to_match(feature_list)
+        #for idx, feat in enumerate(feature_list):
+            #print(f"Feature {idx} shape after padding: {feat.shape}")
+
         return torch.cat(tuple(feature_list), 1)
 
     def outage(self) -> bool:

@@ -1,2 +1,10 @@
 __pycache__/
 logs*/
+tools/det/logs/*
+coperception.egg-info/*
+coperception/.idea/*
+wandb/*
+*.sh
+.DS_Store
+*/.DS_Store
+.idea/*

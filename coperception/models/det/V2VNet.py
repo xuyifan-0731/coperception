@@ -44,9 +44,49 @@ class V2VNet(IntermediateModelBase):
         )
         self.compress_level = compress_level
 
-    def forward(self, bevs, trans_matrices, num_agent_tensor, batch_size=1):
+    #修改
+    @staticmethod
+    def pad_features_to_match(feat_list):
+        """
+        Ensure all tensors in the feature list have the same shape (including batch size).
+        If a tensor is empty or has smaller batch size, pad with zeros.
+        """
+        # 先找出目标 shape：最大 batch size 和每个维度的最大值
+        max_shape = list(feat_list[0].shape)
+        for feat in feat_list[1:]:
+            for i in range(len(max_shape)):  # 包括 dim=0 (batch)
+                max_shape[i] = max(max_shape[i], feat.shape[i])
+
+        padded_feats = []
+        for i, feat in enumerate(feat_list):
+            # 处理 batch size 为 0
+            if feat.shape[0] == 0:
+                print(f"⚠️ Agent {i} has empty feature (batch size 0), replacing with zeros.")
+                feat = torch.zeros(max_shape, dtype=feat_list[0].dtype, device=feat_list[0].device)
+                padded_feats.append(feat)
+                continue
+
+            pad_sizes = []
+            for d in reversed(range(len(max_shape))):  # reverse for F.pad
+                diff = max_shape[d] - feat.shape[d]
+                pad_sizes.extend([0, diff])
+
+            feat = F.pad(feat, pad_sizes, mode='constant', value=0)
+            padded_feats.append(feat)
+
+        return padded_feats
+
+
+    #
+
+    def forward(self, bevs, trans_matrices, num_agent_tensor, batch_size):
+        #print("🔥 forward 被调用")
+        #print("num_agent_tensor shape:", num_agent_tensor.shape)
+        #print("bevs shape:", bevs.shape)
+        #print("batch_size 参数:", batch_size)
         # trans_matrices [batch 5 5 4 4]
         # num_agent_tensor, shape: [batch, num_agent]; how many non-empty agent in this scene
+        #print("forward-num_agent_tensor_length:", num_agent_tensor.shape)
 
         bevs = bevs.permute(0, 1, 4, 2, 3)  # (Batch, seq, z, h, w)
         encoded_layers = self.u_encoder(bevs)
@@ -55,15 +95,32 @@ class V2VNet(IntermediateModelBase):
         feat_maps, size = super().get_feature_maps_and_size(encoded_layers)
         # get feat maps for each agent [10 512 16 16] -> [2 5 512 16 16]
         feat_list = super().build_feature_list(batch_size, feat_maps)
-
-        local_com_mat = super().build_local_communication_matrix(
-            feat_list
-        )  # [2 5 512 16 16] [batch, agent, channel, height, width]
-        local_com_mat_update = super().build_local_communication_matrix(
-            feat_list
-        )  # to avoid the inplace operation
-
-        for b in range(batch_size):
+        #修改
+        # 检查
+        #for idx, f in enumerate(feat_list):
+        #    if f is None or not isinstance(f, torch.Tensor) or f.shape[0] == 0:
+        #        print(f"🚨 feat_list[{idx}] 无效：{type(f)}, shape: {getattr(f, 'shape', 'None')}")
+        #
+        
+        #修改
+        #feat_list = V2VNet.pad_features_to_match(feat_list)
+        #
+        local_com_mat = super().build_local_communication_matrix(feat_list)  # [2 5 512 16 16] [batch, agent, channel, height, width]
+        #修改
+        #if local_com_mat is None:
+        #    raise RuntimeError("build_local_communication_matrix 返回 None，请检查输入特征列表")
+        #if local_com_mat is None:
+        #    print("⚠️ 警告：通信矩阵为 None，使用全零替代")
+         #   shape = (batch_size, self.agent_num, self.layer_channel, *size)
+        #    local_com_mat = torch.zeros(shape, dtype=torch.float32, device=device)
+        #
+        local_com_mat_update = super().build_local_communication_matrix(feat_list)  # to avoid the inplace operation
+        real_batch_size = num_agent_tensor.shape[0] 
+        for b in range(real_batch_size):
+            #print("b")
+            #print(b)
+            #print("num_agent_tensor_length")
+            #print(len(num_agent_tensor))
             num_agent = num_agent_tensor[b, 0]
             
             agent_feat_list = list()

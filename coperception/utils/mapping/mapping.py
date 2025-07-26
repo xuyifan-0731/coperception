@@ -6,7 +6,8 @@ def __bootstrap__():
    
     supported_systems = {
         'Windows': 'mapping.cp37-win_amd64.pyd',
-        'Linux': 'mapping.cpython-37m-x86_64-linux-gnu.so'
+        'Linux': 'mapping.cpython-37m-x86_64-linux-gnu.so',
+        'Darwin':  'mapping.cpython-311-darwin.so'
     }
     
     current_system = platform.system()

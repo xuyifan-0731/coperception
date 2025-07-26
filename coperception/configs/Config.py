@@ -15,12 +15,14 @@ class Config(object):
         root="",
         is_cross_road=False,
         use_vis=False,
+        shift=0,
     ):
         # for segmentaion task only
         # =========================
         self.num_class = 8
         self.in_channels = 13
         self.nepoch = 10
+        self.shift = shift  # shift the BEV map to the center of the map
 
         self.class_to_rgb = {
             0: [255, 255, 255],  # Unlabeled

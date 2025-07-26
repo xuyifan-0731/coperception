@@ -1,7 +1,10 @@
 # Path to the original V2X-Sim dataset
-original_data_path := /scratch/dm4524/data/V2X-Sim-2
+original_data_path := /data/jqy/V2X-Sim-2.0/V2X-Sim-2
+
 # Where to save the created data
-create_data_save_path := /scratch/dm4524/data/V2X-Sim-det
+#create_data_save_path := /data/V2X-Sim-2.0-mini-det
+create_data_save_path := /Users/xuyifan/Downloads/V2X-Sim-det
+#create_data_save_path := /data/jqy/mini/V2X-Sim-2.0-mini-det
 # Index of the begining scene
 scene_begin := 0
  # Index of the ending scene + 1
@@ -21,12 +24,12 @@ testing_script := test_codet.py
 # Path to the test/val data
 testing_data := $(create_data_save_path)/test
 # [lowerbound / upperbound / v2v / disco / when2com / max / mean / sum / agent]
-com := lowerbound
-batch_size := 4
+com := v2v
+batch_size := 5
 # Where to store the logs
 logpath := logs
 # Train for how many epochs
-nepoch := 100
+nepoch := 20
 # If given, the model will resume from its most recent (by modification time) check point
 auto_resume_path := $(logpath)
 # compress_level
@@ -34,7 +37,7 @@ compress_level := 0
 # 1: apply late fusion. 0: no late fusion
 apply_late_fusion := 0
 # 1: do visualizaton. 0: no visualization
-visualization := 0
+visualization := 1
 # pose_noise in meters
 pose_noise := 0
 # only apply v2i communication
@@ -46,6 +49,8 @@ warp_flag := 0
 # Used when testing when2com / who2com
 # when2com: activated, who2com: argmax_test
 inference := activated
+
+shift := 2
 
 create_data:
 	python create_data_det.py \
@@ -60,6 +65,7 @@ create_data:
 train:
 	python $(training_script) \
 	--data $(training_data) \
+	--val_data $(testing_data) \
 	--com $(com) \
 	--log \
 	--batch_size $(batch_size) \
@@ -70,7 +76,8 @@ train:
 	--rsu $(rsu) \
 	--compress_level $(compress_level) \
 	--pose_noise $(pose_noise) \
-	--only_v2i $(only_v2i)
+	--only_v2i $(only_v2i) \
+	--shift $(shift) \
 
 train_disco:
 	python $(training_script) \

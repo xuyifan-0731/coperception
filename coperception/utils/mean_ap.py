@@ -1,6 +1,6 @@
 from multiprocessing import Pool
 import numpy as np
-from mmcv.utils import print_log
+#from mmcv.utils import print_log
 from terminaltables import AsciiTable
 from coperception.utils.postprocess import *
 
@@ -383,7 +383,8 @@ def print_map_summary(mean_ap, results, dataset=None, scale_ranges=None, logger=
     header = ["class", "gts", "dets", "recall", "ap"]
     for i in range(num_scales):
         if scale_ranges is not None:
-            print_log(f"Scale range {scale_ranges[i]}", logger=logger)
+            print(f"Scale range {scale_ranges[i]}")
+            #print_log(f"Scale range {scale_ranges[i]}", logger=logger)
         table_data = [header]
         for j in range(num_classes):
             row_data = [
@@ -397,4 +398,5 @@ def print_map_summary(mean_ap, results, dataset=None, scale_ranges=None, logger=
         table_data.append(["mAP", "", "", "", f"{mean_ap[i]:.3f}"])
         table = AsciiTable(table_data)
         table.inner_footing_row_border = True
-        print_log("\n" + table.table, logger=logger)
+        print("\n" + table.table)
+        #print_log("\n" + table.table, logger=logger)

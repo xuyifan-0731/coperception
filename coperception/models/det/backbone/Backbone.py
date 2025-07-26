@@ -5,6 +5,15 @@ import torch
 
 class Backbone(nn.Module):
     """The backbone class that contains encode and decode function"""
+    @staticmethod
+    def agents_to_batch(feats):
+        """
+        Convert features of shape [B, A, C, H, W] → [B*A, C, H, W]
+        """
+        if feats.dim() != 5:
+            raise ValueError(f"Expected 5D tensor, but got shape {feats.shape}")
+        B, A, C, H, W = feats.shape
+        return feats.view(B * A, C, H, W)
 
     def __init__(self, height_feat_size, compress_level=0):
         super().__init__()
@@ -170,6 +179,16 @@ class Backbone(nn.Module):
             else return a list of a single element: the output after passing through the decoder
         """
         # -------------------------------- Decoder Path --------------------------------
+        #x_3 = Backbone.agents_to_batch(x_3)
+        #x_4 = Backbone.agents_to_batch(x_4)
+        #print("x_4 shape:", F.interpolate(x_4, scale_factor=(2, 2)).shape)
+        #print("x_3 shape:", x_3.shape)
+        if x_3.dim() == 5:
+            x_3 = Backbone.agents_to_batch(x_3)
+
+        if x_4.dim() == 5:
+            x_4 = Backbone.agents_to_batch(x_4)
+
         x_5 = F.relu(
             self.bn5_1(
                 self.conv5_1(

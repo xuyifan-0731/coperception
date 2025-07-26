@@ -1,7 +1,7 @@
 import os
 import math
 from multiprocessing import Manager
-
+import torch
 import numpy as np
 from coperception.utils.obj_util import *
 from coperception.datasets.NuscenesDataset import NuscenesDataset
@@ -20,6 +20,7 @@ class V2XSimDet(Dataset):
         bound=None,
         kd_flag=False,
         rsu=False,
+        shift: int = 0,
     ):
         """
         This dataloader loads single sequence for a keyframe, and is not designed for computing the
@@ -33,10 +34,12 @@ class V2XSimDet(Dataset):
         category_num: The number of object categories (including the background)
         cache_size: The cache size for storing parts of data in the memory (for reducing the IO cost)
         """
+        print("shift:",shift)
         if split is None:
             self.split = config.split
         else:
             self.split = split
+        self.shift = shift
         self.voxel_size = config.voxel_size
         self.area_extents = config.area_extents
         self.category_num = config.category_num
@@ -189,17 +192,19 @@ class V2XSimDet(Dataset):
                 _,
             ) = meta[0]
         del meta
+        # TODO: 如果在这里修改维度会导致dataloader中维度对不上报错，无法读取
+        #self.padded_voxel_points_meta = np.max(self.padded_voxel_points_meta, axis=-1)
 
     def __len__(self):
-        return self.num_sample_seqs
-
+        return self.num_sample_seqs-self.shift
+#get_one_hot(label, category_num) 的作用是将形如 [2, 0, 3] 的整数标签转换为 one-hot 形式：[[0,0,1,0], [1,0,0,0], [0,0,0,1]]
     def get_one_hot(self, label, category_num):
         one_hot_label = np.zeros((label.shape[0], category_num))
         for i in range(label.shape[0]):
             one_hot_label[i][label[i]] = 1
 
         return one_hot_label
-
+#agent i 在第 idx 帧的 .npy 感知数据
     def pick_single_agent(self, agent_id, idx):
         empty_flag = False
         if idx in self.cache[agent_id]:
@@ -401,7 +406,74 @@ class V2XSimDet(Dataset):
                 )
 
     def __getitem__(self, idx):
-        res = []
-        for i in range(self.num_agent):
-            res.append(self.pick_single_agent(i, idx))
-        return res
+        # 1. 计算输入帧与目标帧的索引
+        input_idx = idx
+        target_idx = idx + self.shift
+
+        # 2. 调用 pick_single_agent 两次：一次用于输入，一次用于目标
+        inputs, targets = [], []
+        for agent_id in range(self.num_agent):
+            inp = self.pick_single_agent(agent_id, input_idx)
+            tgt = self.pick_single_agent(agent_id, target_idx)
+            inputs.append(inp)
+            targets.append(tgt)
+
+        # 3. 从 inputs/tgt 中拆出真正要的项
+        batch = []
+        for inp, tgt in zip(inputs, targets):
+            # inp:  (pv, pvt, label0, reg0, mask0, anchor, vis, gtbox?, seqfile?, tid, ns, trans)
+            # tgt:  (pv, pvt, label,  reg,  mask,  anchor, vis, gtbox?, seqfile?, tid, ns, trans)
+
+            # ———特征（输入）———
+            padded_voxel_points = inp[0]
+            padded_voxel_points_teacher = inp[1]
+            anchors_map = inp[5]
+            vis_maps = inp[6]
+            trans_matrices = inp[-1]
+            target_agent_id = inp[-3]  # or inp[ 7 ] in train
+            num_sensor = inp[-2]  # or inp[ 8 ]
+
+            # ———监督（输出）———
+            label_one_hot = tgt[2]
+            reg_target = tgt[3]
+            reg_loss_mask = tgt[4]
+
+            if self.val:
+                # 验证模式下，多了两个 eval-only 元数据
+                gt_boxes = tgt[7]
+                seq_file = tgt[8]
+                sample = (
+                    padded_voxel_points,
+                    padded_voxel_points_teacher,
+                    label_one_hot,
+                    reg_target,
+                    reg_loss_mask,
+                    anchors_map,
+                    vis_maps,
+                    gt_boxes,
+                    seq_file,
+                    target_agent_id,
+                    num_sensor,
+                    trans_matrices,
+                )
+            else:
+                sample = (
+                    padded_voxel_points,
+                    padded_voxel_points_teacher,
+                    label_one_hot,
+                    reg_target,
+                    reg_loss_mask,
+                    anchors_map,
+                    vis_maps,
+                    target_agent_id,
+                    num_sensor,
+                    trans_matrices,
+                )
+
+            batch.append(sample)
+
+        # 4. （可选）打印一次 debug
+        if idx == 0 and self.shift > 0:
+            print(f"[Debug] shift={self.shift} | input_idx={input_idx} | target_idx={target_idx}")
+
+        return batch
