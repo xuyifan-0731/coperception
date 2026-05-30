@@ -1,0 +1,11 @@
+timestamp_utc,item,status,latest_artifact,next_action,blocker_or_note
+2026-05-27 18:10,DAIR-V2X AI Studio full download,running,results/dair_v2x_aistudio_download_current.log,wait for all 5 AI Studio mirror zip files then run layout/prereq checks,"complete=2/5; currently downloading infrastructure-side image zip; keepalive PID in results/dair_v2x_aistudio_keepalive.pid"
+2026-05-27 18:10,DAIR label-derived BEV dataset,completed,results/dair_vspm_bev_full_summary.csv,use for VSPM/MST DAIR training,"vehicle 15285 frames; infrastructure 12424 frames; total 27709 sparse BEV files"
+2026-05-27 18:10,DAIR our method T10_n5 training,running,runs/dair_v2x_full/our_method_T10_n5/checkpoints/ckpt_10000.pth,finish 30 epochs then select best checkpoint,"current summary best IoU 0.5033 at step 10000; supports total delay up to 4 frames"
+2026-05-27 18:10,DAIR our method T10_n10 training,running,results/dair_v2x_full_train_vehicle_T10_n10.pid,finish 30 epochs then run full latency grid,"started on GPU5 to cover V2X-Sim-style latency grid up to total delay 9 frames"
+2026-05-27 18:10,DAIR MST baseline training,running,runs/dair_v2x_full/mst_ablation/baseline/checkpoints/ckpt_12000.pth,finish 30 epochs then summarize tradeoff,"current summary best IoU 0.5121 at step 12000"
+2026-05-27 18:12,DAIR MST gru_fp16 training,running,runs/dair_v2x_full/mst_ablation/gru_fp16/checkpoints/ckpt_11000.pth,finish 30 epochs then summarize tradeoff,"current summary best IoU 0.5416 at step 11000"
+2026-05-27 18:10,DAIR MST ds64_fp16 training,running,runs/dair_v2x_full/mst_ablation/ds64_fp16/checkpoints/ckpt_12000.pth,finish 30 epochs then summarize tradeoff,"current summary best IoU 0.6010 at step 11000"
+2026-05-27 18:10,DAIR MST bottleneck12 training,running,runs/dair_v2x_full/mst_ablation/bottleneck12/checkpoints/ckpt_14000.pth,finish 30 epochs then summarize tradeoff,"current summary best IoU 0.6007 at step 14000"
+2026-05-27 18:10,DAIR current result collection,completed,results/dair_v2x/summary/training_summary.csv,refresh after new checkpoints or completed runs,"parsed 5 DAIR training logs"
+2026-05-27 18:10,DAIR official detection baselines,blocked,external/DAIR-V2X,run after full raw image/velodyne data layout is complete,"official checkpoints are available; full raw data still downloading"

@@ -1,0 +1,137 @@
+\documentclass[lettersize,journal]{IEEEtran}
+\usepackage{amsmath,amsfonts}
+%\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{amssymb}
+\usepackage{pifont}
+
+% 导言区建议
+\usepackage{booktabs,tabularx,makecell,array}
+\renewcommand{\arraystretch}{1.14}  % 行距稍微加大
+\setlength{\tabcolsep}{4.5pt}         % 列间距稍微减小（默认6pt）
+% 方便左对齐自动换行的列类型
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+
+\newcommand{\todo}[1]{\textbf{\color{red}[(TODO: #1 )]}}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+\makeatletter
+\renewcommand{\maketag@@@}[1]{\hbox{\m@th\normalsize\normalfont#1}}%
+\makeatother
+
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% updated with editorial comments 8/9/2021
+
+\begin{document}
+\title{DLPCM: A Dual-Latency Prediction Compensation Mechanism \\for Timely and Personalized V2V Cooperative Perception
+}
+%\title{Overcoming Communication and Computation Latencies\\ in Cooperative Perception \\via Vehicle-Specific Prediction and Model State Transmission}
+
+\author{Qiuyu Ji, Yan Shi, Shanzhi Chen, \textit{Fellow, IEEE}, and Jin Tian
+\thanks{
+This work was supported by the National Natural Science Foundation of China under Grant 61931005, Beijing Natural Science Foundation under Grant L202018, and the Key Laboratory of Internet of Vehicle Technical Innovation and Testing (CAICT), Ministry of Industry and Information Technology under Grant No. KL-2023-001. \textit{(Corresponding author: Yan Shi.)}
+Qiuyu Ji, Yan Shi, and Jin Tian are with the State Key Laboratory of Networking and Switching Technology, Beijing University of Posts and Telecommunications, Beijing 100876, China (e-mail: qiuyuji@bupt.edu.cn; shiyan@bupt.edu.cn; tianjin@bupt.edu.cn).
+Shanzhi Chen is with the National Engineering Research Center of Mobile Communications and Vehicular Networks, and State Key Laboratory of Wireless Mobile Communications, China Academy of Telecommunication Technology, Beijing 100191, China (e-mail: chensz@cict.com).
+
+
+}}
+%,~\IEEEmembership{Staff,~IEEE,}
+        % <-this % stops a space
+%\thanks{This paper was produced by the IEEE Publication Technology Group. They are in Piscataway, NJ.}% <-this % stops a space
+%\thanks{Manuscript received April 19, 2021; revised August 16, 2021.}}
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2021}%
+%{Shell \MakeLowercase{\textit{et al.}}: A Sample Article Using IEEEtran.cls for IEEE Journals}
+
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2021 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+\maketitle
+
+\begin{abstract}
+Cooperative perception enables connected vehicles to extend sensing range by sharing perception information, which is essential for safety and efficiency in intelligent transportation systems. However, its practical utility is often limited by communication and computation latency. Existing prediction-based methods which account for communication latency, typically deployed on the receiving vehicle (i.e., the vehicle that receives and integrates information from others), suffer from insufficient historical data, poor adaptability and redundant computation, while computation latency is often overlooked. To address these issues, this paper proposes a Dual-Latency Prediction Compensation Mechanism (DLPCM) with a Vehicle Specific Prediction Model (VSPM) and Model State Transmission (MST) for Vehicle-to-Vehicle (V2V) cooperative perception. Specifically, VSPM is trained at the transmitting vehicle (i.e., the vehicle that shares its sensing information) using its historical data, enabling vehicle-specific and accurate prediction. In the MST stage, compressed intermediate model states are exchanged instead of raw perception information, reducing communication load and redundant computation. At the receiving vehicle, DLPCM compensates for dual-latency to temporally align all vehicles’ information, thereby ensuring timely, latency-robust, and accurate cooperative perception. Experiments on V2X-Sim and DAIR-V2X-C demonstrate that the proposed mechanism significantly improves the accuracy, timeliness and robustness of cooperative perception, while maintaining low communication and computation overhead.
+
+
+
+
+
+
+
+
+
+
+%Cooperative perception enables connected vehicles to extend sensing range by sharing perception information, which is essential for safety and efficiency in intelligent transportation systems. However, its practical utility is often limited by communication and computation latency. Existing prediction-based methods which account for communication latency, typically deployed on the receiving vehicle (the vehicle that receives and integrates information from others), suffer from insufficient historical data, poor adaptability and redundant computation, while computation latency is often overlooked. To address these issues, this paper proposes a Dual-Latency Prediction Compensation Mechanism (DLPCM) with a Vehicle Specific Prediction Model (VSPM) and Model State Transmission (MST). Specifically, VSPM is trained at the transmitting vehicle (the vehicle that shares its sensing information) using its historical data, enabling vehicle-specific and accurate prediction. In the MST stage, compressed intermediate model states are exchanged instead of raw perception information, reducing communication load and redundant computation. At the receiving vehicle, DLPCM compensates for dual-latency to temporally align all vehicles’ information, thereby ensuring timely, latency-robust, and accurate cooperative perception. Extensive experiments demonstrate that the proposed mechanism significantly improves the accuracy, timeliness and robustness of cooperative perception, while maintaining low communication and computation overhead.
+%Cooperative perception enables connected vehicles to extend their sensing range by sharing perception information, which is essential for safety and efficiency in intelligent transportation. However, its practical utility is often hindered by communication and computation latency. Existing prediction-based methods, typically deployed on the receiving vehicle, suffer from insufficient historical data, poor adaptability, and redundant computation, while computation latency is often overlooked. To address these issues, this paper proposes a Dual-Latency Prediction Compensation Mechanism (DLPCM) with a Vehicle-Specific Prediction Model (VSPM) and Model State Transmission (MST). VSPM is trained at the transmitting vehicle using its historical data, enabling personalized and accurate prediction. In the MST stage, compressed intermediate model states are exchanged instead of raw perception information, reducing communication load and redundant computation. At the receiving vehicle, DLPCM compensates for dual-latency to temporally align all vehicles’ information, yielding timely cooperative perception. Extensive experiments demonstrate that the proposed mechanism significantly improves the accuracy, timeliness, and robustness of cooperative perception, while maintaining low communication and computation overhead.
+
+%Cooperative perception enables connected vehicles to overcome sensing limitations by sharing perception information. However, its performance is critically constrained by communication and computation latencies. To overcome these limitations, this paper proposes a Dual-Latency Prediction Compensation Mechanism (DLPCM) based on a Vehicle-Specific Prediction Model (VSPM) with Model State Transmission (MST). VSPM is deployed on the transmitting side and trained with each vehicle’s historical perception data, enabling accurate, personalized prediction while avoiding data scarcity at the receiver. In MST stage, compressed intermediate model states are exchanged instead of raw perception, which reduces communication overhead and offloads redundant computation. To this end, DLPCM at the receiver side compensates each vehicle’s information to match the result time, and outputs a timely cooperative perception result. Extensive experiments demonstrate that the proposed mechanism significantly improves prediction accuracy, timeliness, and robustness of cooperative perception, while maintaining low communication and computation overhead.
+%Cooperative perception enables connected vehicles to overcome sensing limitations by sharing perception information, but its performance is critically constrained by communication and computation latencies. Existing prediction-based methods deployed at the receiver side suffer from insufficient historical data, limited adaptability, and redundant computation, while computation-acceleration approaches fail to address the fundamental issue of outdated perception. To overcome these limitations, this paper proposes a Dual-Latency Prediction Compensation Mechanism (DLPCM) based on a Vehicle-Specific Prediction Model (VSPM) with Model State Transmission (MST). The prediction model is deployed on the transmitting side and trained with each vehicle’s historical perception data, enabling accurate, personalized prediction while avoiding data scarcity at the receiver. Instead of transmitting raw perception, compressed intermediate model states are exchanged, which reduces communication overhead and offloads redundant computation. At the receiver, each vehicle’s information is compensated to the result time, fused with the receiver’s latency-compensated perception, and output as timely cooperative perception result. Extensive experiments demonstrate that the proposed mechanism significantly improves prediction accuracy, timeliness, and robustness of cooperative perception, while maintaining low communication and computation overhead.
+
+%Accurate environmental perception is crucial for decision-making in intelligent driving systems. However, single-vehicle perception faces limitations in the field of view and struggles with long-range accuracy, making it inadequate for complex traffic scenarios. Vehicle-to-everything (V2X) technology expands the perception horizon, mitigating blind spots and long-range limitations; however, its real-time performance is still hindered by communication and computation latencies. We propose a cooperative perception method based on a dual-latency prediction compensation mechanism with a vehicle-specific prediction model. At initial communication, only model parameters containing historical perception data from the transmitting vehicle are sent; in subsequent communication cycles, intermediate model states replace perception data, jointly addressing communication and computation latencies. After receiving the information, the target vehicle compensates for computation latency in its latest perception data and merges these with other data that have also been adjusted for latency, thus achieving an optimal real-time perception result. Experiments show that, compared with V2VNet, which performs cooperative perception under latency without prediction-based compensation, our approach achieves an average accuracy gain of XX\%. Furthermore, compared with SyncNet that considers only communication latency, the improvement is XX\%; and compared with CMP under the same constraint, the improvement reaches XX\%. The method effectively mitigates latency effects, significantly enhancing real-time performance, safety, and system reliability.
+%At the receiver, information from each vehicle is individually compensated to the target result time according to its latency, while the receiver’s own perception is aligned by compensating computation latency, and all results are then fused into a timely cooperative perception output.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+cooperative perception, communication latency, computation latency, prediction, real-time performance.
+\end{IEEEkeywords}
+
+\input{1_introduction}
+\input{2_related_work}
+\input{3_dual}
+\input{4_experiment}
+\input{5_conclusion}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{ref.bib}
+
+
+
+
+\newpage
+
+
+ 
+
+
+\end{document}

@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{DAIR-V2X label-derived BEV delay and system ablation.}
+\label{tab:dair-delay-system}
+\begin{tabular}{llrrrrr}
+\toprule
+Setting & Mode & Cases & IoU & Copy & $\Delta$IoU & Dyn. IoU \\
+\midrule
+T10\_n10 ckpt 15000 & no\_comp & 30 & 0.1945 & 0.1945 & 0.0000 & 0.0497 \\
+T10\_n10 ckpt 15000 & comm\_only & 30 & 0.2960 & 0.1945 & 0.1015 & 0.2380 \\
+T10\_n10 ckpt 15000 & comp\_only & 30 & 0.2784 & 0.1945 & 0.0839 & 0.2053 \\
+T10\_n10 ckpt 15000 & dual & 30 & 0.4097 & 0.1945 & 0.2153 & 0.4436 \\
+T10\_n10 ckpt 15000 & oracle & 30 & 1.0000 & 0.1945 & 0.8055 & 1.0000 \\
+T10\_n5 ckpt 16000 & no\_comp & 15 & 0.2857 & 0.2857 & 0.0000 & 0.0836 \\
+T10\_n5 ckpt 16000 & comm\_only & 15 & 0.3956 & 0.2857 & 0.1099 & 0.2672 \\
+T10\_n5 ckpt 16000 & comp\_only & 15 & 0.3956 & 0.2857 & 0.1099 & 0.2672 \\
+T10\_n5 ckpt 16000 & dual & 15 & 0.5207 & 0.2857 & 0.2350 & 0.4830 \\
+T10\_n5 ckpt 16000 & oracle & 15 & 1.0000 & 0.2857 & 0.7143 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table*}

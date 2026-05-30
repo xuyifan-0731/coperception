@@ -1,0 +1,17 @@
+run,status,car_3d_ap_0_50,car_3d_ap_0_70,car_bev_ap_0_50,car_bev_ap_0_70,avg_comm_bytes
+early_fusion_k0,complete,62.61,37.50,68.94,59.02,2284.16
+early_fusion_k1,complete,57.32,32.68,64.05,51.58,2289.40
+early_fusion_k2,complete,54.62,32.17,61.07,50.04,2316.11
+inf_only_k0,complete,17.60,7.06,27.34,14.42,478.56
+late_fusion_no_comp_k1,complete,53.73,36.88,59.90,50.11,478.76
+late_fusion_no_comp_k2,complete,52.38,36.54,58.07,49.26,477.96
+late_fusion_no_comp_k3,complete,51.36,36.25,56.90,48.80,477.40
+late_fusion_no_comp_k4,complete,51.15,36.30,56.47,48.63,471.24
+late_fusion_no_comp_k5,complete,50.87,36.17,56.18,48.36,466.53
+late_fusion_tclf_k0,complete,55.98,40.01,62.00,54.11,911.96
+late_fusion_tclf_k1,complete,54.01,37.59,60.14,51.11,907.78
+late_fusion_tclf_k2,complete,53.33,37.25,59.14,50.51,898.10
+late_fusion_tclf_k3,complete,52.14,36.57,57.80,49.46,885.55
+late_fusion_tclf_k4,complete,51.74,36.46,57.22,49.07,870.67
+late_fusion_tclf_k5,complete,51.29,36.30,56.75,48.71,861.65
+veh_only_k0,complete,48.03,35.08,52.24,46.51,0.00

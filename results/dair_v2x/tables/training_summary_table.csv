@@ -1,0 +1,12 @@
+experiment_group,best_step,best_IoU,best_Delta_IoU,best_Dynamic_IoU,final_IoU
+mst_ablation/baseline,16000,0.5188,0.2469,0.4646,0.5153
+mst_ablation/bottleneck12,16140,0.6021,0.3302,0.5682,0.6021
+mst_ablation/ds64_fp16,16140,0.6066,0.3348,0.5888,0.6066
+mst_ablation/gru_fp16,16000,0.5551,0.2833,0.5240,0.5544
+our_method_T10_n10,15630,0.3853,0.2105,0.3834,0.3853
+our_method_T10_n5,16140,0.5164,0.2446,0.4465,0.5164
+vspm_sensitivity/T10_n15,29000,0.3065,0.1722,0.3385,0.3046
+vspm_sensitivity/T10_n3,16350,0.5954,0.2229,0.4318,0.5954
+vspm_sensitivity/T20_n5,28000,0.5237,0.2522,0.4564,0.5202
+vspm_sensitivity/T30_n5,52000,0.5230,0.2519,0.4741,0.5225
+vspm_sensitivity/T5_n5,16650,0.5183,0.2464,0.4427,0.5183

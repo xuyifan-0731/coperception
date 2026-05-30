@@ -1,0 +1,94 @@
+\begin{table}[t]
+\centering
+\caption{DAIR-V2X official detection baselines completed so far.}
+\label{tab:dair-official-baselines}
+\begin{tabular}{lrrrrr}
+\toprule
+Run & 3D AP@0.5 & 3D AP@0.7 & BEV AP@0.5 & BEV AP@0.7 & Comm. B \\
+\midrule
+early\_fusion\_k0 & 62.61 & 37.50 & 68.94 & 59.02 & 2284.16 \\
+early\_fusion\_k1 & 57.32 & 32.68 & 64.05 & 51.58 & 2289.40 \\
+early\_fusion\_k2 & 54.62 & 32.17 & 61.07 & 50.04 & 2316.11 \\
+inf\_only\_k0 & 17.60 & 7.06 & 27.34 & 14.42 & 478.56 \\
+late\_fusion\_no\_comp\_k1 & 53.73 & 36.88 & 59.90 & 50.11 & 478.76 \\
+late\_fusion\_no\_comp\_k2 & 52.38 & 36.54 & 58.07 & 49.26 & 477.96 \\
+late\_fusion\_no\_comp\_k3 & 51.36 & 36.25 & 56.90 & 48.80 & 477.40 \\
+late\_fusion\_no\_comp\_k4 & 51.15 & 36.30 & 56.47 & 48.63 & 471.24 \\
+late\_fusion\_no\_comp\_k5 & 50.87 & 36.17 & 56.18 & 48.36 & 466.53 \\
+late\_fusion\_tclf\_k0 & 55.98 & 40.01 & 62.00 & 54.11 & 911.96 \\
+late\_fusion\_tclf\_k1 & 54.01 & 37.59 & 60.14 & 51.11 & 907.78 \\
+late\_fusion\_tclf\_k2 & 53.33 & 37.25 & 59.14 & 50.51 & 898.10 \\
+late\_fusion\_tclf\_k3 & 52.14 & 36.57 & 57.80 & 49.46 & 885.55 \\
+late\_fusion\_tclf\_k4 & 51.74 & 36.46 & 57.22 & 49.07 & 870.67 \\
+late\_fusion\_tclf\_k5 & 51.29 & 36.30 & 56.75 & 48.71 & 861.65 \\
+veh\_only\_k0 & 48.03 & 35.08 & 52.24 & 46.51 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{DAIR-V2X delay and system ablation summary.}
+\label{tab:dair-delay-system}
+\begin{tabular}{llrrrrr}
+\toprule
+Setting & Mode & Cases & IoU & Copy & $\Delta$IoU & Dyn. IoU \\
+\midrule
+T10\_n10\_ckpt15000 & comm\_only & 30 & 0.2960 & 0.1945 & 0.1015 & 0.2380 \\
+T10\_n10\_ckpt15000 & comp\_only & 30 & 0.2784 & 0.1945 & 0.0839 & 0.2053 \\
+T10\_n10\_ckpt15000 & dual & 30 & 0.4097 & 0.1945 & 0.2153 & 0.4436 \\
+T10\_n10\_ckpt15000 & no\_comp & 30 & 0.1945 & 0.1945 & 0.0000 & 0.0497 \\
+T10\_n10\_ckpt15000 & oracle & 30 & 1.0000 & 0.1945 & 0.8055 & 1.0000 \\
+T10\_n5\_ckpt16000 & comm\_only & 15 & 0.3956 & 0.2857 & 0.1099 & 0.2672 \\
+T10\_n5\_ckpt16000 & comp\_only & 15 & 0.3956 & 0.2857 & 0.1099 & 0.2672 \\
+T10\_n5\_ckpt16000 & dual & 15 & 0.5207 & 0.2857 & 0.2350 & 0.4830 \\
+T10\_n5\_ckpt16000 & no\_comp & 15 & 0.2857 & 0.2857 & 0.0000 & 0.0836 \\
+T10\_n5\_ckpt16000 & oracle & 15 & 1.0000 & 0.2857 & 0.7143 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{DAIR-V2X VSPM training and ablation summary.}
+\label{tab:dair-vspm-training}
+\begin{tabular}{lrrrrr}
+\toprule
+Run & Best step & Best IoU & $\Delta$IoU & Dyn. IoU & Final IoU \\
+\midrule
+mst\_ablation/baseline & 16000 & 0.5188 & 0.2469 & 0.4646 & 0.5153 \\
+mst\_ablation/bottleneck12 & 16140 & 0.6021 & 0.3302 & 0.5682 & 0.6021 \\
+mst\_ablation/ds64\_fp16 & 16140 & 0.6066 & 0.3348 & 0.5888 & 0.6066 \\
+mst\_ablation/gru\_fp16 & 16000 & 0.5551 & 0.2833 & 0.5240 & 0.5544 \\
+our\_method\_T10\_n10 & 15630 & 0.3853 & 0.2105 & 0.3834 & 0.3853 \\
+our\_method\_T10\_n5 & 16140 & 0.5164 & 0.2446 & 0.4465 & 0.5164 \\
+vspm\_sensitivity/T10\_n15 & 29000 & 0.3065 & 0.1722 & 0.3385 & 0.3046 \\
+vspm\_sensitivity/T10\_n3 & 16350 & 0.5954 & 0.2229 & 0.4318 & 0.5954 \\
+vspm\_sensitivity/T20\_n5 & 28000 & 0.5237 & 0.2522 & 0.4564 & 0.5202 \\
+vspm\_sensitivity/T30\_n5 & 52000 & 0.5230 & 0.2519 & 0.4741 & 0.5225 \\
+vspm\_sensitivity/T5\_n5 & 16650 & 0.5183 & 0.2464 & 0.4427 & 0.5183 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{DAIR-V2X VSPM robustness summary.}
+\label{tab:dair-vspm-robustness}
+\begin{tabular}{llrrrr}
+\toprule
+Setting & Condition & IoU & Copy & $\Delta$IoU & Dyn. IoU \\
+\midrule
+T10\_n5\_ckpt16000 & clean & 0.5478 & 0.2771 & 0.2707 & 0.4733 \\
+T10\_n5\_ckpt16000 & packet\_loss\_0.3 & 0.4411 & 0.2443 & 0.1968 & 0.3490 \\
+T10\_n5\_ckpt16000 & packet\_loss\_0.5 & 0.3476 & 0.2126 & 0.1351 & 0.2497 \\
+T10\_n5\_ckpt16000 & dropout\_0.2 & 0.4867 & 0.2368 & 0.2500 & 0.4436 \\
+T10\_n5\_ckpt16000 & false\_positive\_0.005 & 0.5082 & 0.2140 & 0.2942 & 0.4268 \\
+T10\_n10\_ckpt15000 & clean & 0.4057 & 0.1709 & 0.2348 & 0.4291 \\
+T10\_n10\_ckpt15000 & packet\_loss\_0.3 & 0.3261 & 0.1540 & 0.1721 & 0.3267 \\
+T10\_n10\_ckpt15000 & packet\_loss\_0.5 & 0.2569 & 0.1366 & 0.1203 & 0.2413 \\
+T10\_n10\_ckpt15000 & dropout\_0.2 & 0.3742 & 0.1471 & 0.2271 & 0.4050 \\
+T10\_n10\_ckpt15000 & false\_positive\_0.005 & 0.3833 & 0.1357 & 0.2476 & 0.3755 \\
+\bottomrule
+\end{tabular}
+\end{table}

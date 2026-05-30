@@ -1,0 +1,43 @@
+\begin{table*}[t]
+\centering
+\caption{Comparison of mAP@0.5 and mAP@0.7 under different \emph{communication and computation latency} settings on the V2X\textendash Sim dataset. Oracle and No Collaboration are reported only at the AVG columns (others are unavailable, shown as ``--''). Our method outperforms V2VNet across all latency conditions and surpasses the Oracle under zero latency.}
+\begin{tabular}{c c *{14}{c}}
+\toprule
+\multirow{2}{*}{\textbf{Method}} & &
+\multicolumn{7}{c}{\textbf{AP@0.5}} &
+\multicolumn{7}{c}{\textbf{AP@0.7}} \\
+\cmidrule(lr){3-9}\cmidrule(lr){10-16}
+& \multicolumn{1}{c}{\diagbox{\small{Comp.}}{\small{Comm.}}} &
+\textbf{AVG} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} &
+\textbf{AVG} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+\midrule
+\textbf{Oracle} & -- &
+\textit{64.91} & -- & -- & -- & -- & -- & -- &
+\textit{57.26} & -- & -- & -- & -- & -- & -- \\
+\textbf{No Collaboration} & -- &
+49.90 & -- & -- & -- & -- & -- & -- &
+44.21 & -- & -- & -- & -- & -- & -- \\
+\midrule
+\multirow{3}{*}{\textbf{V2VNet}} & 0 &
+57.43 & 64.91 & 60.01 & 55.69 & 54.44 & 53.79 & 53.21 &
+47.61 & 57.26 & 47.03 & 45.46 & 45.24 & 44.78 & 44.51 \\
+& 2 &
+54.63 & 55.45 & 54.91 & 54.73 & 54.55 & 54.23 & 53.89 &
+45.20 & 45.29 & 45.40 & 45.35 & 45.27 & 45.05 & 44.82 \\
+& 4 &
+53.52 & 53.33 & 53.55 & 53.69 & 53.61 & 53.53 & 53.39 &
+44.45 & 44.35 & 44.65 & 44.57 & 44.47 & 44.39 & 44.28 \\
+\midrule
+\multirow{3}{*}{\textbf{Ours}} & 0 &
+64.41 & 67.45 & 65.16 & 64.06 & 63.56 & 63.19 & 63.04 &
+56.41 & 58.64 & 57.12 & 56.25 & 55.68 & 55.43 & 55.34 \\
+& 2 &
+57.01 & 57.54 & 57.22 & 56.97 & 56.91 & 56.78 & 56.63 &
+50.45 & 51.02 & 50.64 & 50.42 & 50.36 & 50.22 & 50.03 \\
+& 4 &
+56.07 & 56.40 & 56.21 & 56.15 & 55.96 & 55.90 & 55.80 &
+49.45 & 49.87 & 49.65 & 49.46 & 49.39 & 49.25 & 49.09 \\
+\bottomrule
+\end{tabular}
+\label{tab:map-upper-lower-v2v}
+\end{table*}

@@ -1,0 +1,49 @@
+# Local datasets and archives.
+/V2X-Sim-det/
+/V2X-Sim-det-*.zip
+/datasets/
+/data_smoke/
+
+# Original scratch workspace. Curated source, scripts, and result summaries live
+# under src/, scripts/, results/, and docs/.
+/model1/
+/train.py
+
+# Upstream CoPerception checkout and generated caches.
+/coperception-master-2D/
+/external/
+
+# Heavy or generated experiment artifacts.
+*.pth
+*.pt
+*.ckpt
+*.npy
+*.npz
+*.zip
+*.tar
+*.tar.gz
+*.log
+wandb/
+runs/
+outputs/
+checkpoints*/
+test_result*/
+*.pkl
+*.pcd
+*.bin
+*.jpeg
+*.jpg.part
+*.png.part
+*.zip.part
+*.aistudio.part
+
+# Python and editor caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.DS_Store
