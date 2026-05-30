@@ -8,40 +8,27 @@ Scope constraint: only use files under `/raid/xuyifan/v2x_code_ckpt`.
 
 ## Current Status
 
-Last updated: 2026-05-27 10:05 UTC
+Last updated: 2026-05-30 20:25 UTC
 
-- Original full revision pipeline stopped after a CUDA OOM at `T20_n5` with batch `16`.
-- VSPM recovery pipeline completed.
-- MST ablation pipeline completed.
-- GPU robustness evaluation completed for `T10_n5`.
-- CPU duplicate robustness evaluation was stopped after the GPU run produced the complete result table.
-- Original pipeline PID: `317435` (stopped)
-- Recovery PID: `1606101` (stopped)
-- MST PID: `3595781` (stopped)
-- Active stage: DAIR-V2X preparation plus label-derived DAIR BEV training/ablations
-- Active training job: DAIR label-derived BEV main training and DAIR MST ablation jobs are running
-- Active environment job: none; `dair-v2x-openmmlab` is ready for OpenDAIRV2X full runs after data is available
-- Active download job: Google Drive DAIR-V2X-C detached retry is running every 600s; latest attempts still fail with quota/public-link limits
-- Active DAIR smoke job: completed official example smoke run
-- MST script:
-  - `scripts/run_mst_ablation.sh`
-- Last MST baseline command:
-
-```bash
-python src/v2x_forecasting/train_bev_compressed.py \
-  --data_root V2X-Sim-det/train/agent1 \
-  --data_root_val V2X-Sim-det/test/agent1 \
-  --T 10 --n 5 --batch 16 --epochs 30 \
-  --use_dice \
-  --teacher_forcing_start 1.0 \
-  --teacher_forcing_end 0.0 \
-  --teacher_forcing_epochs 10 \
-  --ckpt_interval 1000 \
-  --eval_interval 1000 \
-  --ckpt_dir runs/revision_mst_ablation/baseline/checkpoints \
-  --project bev-encdec \
-  --name revision_mst_baseline
-```
+- DAIR-V2X-C full raw data is downloaded, laid out, and prerequisite checks passed.
+- Core DAIR revision experiments are complete:
+  - official baselines: `veh_only_k0`, `inf_only_k0`, `late_fusion_tclf_k0..k5`, `late_fusion_no_comp_k1..k5`, `early_fusion_k0..k2`;
+  - our DAIR VSPM delay/system ablations: `T10_n5 ckpt16000` and `T10_n10 ckpt15000`;
+  - DAIR MST ablation: `baseline`, `gru_fp16`, `ds64_fp16`, `bottleneck12`;
+  - DAIR sensitivity: `T5_n5`, `T10_n3`, `T10_n5`, `T10_n10`, `T10_n15`, `T20_n5`, `T30_n5`;
+  - DAIR robustness: `T10_n5` and `T10_n10` under clean, packet loss, dropout, and false-positive perturbations.
+- Current active optional experiment: official DAIR `early_fusion_k3/k4/k5`, running detached on GPUs 0/1/2.
+  - logs: `results/dair_v2x/official_baselines/logs/early_fusion_k{3,4,5}.log`
+  - root PID files: `results/dair_v2x/official_baselines/isolated_early_fusion_k{3,4,5}.pid`
+  - runner: `scripts/run_dair_v2x_official_isolated_early_fusion.sh`
+  - watcher: `scripts/watch_dair_early_fusion_then_refresh.sh`
+- Watcher behavior after `early_fusion_k3/k4/k5` complete:
+  - refresh `results/dair_v2x/official_baselines/summary_partial.csv`;
+  - refresh `results/dair_v2x/tables/dair_revision_tables.tex`;
+  - refresh `DLPCM/table/dair_*.tex` and `DLPCM/pics/dair_*.pdf`;
+  - update `results/dair_v2x/summary/current_status.csv`.
+- Paper artifacts are generated from CSV by `scripts/make_dair_paper_artifacts.py`.
+- Static LaTeX path check passed for `\input{...}` and `\includegraphics{...}` targets. PDF compilation is unavailable on this machine because no LaTeX engine is installed.
 
 Completed VSPM sensitivity results:
 
