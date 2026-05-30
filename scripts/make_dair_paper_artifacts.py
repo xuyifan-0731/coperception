@@ -92,9 +92,12 @@ def generate_official_table() -> None:
         ("late_fusion_no_comp_k5", "Late fusion w/o comp.", "5"),
         ("early_fusion_k0", "Early fusion", "0"),
         ("early_fusion_k2", "Early fusion", "2"),
+        ("early_fusion_k5", "Early fusion", "5"),
     ]
     body = []
     for run, name, delay in order:
+        if run not in rows:
+            continue
         row = rows[run]
         body.append(
             [
@@ -276,18 +279,22 @@ def plot_official_delay() -> None:
     rows = read_csv(DAIR / "tables" / "official_baselines_table.csv")
     by_run = {row["run"]: row for row in rows}
 
-    def series(prefix: str, ks: list[int], metric: str) -> list[float]:
-        return [as_float(by_run[f"{prefix}_k{k}"][metric]) for k in ks]
+    def available_series(prefix: str, ks: list[int], metric: str) -> tuple[list[int], list[float]]:
+        present = [k for k in ks if f"{prefix}_k{k}" in by_run]
+        return present, [as_float(by_run[f"{prefix}_k{k}"][metric]) for k in present]
 
     setup_plot((5.2, 3.3))
     for prefix, label, ks, marker in [
         ("late_fusion_tclf", "Late fusion + TCLF", [0, 1, 2, 3, 4, 5], "o"),
         ("late_fusion_no_comp", "Late fusion w/o comp.", [1, 2, 3, 4, 5], "s"),
-        ("early_fusion", "Early fusion", [0, 1, 2], "^"),
+        ("early_fusion", "Early fusion", [0, 1, 2, 3, 4, 5], "^"),
     ]:
+        x_values, y_values = available_series(prefix, ks, "car_bev_ap_0_70")
+        if not x_values:
+            continue
         plt.plot(
-            ks,
-            series(prefix, ks, "car_bev_ap_0_70"),
+            x_values,
+            y_values,
             marker=marker,
             linewidth=1.8,
             label=label,
