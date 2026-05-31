@@ -2,6 +2,9 @@ run,status,car_3d_ap_0_50,car_3d_ap_0_70,car_bev_ap_0_50,car_bev_ap_0_70,avg_com
 early_fusion_k0,complete,62.61,37.50,68.94,59.02,2284.16
 early_fusion_k1,complete,57.32,32.68,64.05,51.58,2289.40
 early_fusion_k2,complete,54.62,32.17,61.07,50.04,2316.11
+early_fusion_k3,complete,52.54,31.56,58.85,48.61,2379.61
+early_fusion_k4,complete,52.08,31.65,57.76,48.08,2431.87
+early_fusion_k5,complete,50.93,30.98,56.47,46.99,2496.60
 inf_only_k0,complete,17.60,7.06,27.34,14.42,478.56
 late_fusion_no_comp_k1,complete,53.73,36.88,59.90,50.11,478.76
 late_fusion_no_comp_k2,complete,52.38,36.54,58.07,49.26,477.96
