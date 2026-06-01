@@ -8,25 +8,21 @@ Scope constraint: only use files under `/raid/xuyifan/v2x_code_ckpt`.
 
 ## Current Status
 
-Last updated: 2026-05-30 20:25 UTC
+Last updated: 2026-06-01 00:00 UTC
 
 - DAIR-V2X-C full raw data is downloaded, laid out, and prerequisite checks passed.
 - Core DAIR revision experiments are complete:
-  - official baselines: `veh_only_k0`, `inf_only_k0`, `late_fusion_tclf_k0..k5`, `late_fusion_no_comp_k1..k5`, `early_fusion_k0..k2`;
+  - official baselines: `veh_only_k0`, `inf_only_k0`, `late_fusion_tclf_k0..k5`, `late_fusion_no_comp_k1..k5`, `early_fusion_k0..k5`;
   - our DAIR VSPM delay/system ablations: `T10_n5 ckpt16000` and `T10_n10 ckpt15000`;
   - DAIR MST ablation: `baseline`, `gru_fp16`, `ds64_fp16`, `bottleneck12`;
   - DAIR sensitivity: `T5_n5`, `T10_n3`, `T10_n5`, `T10_n10`, `T10_n15`, `T20_n5`, `T30_n5`;
   - DAIR robustness: `T10_n5` and `T10_n10` under clean, packet loss, dropout, and false-positive perturbations.
-- Current active optional experiment: official DAIR `early_fusion_k3/k4/k5`, running detached on GPUs 0/1/2.
+- Optional official DAIR `early_fusion_k3/k4/k5` completed on 2026-05-31 03:57 UTC and was pushed to GitHub.
   - logs: `results/dair_v2x/official_baselines/logs/early_fusion_k{3,4,5}.log`
-  - root PID files: `results/dair_v2x/official_baselines/isolated_early_fusion_k{3,4,5}.pid`
+  - parsed summary: `results/dair_v2x/official_baselines/summary_partial.csv`
   - runner: `scripts/run_dair_v2x_official_isolated_early_fusion.sh`
-  - watcher: `scripts/watch_dair_early_fusion_then_refresh.sh`
-- Watcher behavior after `early_fusion_k3/k4/k5` complete:
-  - refresh `results/dair_v2x/official_baselines/summary_partial.csv`;
-  - refresh `results/dair_v2x/tables/dair_revision_tables.tex`;
-  - refresh `DLPCM/table/dair_*.tex` and `DLPCM/pics/dair_*.pdf`;
-  - update `results/dair_v2x/summary/current_status.csv`.
+  - final watcher: `scripts/watch_dair_early_fusion_then_push.sh`
+- No active training/evaluation jobs are currently running; all GPUs are idle.
 - Paper artifacts are generated from CSV by `scripts/make_dair_paper_artifacts.py`.
 - Static LaTeX path check passed for `\input{...}` and `\includegraphics{...}` targets. PDF compilation is unavailable on this machine because no LaTeX engine is installed.
 
