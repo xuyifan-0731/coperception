@@ -76,13 +76,13 @@
 2. `inf_only_k0`：路侧单端。
 3. `late_fusion_tclf_k0..k5`：late fusion + time compensation。
 4. `late_fusion_no_comp_k1..k5`：late fusion without compensation。
-5. `early_fusion_k0..k2`：early fusion，上界型高通信 baseline。
+5. `early_fusion_k0..k5`：early fusion，高通信量官方参考 baseline。
 
 需要分析的结果：
 
 1. AP 随 k 增大的退化曲线。
 2. `late_fusion_tclf` 相对 `late_fusion_no_comp` 的 AP 增益。
-3. `early_fusion` 的 AP/通信量上界作用。
+3. `early_fusion` 的 AP/通信量变化；只作为高通信量参考，不作为严格性能上界。
 4. `veh_only` 和 `inf_only` 作为无协作/单端基线。
 
 论文呈现方式：
@@ -115,7 +115,7 @@
 需要分析的结果：
 
 1. `dual` 是否显著高于 `no_comp/copy-last`。
-2. `dual` 是否高于 `comm_only` 和 `comp_only`，证明联合时延建模必要。
+2. 在完整 `T10_n10` grid 上，`dual` 是否高于 `comm_only` 和 `comp_only`，证明联合时延建模必要。
 3. `oracle` 与 `dual` 的差距，用于说明剩余改进空间。
 4. `T10_n5` 和 `T10_n10` 的差异：
    - `T10_n5` 更适合短 horizon，IoU 高。
@@ -130,7 +130,7 @@
 验收标准：
 
 1. `dual` 在 `T10_n5` 和 `T10_n10` 上都高于 `no_comp`。
-2. `dual` 高于 `comm_only/comp_only`，至少在平均 IoU 和 Dynamic IoU 上成立。
+2. `T10_n10 dual` 高于 `comm_only/comp_only`，至少在平均 IoU 和 Dynamic IoU 上成立。
 3. 若长期 horizon 上绝对 IoU 下降，应明确解释为 horizon 难度，而不是方法失效。
 
 ### 实验 C：MST 通信效率和性能消融
@@ -249,7 +249,7 @@
 
 2. **Table 2：DAIR delay/system ablation for our method**
    - 来源：`results/dair_v2x/tables/delay_system_ablation_table.csv`
-   - 分析重点：dual > no_comp/comm_only/comp_only。
+   - 分析重点：`T10_n10` 上 dual > no_comp/comm_only/comp_only；`T10_n5` 用于短时延收益确认。
 
 3. **Table 3：MST bandwidth-performance**
    - 来源：`results/dair_v2x/tables/training_summary_table.csv` + profile/scalability CSV。

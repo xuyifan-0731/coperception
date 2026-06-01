@@ -14,12 +14,14 @@
 
 - 我们新增 DAIR-V2X-C 实验，补充真实车路协同场景下的验证。
 - 新实验分为两层：官方 point-cloud detection baseline 用 AP 证明真实 DAIR 场景中协同感知确实受到时延影响；我们的方法在 DAIR annotation-derived BEV sequence 上验证 VSPM、dual-latency compensation 和 MST 的有效性。
+- 这两层结果使用不同指标，官方 baseline 报告 detection AP，我们的方法在 DAIR 上报告 BEV forecasting IoU；修订稿中不会把二者直接比较，也不会声称 DAIR official AP 是我们方法的 detection AP。
 - 修订稿新增 Table `tab:dair-official-baselines` 和 Fig. `fig:dair-official-delay`。
 
 可写入 rebuttal 的结果：
 
 - DAIR 官方 detection baseline 中，late fusion + TCLF 在 `k=0` 时 BEV AP@0.7 为 54.11，`k=5` 时为 48.71，说明真实场景中时延会造成检测性能下降。
 - Vehicle-only BEV AP@0.7 为 46.51，late fusion + TCLF 在多个 delay setting 下高于 vehicle-only，说明 V2X 协作信息在真实场景中仍有价值。
+- Early fusion 作为高通信量官方参考基线使用，而不是严格上界；其 BEV AP@0.7 也从 `k=0` 的 59.02 降到 `k=5` 的 46.99。
 
 ### 2. 关于通信时延和计算时延是否都需要建模
 
@@ -33,6 +35,7 @@
 
 - 在完整 `T10_n10` delay grid 上，`dual` 平均 IoU 为 0.4097，高于 `no_comp` 的 0.1945、`comm_only` 的 0.2960 和 `comp_only` 的 0.2784。
 - 在短时延 `T10_n5` 设置上，`dual` 平均 IoU 为 0.5207，高于 `no_comp` 的 0.2857，并带来 0.2350 的 IoU 增益。
+- 因为 `T10_n5` 覆盖的是较短、较对称的 latency subset，通信/计算单独补偿的区分主要以完整 `T10_n10` grid 为证据；`T10_n5` 用于证明短时延场景下 dual compensation 仍有稳定收益。
 - 这些结果支持“通信时延与计算时延需要联合补偿”的结论。
 
 ### 3. 关于 MST 是否真正降低通信/缓存开销
@@ -47,6 +50,7 @@
 - 原始 ConvLSTM hidden+cell 状态为 16.0 MiB/agent。
 - DS64-FP16 与 Bottleneck12 均为 0.25 MiB/agent，相当于 64x 状态压缩。
 - DS64-FP16 在 DAIR 上达到 0.6066 IoU 和 0.5888 Dynamic IoU，高于 ConvLSTM-state baseline 的 0.5188 IoU 和 0.4646 Dynamic IoU。
+- 修订稿会明确：DAIR MST 表中的 0.25 MiB/agent 是 recurrent state footprint；正文前面 0.65 MB 是 V2X-Sim feature-level transmission 与压缩状态的比较，二者是不同传输格式和 profiling 口径。
 - 结果说明 MST 不只是减少字节量，也能保留对预测补偿有用的历史状态信息。
 
 ### 4. 关于超参数选择和适用边界
