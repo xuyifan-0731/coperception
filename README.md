@@ -18,6 +18,8 @@ scratch scripts; those large artifacts are intentionally excluded from Git.
 - `results/summary/*.csv`: curated metrics extracted from the existing
   experiments.
 - `results/figures/`: paper/analysis figures that are small enough for Git.
+- `checkpoints/curated/`: selected small project-owned checkpoints needed for
+  the main paper/revision experiments.
 - `docs/`: dataset, experiment, and reproduction notes.
 
 ## What Is Not Tracked
@@ -63,6 +65,15 @@ export DATA_ROOT=/path/to/V2X-Sim-det
 ```
 
 See `docs/DATA.md` for details.
+
+Restore the selected checkpoints to their legacy local paths with:
+
+```bash
+bash scripts/restore_curated_checkpoints.sh
+```
+
+See `docs/RESTORE_LOCAL_ARTIFACTS.md` for restoring ignored datasets, external
+repositories, and official third-party checkpoints.
 
 ## Optional Third-Party Checkouts
 

@@ -31,6 +31,9 @@ wandb/
 runs/
 outputs/
 checkpoints*/
+!checkpoints/
+!checkpoints/curated/
+!checkpoints/curated/**
 test_result*/
 *.pkl
 *.pcd
