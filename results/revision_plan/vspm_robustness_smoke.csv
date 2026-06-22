@@ -1,0 +1,3 @@
+condition,packet_loss,dropout_rate,false_positive_rate,samples,steps,mean_iou,mean_baseline_iou,mean_delta_iou,mean_dynamic_iou
+clean,0.0,0.0,0.0,2,4,0.8335338966283489,0.7934731666862456,0.0400607299421033,0.3332613250196753
+packet_loss_0.1,0.1,0.0,0.0,2,4,0.8335338966283489,0.7934731666862456,0.0400607299421033,0.3332613250196753

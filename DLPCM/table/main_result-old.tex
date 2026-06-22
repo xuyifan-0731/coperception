@@ -1,0 +1,21 @@
+\begin{table*}[h]
+\centering
+\caption{Performance comparison on V2VSim. Oracle denotes the ideal results obtained by ignoring all delays. The reported numbers are averaged over all test cases with Communication latency = 0–5 and Computation latency = 0–4. Our method significantly outperforms all baselines.}
+
+\begin{tabular}{l cc ccccc ccccc}
+\toprule
+Method & \multicolumn{1}{c}{mAP@0.5} & \multicolumn{1}{c}{mAP@0.7} &
+\multicolumn{5}{c}{mAP@0.5 by agent} & \multicolumn{5}{c}{mAP@0.7 by agent} \\
+\cmidrule(lr){4-8}\cmidrule(lr){9-13}
+& & & agent1 & agent2 & agent3 & agent4 & agent5 & agent1 & agent2 & agent3 & agent4 & agent5 \\
+\midrule
+Oracle & \textit{64.91} & \textit{57.26} & \textit{57.84} & \textit{67.08} & \textit{67.99} & \textit{63.86} & \textit{73.92} & \textit{52.94} & \textit{61.22} & \textit{58.28} & \textit{54.14} & \textit{62.32} \\
+
+No Collaboration  & 49.90 & 44.21  &- &- &- &- &- &- &- &- &- &-  \\
+V2VNet & 57.06 & 47.88 & 50.23 & 53.75 & 56.27 & 55.33 & 69.71 & 44.36 & 47.21 & 45.84 & 45.28 & 56.69 \\
+Ours        & 59.08 & 52.00 & 51.66 & 56.51 & 58.54 & 56.98 & 71.69 & 47.82 & 52.21 & 49.67 & 49.51 & 60.80 \\
+\bottomrule
+\end{tabular}
+\label{tab:map-upper-lower}
+\end{table*}
+

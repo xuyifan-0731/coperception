@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "updated_by": "scripts/fill_260615_results.py",
+  "tasks": [
+    {
+      "task_id": "v2xsim_v2vnet_syncnet",
+      "enabled": false,
+      "description": "V2X-Sim 车车协同：V2VNet baseline 下补齐 SyncNet 补偿 detector AP。",
+      "dataset": "V2X-Sim / 车车协同",
+      "comparison": "V2VNet + SyncNet vs V2VNet / Ours",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/v2xsim_v2vnet_syncnet_ap.csv",
+      "expected_csv_columns": [
+        "method",
+        "comm_delay_frames",
+        "comp_delay_frames",
+        "AP@0.5",
+        "AP@0.7",
+        "BEV AP@0.5",
+        "BEV AP@0.7",
+        "source",
+        "notes"
+      ],
+      "command": [],
+      "cwd": "/raid/xuyifan/v2x_code_ckpt",
+      "requirements": [
+        "需要可运行的 V2X-Sim detector AP pipeline。",
+        "需要定义并实现 V2VNet + SyncNet 补偿方式。",
+        "输出 comm_delay_frames=0..5、comp_delay_frames=0/2/4 的 AP@0.5/AP@0.7。"
+      ],
+      "notes": "Set enabled=true and command=[...] after the corresponding detector pipeline/checkpoints/configs are available. The command must write the artifact CSV above. The loop will parse and fill 260615结果.md."
+    },
+    {
+      "task_id": "v2xsim_data_compensation",
+      "enabled": false,
+      "description": "V2X-Sim 车车协同：DATA baseline 下补齐 Ours 和 SyncNet 补偿 detector AP。",
+      "dataset": "V2X-Sim 2.0 / 车车协同",
+      "comparison": "DATA + Ours / DATA + SyncNet vs DATA no compensation",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/v2xsim_data_compensation_ap.csv",
+      "expected_csv_columns": [
+        "method",
+        "comm_delay_frames",
+        "comp_delay_frames",
+        "AP@0.5",
+        "AP@0.7",
+        "BEV AP@0.5",
+        "BEV AP@0.7",
+        "source",
+        "notes"
+      ],
+      "command": [],
+      "cwd": "/raid/xuyifan/v2x_code_ckpt",
+      "requirements": [
+        "需要在 external/DATA/OpenCOOD pipeline 中实现 Ours 补偿接口。",
+        "需要在 DATA pipeline 中实现 SyncNet 或等价同步补偿接口。",
+        "输出 comm_delay_frames=0..5、comp_delay_frames=0/2/4 的 AP@0.5/AP@0.7。"
+      ],
+      "notes": "Set enabled=true and command=[...] after the corresponding detector pipeline/checkpoints/configs are available. The command must write the artifact CSV above. The loop will parse and fill 260615结果.md."
+    },
+    {
+      "task_id": "dair_tclf_comp_latency",
+      "enabled": false,
+      "description": "DAIR-V2X 车路协同：官方 TCLF / no-comp baseline 增加计算时延维度 detector AP。",
+      "dataset": "DAIR-V2X / 车路协同",
+      "comparison": "Late fusion + TCLF / Late fusion w/o comp. under comm+comp latency",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_tclf_comp_latency_ap.csv",
+      "expected_csv_columns": [
+        "method",
+        "comm_delay_frames",
+        "comp_delay_frames",
+        "AP@0.5",
+        "AP@0.7",
+        "BEV AP@0.5",
+        "BEV AP@0.7",
+        "source",
+        "notes"
+      ],
+      "command": [],
+      "cwd": "/raid/xuyifan/v2x_code_ckpt",
+      "requirements": [
+        "需要扩展 OpenDAIRV2X official eval，使其支持 comp_delay_frames=2/4。",
+        "需要明确计算时延模拟方式：输出延迟时 GT 对齐当前帧还是结果帧。",
+        "输出 method、comm_delay_frames、comp_delay_frames、BEV AP@0.5、BEV AP@0.7。"
+      ],
+      "notes": "Set enabled=true and command=[...] after the corresponding detector pipeline/checkpoints/configs are available. The command must write the artifact CSV above. The loop will parse and fill 260615结果.md."
+    },
+    {
+      "task_id": "dair_detector_ours_syncnet",
+      "enabled": false,
+      "description": "DAIR-V2X 车路协同：Detector AP 口径下补齐 Ours / SyncNet 补偿。",
+      "dataset": "DAIR-V2X / 车路协同",
+      "comparison": "Detector + Ours / Detector + SyncNet / Detector w/o compensation",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_detector_ours_syncnet_ap.csv",
+      "expected_csv_columns": [
+        "method",
+        "comm_delay_frames",
+        "comp_delay_frames",
+        "AP@0.5",
+        "AP@0.7",
+        "BEV AP@0.5",
+        "BEV AP@0.7",
+        "source",
+        "notes"
+      ],
+      "command": [],
+      "cwd": "/raid/xuyifan/v2x_code_ckpt",
+      "requirements": [
+        "需要将 Ours dual-latency compensation 接入 DAIR detector pipeline。",
+        "需要将 SyncNet/同步补偿接入同一 DAIR detector pipeline。",
+        "不能使用 DAIR BEV-IoU 代理结果代替 detector AP。",
+        "输出 method、comm_delay_frames、comp_delay_frames、BEV AP@0.5、BEV AP@0.7。"
+      ],
+      "notes": "Set enabled=true and command=[...] after the corresponding detector pipeline/checkpoints/configs are available. The command must write the artifact CSV above. The loop will parse and fill 260615结果.md."
+    },
+    {
+      "task_id": "dair_lrcp_latency",
+      "enabled": false,
+      "description": "DAIR-V2X 车路协同：LRCP baseline latency grid detector AP。",
+      "dataset": "DAIR-V2X / 车路协同",
+      "comparison": "LRCP / LRCP + Ours / LRCP + SyncNet",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_lrcp_latency_ap.csv",
+      "expected_csv_columns": [
+        "method",
+        "comm_delay_frames",
+        "comp_delay_frames",
+        "AP@0.5",
+        "AP@0.7",
+        "BEV AP@0.5",
+        "BEV AP@0.7",
+        "source",
+        "notes"
+      ],
+      "command": [],
+      "cwd": "/raid/xuyifan/v2x_code_ckpt",
+      "requirements": [
+        "需要 DAIR-V2X 的 LRCP yaml/config。",
+        "需要 LRCP checkpoint。",
+        "需要 DAIR flow labels / delay-pair files。",
+        "需要确认 external/LRCP/opencood/tools/inference_w_delay.py 支持 DAIR。",
+        "输出 method、comm_delay_frames、comp_delay_frames、BEV AP@0.5、BEV AP@0.7。"
+      ],
+      "notes": "Set enabled=true and command=[...] after the corresponding detector pipeline/checkpoints/configs are available. The command must write the artifact CSV above. The loop will parse and fill 260615结果.md."
+    },
+    {
+      "task_id": "dair_late_fusion_ours_syncnet",
+      "enabled": false,
+      "description": "DAIR-V2X 车路协同：2.1 TCLF baseline 表中补齐 Late fusion + Ours / SyncNet detector AP。",
+      "dataset": "DAIR-V2X / 车路协同",
+      "comparison": "Late fusion + Ours / Late fusion + SyncNet under comm+comp latency",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_late_fusion_ours_syncnet_ap.csv",
+      "expected_csv_columns": [
+        "method",
+        "comm_delay_frames",
+        "comp_delay_frames",
+        "AP@0.5",
+        "AP@0.7",
+        "BEV AP@0.5",
+        "BEV AP@0.7",
+        "source",
+        "notes"
+      ],
+      "command": [],
+      "cwd": "/raid/xuyifan/v2x_code_ckpt",
+      "requirements": [
+        "需要在 DAIR late-fusion detector eval 中接入 Ours 双时延补偿。",
+        "需要在同一 DAIR late-fusion detector eval 中接入 SyncNet/同步补偿。",
+        "需要覆盖 comm_delay_frames=0..5、comp_delay_frames=0/2/4。",
+        "输出 method、comm_delay_frames、comp_delay_frames、BEV AP@0.5、BEV AP@0.7。"
+      ],
+      "notes": "Set enabled=true and command=[...] after the corresponding detector pipeline/checkpoints/configs are available. The command must write the artifact CSV above. The loop will parse and fill 260615结果.md."
+    }
+  ]
+}

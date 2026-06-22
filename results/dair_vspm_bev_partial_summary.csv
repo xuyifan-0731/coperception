@@ -1,0 +1,6 @@
+split,agent,scene,frames,first_frame_idx,last_frame_idx,max_contiguous_gap,mean_occupied_cells,min_occupied_cells,max_occupied_cells
+train,agent_infrastructure,0,84,0,83,1,892.1071428571429,641,1171
+train,agent_infrastructure,1,104,84,187,1,193.09615384615384,136,235
+train,agent_infrastructure,2,2,188,189,1,241.5,220,263
+train,agent_infrastructure,3,10,190,199,1,409.4,363,448
+train,agent_vehicle,0,200,0,199,1,1409.305,532,2632

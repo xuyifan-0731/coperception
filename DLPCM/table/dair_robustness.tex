@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Robustness of DAIR-V2X VSPM under packet loss and BEV perturbations.}
+\label{tab:dair-robustness}
+\begin{tabular}{llrrrr}
+\toprule
+Setting & Condition & IoU & Copy & $\Delta$IoU & Dyn. IoU \\
+\midrule
+T10\_n5 ckpt 16000 & clean & 0.5478 & 0.2771 & 0.2707 & 0.4733 \\
+T10\_n5 ckpt 16000 & packet\_loss\_0.3 & 0.4411 & 0.2443 & 0.1968 & 0.3490 \\
+T10\_n5 ckpt 16000 & packet\_loss\_0.5 & 0.3476 & 0.2126 & 0.1351 & 0.2497 \\
+T10\_n5 ckpt 16000 & dropout\_0.2 & 0.4867 & 0.2368 & 0.2500 & 0.4436 \\
+T10\_n5 ckpt 16000 & false\_positive\_0.005 & 0.5082 & 0.2140 & 0.2942 & 0.4268 \\
+T10\_n10 ckpt 15000 & clean & 0.4057 & 0.1709 & 0.2348 & 0.4291 \\
+T10\_n10 ckpt 15000 & packet\_loss\_0.3 & 0.3261 & 0.1540 & 0.1721 & 0.3267 \\
+T10\_n10 ckpt 15000 & packet\_loss\_0.5 & 0.2569 & 0.1366 & 0.1203 & 0.2413 \\
+T10\_n10 ckpt 15000 & dropout\_0.2 & 0.3742 & 0.1471 & 0.2271 & 0.4050 \\
+T10\_n10 ckpt 15000 & false\_positive\_0.005 & 0.3833 & 0.1357 & 0.2476 & 0.3755 \\
+\bottomrule
+\end{tabular}
+\end{table*}

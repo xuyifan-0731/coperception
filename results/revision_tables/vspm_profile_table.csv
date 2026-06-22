@@ -1,0 +1,6 @@
+model,params,state_mib_per_agent,mean_ms,min_ms,max_ms
+convlstm,85569,16.000,3.590,3.574,3.624
+compressed_lstm,85569,16.000,3.632,3.627,3.639
+gru_fp16,66497,4.000,4.400,4.346,4.563
+ds64_fp16,66497,0.250,4.209,4.208,4.211
+bottleneck12,67309,0.250,4.314,4.282,4.345

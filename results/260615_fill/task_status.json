@@ -1,0 +1,34 @@
+{
+  "tasks": {
+    "v2xsim_v2vnet_syncnet": {
+      "state": "disabled",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/v2xsim_v2vnet_syncnet_ap.csv",
+      "reason": "enabled=false in task_interfaces.json"
+    },
+    "v2xsim_data_compensation": {
+      "state": "disabled",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/v2xsim_data_compensation_ap.csv",
+      "reason": "enabled=false in task_interfaces.json"
+    },
+    "dair_tclf_comp_latency": {
+      "state": "disabled",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_tclf_comp_latency_ap.csv",
+      "reason": "enabled=false in task_interfaces.json"
+    },
+    "dair_detector_ours_syncnet": {
+      "state": "disabled",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_detector_ours_syncnet_ap.csv",
+      "reason": "enabled=false in task_interfaces.json"
+    },
+    "dair_lrcp_latency": {
+      "state": "disabled",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_lrcp_latency_ap.csv",
+      "reason": "enabled=false in task_interfaces.json"
+    },
+    "dair_late_fusion_ours_syncnet": {
+      "state": "disabled",
+      "artifact": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/artifacts/dair_late_fusion_ours_syncnet_ap.csv",
+      "reason": "enabled=false in task_interfaces.json"
+    }
+  }
+}

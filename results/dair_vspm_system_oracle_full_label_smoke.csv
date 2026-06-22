@@ -1,0 +1,5 @@
+comm_delay_frames,comp_delay_frames,comm_delay_s,comp_delay_s,remote_rollout_frames,local_rollout_frames,mode,prediction_horizon_frames,target_horizon_frames,samples,pred_iou,copy_last_iou,delta_iou,dynamic_iou
+0,0,0.0,0.0,0,0,oracle,0,0,4,1.0,1.0,0.0,1.0
+1,0,0.2,0.0,1,0,oracle,1,1,4,1.0,0.5276521443672606,0.47234785563273934,1.0
+0,1,0.0,0.2,1,1,oracle,1,1,4,1.0,0.5276521443672606,0.47234785563273934,1.0
+1,1,0.2,0.2,2,1,oracle,2,2,4,1.0,0.2554133433160687,0.7445866566839313,1.0

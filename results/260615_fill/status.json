@@ -1,0 +1,67 @@
+{
+  "time_utc": "2026-06-22 16:00:08 UTC",
+  "doc": "/raid/xuyifan/v2x_code_ckpt/260615结果.md",
+  "changed_tables": 0,
+  "remaining_blank_cells": 596,
+  "remaining_actionable_blank_cells": 524,
+  "remaining_by_status": {
+    "structural_blank": 72,
+    "waiting_interface": 524
+  },
+  "remaining_actionable_by_status": {
+    "waiting_interface": 524
+  },
+  "missing_csv": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/missing_cells.csv",
+  "incoming_csv": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/incoming_results.csv",
+  "task_interfaces_json": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/task_interfaces.json",
+  "task_status_json": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/task_status.json",
+  "job_results": [
+    {
+      "name": "run_data_v2xsim_pipeline",
+      "cmd": [
+        "/raid/xuyifan/miniconda3/bin/python",
+        "/raid/xuyifan/v2x_code_ckpt/scripts/run_data_v2xsim_pipeline.py",
+        "--stage",
+        "summarize"
+      ],
+      "returncode": 0,
+      "log": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/logs/20260622_155934_run_data_v2xsim_pipeline.log",
+      "seconds": 33.55
+    },
+    {
+      "name": "make_dair_table2_table5_proxy",
+      "cmd": [
+        "/raid/xuyifan/miniconda3/bin/python",
+        "/raid/xuyifan/v2x_code_ckpt/scripts/make_dair_table2_table5_proxy.py"
+      ],
+      "returncode": 0,
+      "log": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/logs/20260622_160008_make_dair_table2_table5_proxy.log",
+      "seconds": 0.03
+    },
+    {
+      "name": "parse_dair_official_baseline_logs",
+      "cmd": [
+        "/raid/xuyifan/miniconda3/bin/python",
+        "/raid/xuyifan/v2x_code_ckpt/scripts/parse_dair_official_baseline_logs.py",
+        "--log-dir",
+        "/raid/xuyifan/v2x_code_ckpt/results/dair_v2x/official_baselines/logs",
+        "--out",
+        "/raid/xuyifan/v2x_code_ckpt/results/dair_v2x/official_baselines/summary_partial.csv"
+      ],
+      "returncode": 0,
+      "log": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/logs/20260622_160008_parse_dair_official_baseline_logs.log",
+      "seconds": 0.12
+    },
+    {
+      "name": "make_dair_revision_tables",
+      "cmd": [
+        "/raid/xuyifan/miniconda3/bin/python",
+        "/raid/xuyifan/v2x_code_ckpt/scripts/make_dair_revision_tables.py"
+      ],
+      "returncode": 0,
+      "log": "/raid/xuyifan/v2x_code_ckpt/results/260615_fill/logs/20260622_160008_make_dair_revision_tables.log",
+      "seconds": 0.04
+    }
+  ],
+  "experiment_results": []
+}

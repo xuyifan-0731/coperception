@@ -1,0 +1,12 @@
+run,checkpoint_count,latest_checkpoint,source
+T10_n10,24,ckpt_24000.pth,runs/revision_vspm_sensitivity/T10_n10/checkpoints
+T10_n15,46,ckpt_46000.pth,runs/revision_vspm_sensitivity/T10_n15/checkpoints
+T10_n3,13,ckpt_13000.pth,runs/revision_vspm_sensitivity/T10_n3/checkpoints
+T10_n5,13,ckpt_13000.pth,runs/revision_vspm_sensitivity/T10_n5/checkpoints
+T20_n5,23,ckpt_23000.pth,runs/revision_vspm_sensitivity/T20_n5/checkpoints
+T30_n5,40,ckpt_40000.pth,runs/revision_vspm_sensitivity/T30_n5/checkpoints
+T5_n5,13,ckpt_13000.pth,runs/revision_vspm_sensitivity/T5_n5/checkpoints
+baseline,13,ckpt_13000.pth,runs/revision_mst_ablation/baseline/checkpoints
+bottleneck12,13,ckpt_13000.pth,runs/revision_mst_ablation/bottleneck12/checkpoints
+ds64_fp16,13,ckpt_13000.pth,runs/revision_mst_ablation/ds64_fp16/checkpoints
+gru_fp16,13,ckpt_13000.pth,runs/revision_mst_ablation/gru_fp16/checkpoints

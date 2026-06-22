@@ -1,0 +1,219 @@
+
+\noindent
+\section{Related Work}
+Cooperative perception (CP) enhances environmental awareness by enabling vehicles to share and fuse perception beyond the limits of single-vehicle sensors. Despite these advances, the end-to-end real-time performance of CP remains constrained by latency caused by both communication and computation. Prior studies can be broadly categorized into two research threads: communication latency mitigation and computation latency mitigation. Representative approaches within each thread are reviewed, highlighting their core ideas, mechanisms, and limitations that motivate the proposed method.
+
+
+
+% 需要的宏包（导言区）：
+% \usepackage{booktabs}
+% \usepackage{amssymb}   % 提供 \checkmark
+% \usepackage{pifont}    % 提供 -- 作为叉号
+
+\begin{table*}[htbp]
+\centering
+\caption{Comparison of Existing Approaches and Dual-Latency Prediction Compensation Mechanism (DLPCM)}
+\label{related work}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}l l cc ccc c@{}}
+\toprule
+\textbf{Reference} & \textbf{Approach}
+& \multicolumn{2}{c}{\textbf{\shortstack{Proactive reduction\\of communication overhead}}}
+& \multicolumn{3}{c}{\textbf{\shortstack{Reactive mitigation\\of communication impact}}}
+& \textbf{\shortstack{Considering\\computation latency}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-7}
+& &
+\textbf{\shortstack{Efficient\\resource\\utilization}} &
+\textbf{\shortstack{Reduced\\communication\\overhead}} &
+\textbf{\shortstack{Alignment\\or\\compensation}} &
+\textbf{\shortstack{Sufficient\\historical\\data}} &
+\textbf{\shortstack{Vehicle-specific\\prediction}} &
+\\
+\midrule
+\cite{xu2022opv2v,wang2023vimi,zheng2024real,yuan2022keypoints,lohdefink2020focussing,hu2022where2comm}
+& Data compression / ROI selection
+& \checkmark & \checkmark & -- & -- & -- & -- \\
+\cite{liu2020who2com,qu2024model}
+& Communication partner selection
+& \checkmark & \checkmark & -- & -- & -- & -- \\
+\cite{liu2024select2col,liu2024v2x,lin2024v2vformer,lei2024robust,bai2023vinet}
+& Temporal alignment
+& -- & -- & \checkmark & -- & -- & -- \\
+\cite{wang2025cmp,rossle2024unlocking,fang2024pacp,yu2023vehicle,lei2022latency}
+& Prediction-based compensation
+& -- & -- & \checkmark & -- & -- & -- \\
+\midrule
+Ours
+& DLPCM based on VSPM
+& \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+
+
+\subsection{Communication Latency Mitigation}
+Existing methods for communication latency mitigation can be classified into four main categories: \emph{reducing per-transmission data volume}, \emph{reducing communication links}, \emph{temporal alignment}, and \emph{prediction-based compensation}.
+
+(i) Reducing per-transmission data volume.  
+One representative approach minimizes the payload size per communication cycle by compressing raw perception data or feature-level data~\cite{xu2022opv2v,wang2023vimi,zheng2024real}. Alternatively, some methods focus on transmitting only regions of interest (ROI) selected based on saliency or task relevance~\cite{yuan2022keypoints,lohdefink2020focussing,hu2022where2comm}. Although these strategies effectively reduce bandwidth usage and communication overhead, data exchange is still required, meaning latency cannot be fully avoided. Moreover, ROI-based selection risks omitting important contextual information that may be crucial for accurate perception.
+
+(ii) Reducing communication links.  
+Another research direction minimizes redundant data transmissions by optimizing communication partner selection~\cite{liu2020who2com,qu2024model}. By choosing only the most informative peers, these methods improve communication efficiency and reduce the communication load across communication links. However, fewer communication links may lead to information loss, particularly in scenarios where excluded vehicles observe unique environmental details. Additionally, latency on the remaining links still persists.
+
+(iii) Temporal alignment.  
+To address asynchrony in received information, several studies align delayed perception data with the receiver’s local timeline before fusion~\cite{liu2024select2col,liu2024v2x,lin2024v2vformer,lei2024robust,bai2023vinet}. Such temporal synchronization ensures consistency between onboard and remote observations, improving fusion quality. However, these techniques may inadvertently propagate abnormal or corrupted data forward, potentially compromising system safety in critical situations.
+
+(iv) Prediction-based compensation.  
+Instead of merely aligning delayed information, prediction-based approaches attempt to compensate for latency by forecasting the current state of the transmitting vehicle using its historical data~\cite{wang2025cmp,rossle2024unlocking,fang2024pacp,yu2023vehicle,lei2022latency}. These methods can reduce the effective latency and improve fusion accuracy. However, prediction-based compensation suffers from three key limitations: (1) it fails during initial transmissions when no historical data are available, (2) most models lack personalization and cannot adapt to vehicle-specific dynamics, and (3) inconsistent communication delays among transmitting vehicles lead to a substantial increase in the computational load on the receiving vehicle.
+
+
+
+
+
+
+
+
+\subsection{Computation Latency Mitigation}
+Computation latency arises from the limited processing capacity of onboard systems and the computational complexity of perception algorithms. Existing studies tackle this issue through three main strategies: \emph{resource scheduling and parallelization}, \emph{hardware acceleration}, and \emph{algorithmic optimization}.
+
+(i) Resource scheduling and parallelization.  
+Systems-oriented approaches aim to better exploit computing resources by parallelizing perception tasks and optimally distributing workloads across heterogeneous processors~\cite{xu2024intelligent,lu2025joint}. These strategies significantly improve processing efficiency and shorten response times. However, since perception tasks inherently involve complex computations, residual latency persists, and outputs may still lag behind the real-time dynamics of the driving environment.
+
+(ii) Hardware acceleration. 
+Some studies enhance computational throughput using dedicated hardware accelerators equipped with composable processing units and hierarchical instruction sets~\cite{fan2023hardware}. While such designs improve raw processing speed and system scalability. It often fails to achieve strict real-time guarantees, particularly when perception pipelines become increasingly deep and multi-modal.
+
+(iii) Algorithmic optimization.
+A complementary direction focuses on improving algorithmic efficiency by redesigning model architectures. For example, the Informer model~\cite{zhou2021informer} leverages a transformer-based architecture optimized for long-sequence modeling, significantly reducing computational cost while maintaining performance. Nonetheless, such optimizations are often task-specific and fail to generalize across diverse CP workloads, leaving substantial computation latency unaddressed.
+
+
+In summary, existing efforts on communication latency mitigation reduce payloads, prune redundant links, align delayed information, or compensate for delays via prediction. However, these strategies either retain unavoidable communication latency, risk propagating abnormal data, or lack personalization and fail in initial transmission scenarios. Similarly, computation latency mitigation through resource scheduling, hardware acceleration, and algorithmic optimization reduces but does not eliminate processing delays, leading to residual perception latency. These limitations highlight the need for a unified solution that jointly compensates for both communication and computation latencies, leverages vehicle-specific historical information for personalized prediction, and ensures real-time reliability under dynamic driving conditions. A detailed comparison of related approaches is provided in Table~\ref{related work}.
+
+
+
+
+
+% \section{Related Work}
+% Recent advances in CP have significantly improved environmental awareness by enabling vehicles to share and fuse perception data beyond the limits of single-vehicle onboard sensors. However, the real-time performance of CP is still constrained by latency that occur during communication and computation. As a result, existing studies have primarily concentrated on two aspects: communication latency mitigation and computation latency mitigation. In the following, representative approaches are discussed within these two categories, with a focus on summarizing their key ideas and limitations and highlighting the motivation for our proposed method.
+% \subsection{Communication Latency Mitigation}
+% Representative approaches for mitigating communication latency in CP are summarized in Table~\ref{tab:comm_latency}. Existing studies can be broadly classified into four categories: (i) reducing the data volume per transmission, (ii) reducing communication links, (iii) temporal alignment, and (iv) prediction-based compensation.
+
+
+
+% \begin{table*}[t]
+% \centering
+% \caption{Representative methods for communication latency mitigation in cooperative perception.}
+% \label{tab:comm_latency}
+% \small
+% \renewcommand{\arraystretch}{1.21}
+% \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{3cm} Y Y@{}}
+% \toprule
+% \makecell[l]{\textbf{Method}} &
+% \makecell[l]{\textbf{Idea}} &
+% \makecell[l]{\textbf{Specific Approach}} &
+% \makecell[l]{\textbf{Limitation}} \\
+% \midrule
+% ~\cite{xu2022opv2v,wang2023vimi,zheng2024real,yuan2022keypoints,lohdefink2020focussing,hu2022where2comm} &
+% Reduce data volume per transmission &
+% Compress perception data to reduce transmission size / ROI-focused transmission &
+% Communication latency still remains; risk of missing important data \\
+% \addlinespace[2pt]
+% ~\cite{liu2020who2com,qu2024model} &
+% Reduce communication links &
+% Communication partner selection to minimize redundant transmissions &
+% Potential information loss; latency cannot be fully avoided \\
+% \addlinespace[2pt]
+% ~\cite{liu2024select2col,liu2024v2x,lin2024v2vformer,lei2024robust,bai2023vinet} &
+% Temporal alignment &
+% Synchronize received information to the receiver’s local timeline &
+% Risk of propagating abnormal data, compromising safety \\
+% \addlinespace[2pt]
+% ~\cite{wang2025cmp,rossle2024unlocking,fang2024pacp,yu2023vehicle,lei2022latency} &
+% Prediction-based compensation &
+% Receiver-side generic models use historical data to predict current state &
+% Fail in initial transmission (no history); lack personalization; limited accuracy \\
+% \bottomrule
+% \end{tabularx}
+% \end{table*}
+
+
+
+
+
+% The first category focuses on reducing the data volume per transmission. Typical methods compress raw perception data~\cite{xu2022opv2v,wang2023vimi,zheng2024real} or select salient regions of interest (ROI)~\cite{yuan2022keypoints,lohdefink2020focussing,hu2022where2comm}, thereby lowering communication overhead. While these strategies effectively reduce bandwidth consumption, perception data must still be exchanged, and communication latency remains unavoidable.
+
+% The second category aims to reduce communication links. By selectively choosing communication partners~\cite{liu2020who2com,qu2024model}, these methods minimize redundant transmissions and improve efficiency. However, the reduced communication links may lead to information loss, and latency cannot be eliminated.
+
+% The third category addresses latency through temporal alignment. Studies such as~\cite{liu2024select2col,liu2024v2x,lin2024v2vformer,lei2024robust,bai2023vinet} synchronize received information with the receiver’s local perception timeline. This ensures temporal consistency between transmitted and local data, but risks propagating abnormal information, which may compromise safety.
+
+% The fourth category employs prediction-based compensation. The models on receiving vehicle~\cite{wang2025cmp,rossle2024unlocking,fang2024pacp,yu2023vehicle,lei2022latency} leverage historical data from the transmitting vehicle to predict its current perception, thereby mitigating the effect of latency. However, these generic models often lack personalization, may fail during the initial transmission when historical data are unavailable, and cannot capture vehicle-specific perception characteristics.
+
+
+
+
+
+
+% \subsection{Computation Latency Mitigation}
+% Representative methods for mitigating computation latency in cooperative perception are summarized in Table~\ref{tab:comp_latency}. Existing studies can be broadly divided into three categories: (i) computational resource scheduling optimization, (ii) enhancing computational capability through hardware acceleration, and (iii) algorithmic optimization to reduce computation latency.
+
+
+% \begin{table*}[t]
+% \centering
+% \caption{Representative methods for computation latency mitigation in cooperative perception.}
+% \label{tab:comp_latency}
+% \small
+% \renewcommand{\arraystretch}{1.21}
+% \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{3cm} Y Y@{}}
+% \toprule
+% \makecell[l]{\textbf{Method}} &
+% \makecell[l]{\textbf{Idea}} &
+% \makecell[l]{\textbf{Specific Approach}} &
+% \makecell[l]{\textbf{Limitation}} \\
+% \midrule
+% ~\cite{xu2024intelligent,lu2025joint} &
+% Computational resource scheduling optimization &
+% Parallelization and optimized allocation of perception tasks across computing units &
+% Latency reduced but not eliminated; outputs may still lag behind dynamic environments \\
+% \addlinespace[2pt]
+% ~\cite{fan2023hardware} &
+% Enhance computational capability &
+% Custom accelerator with composable units and hierarchical instruction set &
+% Real-time performance not fully achieved \\
+% \addlinespace[2pt]
+% ~\cite{zhou2021informer} &
+% Algorithmic optimization &
+% Algorithmic optimization with efficient sequence modeling to reduce latency &
+% Task-specific; cannot fully eliminate computation latency \\
+% \bottomrule
+% \end{tabularx}
+% \end{table*}
+
+
+
+
+% The first category focuses on resource scheduling optimization. Methods such as~\cite{xu2024intelligent,lu2025joint} improve efficiency by parallelizing computation and optimizing the allocation of tasks across available processing units. These approaches can significantly shorten processing time, yet perception results may still lag behind real-world traffic state, and real-time responsiveness is not fully guaranteed.
+
+% The second category enhances computational capability through hardware acceleration. Representative study optimizes accelerator with composable units and hierarchical instruction set~\cite{fan2023hardware}. While these solutions improve hardware processing speed, they cannot completely eliminate computation latency.
+
+% The third category emphasizes algorithmic optimization. For instance, the Informer model~\cite{zhou2021informer} introduces an efficient transformer architecture, demonstrating the potential to reduce computation latency by improving algorithmic efficiency. However, such models are often tailored for specific scenario, and cannot fully eliminate computation latency.
+
+% In summary, existing works provide valuable foundations for addressing latency issues in cooperative perception. Communication latency mitigation has focused on reducing transmission overhead, synchronizing delayed data, or compensating latency through prediction models, yet these methods either fail to eliminate latency, risk propagating abnormal information, or lack vehicle-specific adaptation. Computation latency mitigation has leveraged resource scheduling optimization, hardware acceleration and algorithmic optimization, but the problem of perception computation latency persists. These limitations underline the need for a more comprehensive solution that can jointly compensate for both communication and computation latencies, while also leveraging vehicle-specific historical information to improve prediction accuracy and ensure real-time reliability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

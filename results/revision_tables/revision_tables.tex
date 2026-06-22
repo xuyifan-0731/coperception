@@ -1,0 +1,80 @@
+\begin{table}[t]
+\centering
+\caption{VSPM state size and synthetic rollout latency.}
+\label{tab:vspm-profile}
+\begin{tabular}{lrrr}
+\toprule
+Variant & Params & State MiB/agent & Mean ms \\
+\midrule
+convlstm & 85569 & 16.000 & 3.590 \\
+compressed\_lstm & 85569 & 16.000 & 3.632 \\
+gru\_fp16 & 66497 & 4.000 & 4.400 \\
+ds64\_fp16 & 66497 & 0.250 & 4.209 \\
+bottleneck12 & 67309 & 0.250 & 4.314 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Receiver cache state memory under increasing agent count.}
+\label{tab:cache-scalability}
+\begin{tabular}{rrrrr}
+\toprule
+Agents & ConvLSTM MiB & MST MiB & Evictions & Hit rate \\
+\midrule
+1 & 16.00 & 0.25 & 0 & 1.00 \\
+2 & 32.00 & 0.50 & 0 & 1.00 \\
+3 & 48.00 & 0.75 & 0 & 1.00 \\
+4 & 64.00 & 1.00 & 0 & 1.00 \\
+5 & 80.00 & 1.25 & 0 & 1.00 \\
+8 & 128.00 & 2.00 & 0 & 1.00 \\
+16 & 256.00 & 4.00 & 8 & 0.50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Current validation progress for running VSPM sensitivity experiments.}
+\label{tab:vspm-progress}
+\begin{tabular}{lrrrrr}
+\toprule
+Run & Epoch & Step & IoU & $\Delta$IoU & Dynamic IoU \\
+\midrule
+T10\_n10 & 30 & 24600 & 0.7243 & 0.0559 & 0.3332 \\
+T10\_n15 & 30 & 46200 & 0.7075 & 0.0549 & 0.3109 \\
+T10\_n3 & 30 & 13350 & 0.7678 & 0.0558 & 0.3413 \\
+T10\_n5 & 30 & 13050 & 0.7513 & 0.0570 & 0.3356 \\
+T20\_n5 & 30 & 23100 & 0.7496 & 0.0581 & 0.3297 \\
+T30\_n5 & 30 & 40200 & 0.7518 & 0.0597 & 0.3326 \\
+T5\_n5 & 30 & 13800 & 0.7505 & 0.0540 & 0.3204 \\
+baseline & 30 & 13050 & 0.7488 & 0.0545 & 0.3296 \\
+bottleneck12 & 30 & 13050 & 0.7193 & 0.0250 & 0.0986 \\
+ds64\_fp16 & 30 & 13050 & 0.7200 & 0.0258 & 0.0914 \\
+gru\_fp16 & 30 & 13050 & 0.7462 & 0.0520 & 0.3075 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{VSPM robustness under local packet loss and BEV perturbations.}
+\label{tab:vspm-robustness}
+\begin{tabular}{lrrrrr}
+\toprule
+Condition & Samples & IoU & Baseline IoU & $\Delta$IoU & Dynamic IoU \\
+\midrule
+clean & 256 & 0.7884 & 0.7366 & 0.0517 & 0.3858 \\
+packet\_loss\_0.1 & 256 & 0.7849 & 0.7356 & 0.0493 & 0.3734 \\
+packet\_loss\_0.2 & 256 & 0.7813 & 0.7347 & 0.0466 & 0.3588 \\
+packet\_loss\_0.3 & 256 & 0.7765 & 0.7334 & 0.0431 & 0.3409 \\
+packet\_loss\_0.5 & 256 & 0.7652 & 0.7293 & 0.0359 & 0.2871 \\
+dropout\_0.05 & 256 & 0.7866 & 0.7041 & 0.0825 & 0.4677 \\
+dropout\_0.1 & 256 & 0.7835 & 0.6713 & 0.1122 & 0.5227 \\
+dropout\_0.2 & 256 & 0.7679 & 0.6043 & 0.1636 & 0.5715 \\
+false\_positive\_0.001 & 256 & 0.7870 & 0.7262 & 0.0608 & 0.3765 \\
+false\_positive\_0.005 & 256 & 0.7820 & 0.6871 & 0.0949 & 0.3431 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{MST communication-state trade-off on DAIR-V2X label-derived BEV.}
+\label{tab:dair-mst-tradeoff}
+\begin{tabular}{lrrrrrr}
+\toprule
+Variant & MiB/agent & Reduction & ms & IoU & $\Delta$IoU & Dyn. IoU \\
+\midrule
+ConvLSTM state & 16.000 & 1.0$\times$ & 3.59 & 0.5188 & 0.2469 & 0.4646 \\
+GRU FP16 & 4.000 & 4.0$\times$ & 4.40 & 0.5551 & 0.2833 & 0.5240 \\
+DS64 FP16 & 0.250 & 64.0$\times$ & 4.21 & 0.6066 & 0.3348 & 0.5888 \\
+Bottleneck12 & 0.250 & 64.0$\times$ & 4.31 & 0.6021 & 0.3302 & 0.5682 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,5 @@
+comm_delay_frames,comp_delay_frames,comm_delay_s,comp_delay_s,remote_rollout_frames,local_rollout_frames,mode,prediction_horizon_frames,target_horizon_frames,samples,pred_iou,copy_last_iou,delta_iou,dynamic_iou
+0,0,0.0,0.0,0,0,comp_only,0,0,4,1.0,1.0,0.0,1.0
+1,0,0.2,0.0,1,0,comp_only,0,1,4,0.5276521443672606,0.5276521443672606,0.0,0.0
+0,1,0.0,0.2,1,1,comp_only,1,1,4,0.7520236408992389,0.5276521443672606,0.22437149653197835,0.5892412423983646
+1,1,0.2,0.2,2,1,comp_only,1,2,4,0.49487713574662673,0.2554133433160687,0.23946379243055804,0.28377603760803016

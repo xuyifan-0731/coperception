@@ -1,0 +1,6 @@
+model,device,batch,T,steps,params,state_mib_per_agent,mean_ms,min_ms,max_ms
+convlstm,metadata_only,1,10,4,,16.0,,,
+compressed_lstm,metadata_only,1,10,4,,16.0,,,
+gru_fp16,metadata_only,1,10,4,,4.0,,,
+ds64_fp16,metadata_only,1,10,4,,0.25,,,
+bottleneck12,metadata_only,1,10,4,,0.25,,,

@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{History length and rollout-horizon sensitivity on DAIR-V2X label-derived BEV.}
+\label{tab:dair-sensitivity}
+\begin{tabular}{lrrrr}
+\toprule
+Setting & Best step & IoU & $\Delta$IoU & Dyn. IoU \\
+\midrule
+T5\_n5 & 16650 & 0.5183 & 0.2464 & 0.4427 \\
+our\_method\_T10\_n5 & 16140 & 0.5164 & 0.2446 & 0.4465 \\
+T20\_n5 & 28000 & 0.5237 & 0.2522 & 0.4564 \\
+T30\_n5 & 52000 & 0.5230 & 0.2519 & 0.4741 \\
+T10\_n3 & 16350 & 0.5954 & 0.2229 & 0.4318 \\
+our\_method\_T10\_n10 & 15630 & 0.3853 & 0.2105 & 0.3834 \\
+T10\_n15 & 29000 & 0.3065 & 0.1722 & 0.3385 \\
+\bottomrule
+\end{tabular}
+\end{table}

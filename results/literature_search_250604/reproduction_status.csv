@@ -1,0 +1,5 @@
+method,dataset,setting,local_status,ap50,ap70,output_path,notes
+DATA,DAIR-V2X-C,no_delay,completed,54.0460,37.4688,runs/data_dair_official_eval/eval_intermediate_local_dair_nodelay_102.4_51.2_epoch21.yaml,official checkpoint; local DATA/OpenCOOD adapter; complemented labels symlinked to available labels
+DATA,V2X-Sim,latency_grid,not_completed,,,,no released V2X-Sim checkpoint in cloned repo; config exists but training/eval needs official V2XSim OpenCOOD pkl format
+LRCP,V2X-Sim,latency_grid,not_completed,,,,no checkpoint in repo; requires V2X-Sim 2.0 full NuScenes-format data plus generated delay-pair pkl and flow labels
+LRCP,DAIR-V2X-C,latency_grid,not_completed,,,,README only provides DAIR flow-file link; no DAIR yaml/checkpoint in repo
