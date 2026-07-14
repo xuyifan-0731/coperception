@@ -21,5 +21,6 @@ Checkpoint files larger than 45MB are split into `*.split/*.partNNN` files for p
 
 Additional reproduction documentation:
 
+- `00_docs/260704_ARTIFACT_INDEX.md`: beginner-facing Chinese directory map, artifact index, and remaining reproduction gaps.
 - `00_docs/260704_EXTERNAL_RESOURCES.md`: public datasets, external baseline code/checkpoints, environment requirements, and missing conditions.
 - `00_docs/260704_RUNBOOK.md`: command-level runbook organized by dataset, baseline, and experiment.

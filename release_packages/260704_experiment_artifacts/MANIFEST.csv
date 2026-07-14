@@ -318,4 +318,5 @@ ALL,ALL,packaging,split_checkpoint_manifest,generated,CHECKPOINT_SPLIT_MANIFEST.
 ALL,ALL,packaging,restore_script,generated,restore_split_checkpoints.py,1650,bd6a1bcdabfb1730db844a435dabd520cc12ff6a6920a0addb6aa90d9ac44c11,Reconstructs split checkpoint files and verifies SHA256.
 ALL,ALL,documentation,documentation,/raid/xuyifan/v2x_code_ckpt/docs/260704_EXTERNAL_RESOURCES.md,00_docs/260704_EXTERNAL_RESOURCES.md,14676,ca7f5be737e4f9f23791aa2c70bd45b5e5e58e65d79558e78850e716a4f66859,"External public resources, checkpoints, environments, and missing conditions."
 ALL,ALL,documentation,documentation,/raid/xuyifan/v2x_code_ckpt/docs/260704_RUNBOOK.md,00_docs/260704_RUNBOOK.md,19398,1987a596438825e28707f1d47f6f94d5d7fb29c11c880078eb70a8402c91fedd,Command-level reproduction runbook.
-ALL,ALL,documentation,package_readme,generated,README.md,1744,a1aa30bf0ca17e9b7814099e3ed22d606f5e8b7ed0aa88a014fd189144559a99,Package description.
+ALL,ALL,documentation,documentation,/raid/xuyifan/v2x_code_ckpt/docs/260704_ARTIFACT_INDEX.md,00_docs/260704_ARTIFACT_INDEX.md,9530,08d0e4e563f97808053c3e2f2a70ce36e545023a64751293a4d42bb49c3c7fde,Beginner-facing Chinese artifact directory map and remaining reproduction gaps.
+ALL,ALL,documentation,package_readme,generated,README.md,1870,1f55a84c7e552527c7a025596351290aa02b61e2df2e0901b1a99db7dbe2b6e7,Package description.
