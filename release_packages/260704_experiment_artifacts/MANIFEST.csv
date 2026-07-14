@@ -1,6 +1,6 @@
 dataset,baseline,experiment,role,source_path,package_path,size_bytes,sha256,note
 ALL,ALL,final_report,documentation,/raid/xuyifan/v2x_code_ckpt/260704结果.md,00_docs/260704_results.md,73397,757af791e26c0d733cd6fcdaed5535780f9a867124d9b0a4ff50fd7a80cd6e56,Source markdown for all 260704 tables.
-ALL,ALL,final_report,documentation,/raid/xuyifan/v2x_code_ckpt/260704实验结果整理.docx,00_docs/260704_experiment_results.docx,56262,748c264bdf3e80844be84a5ab4a298ee5a3fbc21d25b3ba9d064fbe1083c3ad0,Word version generated from 260704结果.md.
+ALL,ALL,final_report,documentation,/raid/xuyifan/v2x_code_ckpt/260704实验结果整理.docx,00_docs/260704_experiment_results.docx,53055,87ea2c2af582525d924e243922108fbc98a16b7fe8726b5589f8334e9a301070,Word report with edited 260704 experiment results.
 ALL,ALL,code_version,code_version_record,generated from git,00_code_version/git_head.txt,41,fbe8072d9d0998792302da4d0df089385f6e791b4db29a12069b1e17436dfbe5,Git state when packaging 260704 artifacts.
 ALL,ALL,code_version,code_version_record,generated from git,00_code_version/git_diff_stat.txt,2775,9d019104892a2bd2832fe9f5e215d9f0f4c22fd6cd0d0f63e04e72e1e5291eb3,Git state when packaging 260704 artifacts.
 ALL,ALL,code_version,code_version_record,generated from git,00_code_version/git_status_short.txt,11410,bf101e3aab0420be747e079e7c8a5cabd1a275add9e84c299bd152cb801b78ed,Git state when packaging 260704 artifacts.
