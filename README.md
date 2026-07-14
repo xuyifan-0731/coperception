@@ -1,5 +1,96 @@
 # V2X BEV Forecasting Experiments
 
+## 260704 实验结果复现入口
+
+如果你是第一次打开这个 GitHub 仓库，建议先从这里开始，而不是直接看代码目录。
+
+260704 实验包位置：
+
+```text
+release_packages/260704_experiment_artifacts/
+```
+
+这个实验包按下面的逻辑整理：
+
+```text
+数据集 -> baseline 方法 -> checkpoints / results / logs / paper_sources
+```
+
+也就是说，先按数据集找，再按对比方法找，最后根据需要查看结果、模型、日志或论文表格来源。
+
+### 新人阅读顺序
+
+1. `release_packages/260704_experiment_artifacts/00_docs/260704_ARTIFACT_INDEX.md`  
+   先看整体目录结构、每个文件夹的含义、哪些内容已经上传、哪些内容没有上传。
+
+2. `release_packages/260704_experiment_artifacts/00_docs/260704_REPRODUCTION_CHECKLIST.md`  
+   按步骤准备复现环境，包括数据集下载、external baseline 克隆、patch 应用、split 文件放置、checkpoint 恢复。
+
+3. `release_packages/260704_experiment_artifacts/00_docs/260704_results.md`  
+   查看最终实验结果。
+
+4. `release_packages/260704_experiment_artifacts/00_docs/260704_EXTERNAL_RESOURCES.md`  
+   查看公开数据集地址、外部 baseline 代码地址、外部 checkpoint 状态、环境要求和仍然缺失的条件。
+
+5. `release_packages/260704_experiment_artifacts/00_reproduction_assets/README.md`  
+   查看本仓库已经补充的小型复现材料，包括外部代码 patch、split 文件、环境 requirements 参考和 V2X-Sim info summary。
+
+6. `release_packages/260704_experiment_artifacts/00_docs/260704_RUNBOOK.md`  
+   按数据集和 baseline 找具体训练、测试、评估命令。
+
+7. `release_packages/260704_experiment_artifacts/MANIFEST.csv`  
+   校验每个上传文件的位置、大小和 SHA256。
+
+### 快速定位
+
+| 你想找什么 | 应该看哪里 |
+|---|---|
+| 最终结果 | `00_docs/260704_results.md` 或各 baseline 的 `results/` |
+| Word 版结果报告 | `00_docs/260704_experiment_results.docx` |
+| 我们方法或 baseline 的 checkpoint | 各 baseline 下的 `checkpoints/` |
+| 真实运行日志 | 各 baseline 下的 `logs/` |
+| 外部代码 patch | `00_reproduction_assets/patches/` |
+| DAIR / TraF-Align split 文件 | `00_reproduction_assets/split_files/` |
+| 环境参考文件 | `00_reproduction_assets/env_refs/` |
+| 大 checkpoint 恢复方式 | `restore_split_checkpoints.py` |
+| 完整文件清单和 SHA256 | `MANIFEST.csv` |
+
+### 数据集和大文件说明
+
+原始数据集不上传到 GitHub，需要从公开地址下载：
+
+| 数据集 | 用途 | 下载/说明入口 |
+|---|---|---|
+| V2X-Sim 2.0 | V2X-Sim / DATA、V2VNet、DiscoNet | `https://ai4ce.github.io/V2X-Sim/download.html` |
+| DAIR-V2X-C | DAIR official late fusion、DATA、LRCP | `https://thudair.baai.ac.cn/index`，代码说明见 `https://github.com/AIR-THU/DAIR-V2X` |
+| DAIR-V2X-Seq / V2X-Seq-SPD | TraF-Align | `https://thudair.baai.ac.cn/index`，代码说明见 `https://github.com/AIR-THU/DAIR-V2X-Seq` |
+
+本仓库已经上传了关键结果、checkpoint、脚本快照、patch、split 文件和说明文档；没有上传原始数据集、大型 feature cache、box cache，以及 V2X-Sim info `.pkl`。这些大文件需要按文档重新下载或生成。
+
+大 checkpoint 已经拆分成 `*.split/*.partNNN`，复现前运行：
+
+```bash
+cd release_packages/260704_experiment_artifacts
+python restore_split_checkpoints.py
+```
+
+### 260704 实验包主目录
+
+```text
+release_packages/260704_experiment_artifacts/
+  00_docs/                  # 结果、说明、runbook、checklist
+  00_reproduction_assets/   # patch、split、requirements、info summary
+  00_code_scripts/          # 本次实验脚本快照
+  00_code_version/          # 打包时 Git 状态
+  01_v2xsim/                # V2X-Sim 实验
+  02_dair_v2x_c/            # DAIR-V2X-C 实验
+  03_dair_v2x_seq/          # DAIR-V2X-Seq / TraF-Align 实验
+```
+
+当前 260704 包适合做结果审计、checkpoint 追溯和按文档复现。它不是包含所有原始数据和大型 cache 的一键镜像。
+
+## Original Project Overview
+
 This repository contains the curated, reproducible version of the V2X BEV
 occupancy forecasting experiments from the local workspace. The original
 workspace also contains raw V2X-Sim data, checkpoints, prediction dumps, and
