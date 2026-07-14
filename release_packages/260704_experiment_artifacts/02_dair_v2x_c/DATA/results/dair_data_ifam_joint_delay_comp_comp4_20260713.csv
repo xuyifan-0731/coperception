@@ -1,0 +1,7 @@
+dataset,baseline,method,comp_delay,comm_delay,ap30,ap50,ap70,used_frames,skipped_frames,notes
+DAIR-V2X-C,DATA intermediate,DATA + Ours IFAM joint delay-comp,4,0,0.27848788825844134,0.19046778379469864,0.09468448636841355,1498,285,joint_ckpt=checkpoints/curated/ours_models/dair_data_ifam_joint_delay_comp.pth; gate=0.062192
+DAIR-V2X-C,DATA intermediate,DATA + Ours IFAM joint delay-comp,4,1,0.2697956926608007,0.18768688383845036,0.09475319422550967,1497,286,joint_ckpt=checkpoints/curated/ours_models/dair_data_ifam_joint_delay_comp.pth; gate=0.062192
+DAIR-V2X-C,DATA intermediate,DATA + Ours IFAM joint delay-comp,4,2,0.2622733806339644,0.18836138020130408,0.09545265995479177,1497,286,joint_ckpt=checkpoints/curated/ours_models/dair_data_ifam_joint_delay_comp.pth; gate=0.062192
+DAIR-V2X-C,DATA intermediate,DATA + Ours IFAM joint delay-comp,4,3,0.25895661068655734,0.1887334484246829,0.0948497862841242,1497,286,joint_ckpt=checkpoints/curated/ours_models/dair_data_ifam_joint_delay_comp.pth; gate=0.062192
+DAIR-V2X-C,DATA intermediate,DATA + Ours IFAM joint delay-comp,4,4,0.2564737141185935,0.18452854550872233,0.09485888234261385,1497,286,joint_ckpt=checkpoints/curated/ours_models/dair_data_ifam_joint_delay_comp.pth; gate=0.062192
+DAIR-V2X-C,DATA intermediate,DATA + Ours IFAM joint delay-comp,4,5,0.2548412260128668,0.1850652907601355,0.09368963328805084,1498,285,joint_ckpt=checkpoints/curated/ours_models/dair_data_ifam_joint_delay_comp.pth; gate=0.062192

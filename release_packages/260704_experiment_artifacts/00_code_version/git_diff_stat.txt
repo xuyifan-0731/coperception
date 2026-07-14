@@ -1,0 +1,38 @@
+warning: CRLF will be replaced by LF in results/dair_v2x/official_baselines/summary_partial.csv.
+The file will have its original line endings in your working directory
+ ...233\256\345\211\215\350\277\233\345\272\246.md" | 2680 ++++++++++++++++++++
+ "260615\347\273\223\346\236\234.md"                |  215 +-
+ checkpoints/curated/README.md                      |   69 +-
+ .../dair_v2x/mst_ablation/baseline_ckpt_16000.pth  |  Bin 346359 -> 0 bytes
+ .../mst_ablation/bottleneck12_ckpt_16000.pth       |  Bin 275637 -> 0 bytes
+ .../dair_v2x/mst_ablation/ds64_fp16_ckpt_16000.pth |  Bin 271285 -> 0 bytes
+ .../dair_v2x/mst_ablation/gru_fp16_ckpt_16000.pth  |  Bin 271285 -> 0 bytes
+ .../dair_v2x/sensitivity/T10_n15_ckpt_29000.pth    |  Bin 346295 -> 0 bytes
+ .../dair_v2x/sensitivity/T10_n3_ckpt_16000.pth     |  Bin 346295 -> 0 bytes
+ .../dair_v2x/sensitivity/T20_n5_ckpt_28000.pth     |  Bin 346295 -> 0 bytes
+ .../dair_v2x/sensitivity/T30_n5_ckpt_52000.pth     |  Bin 346295 -> 0 bytes
+ .../dair_v2x/sensitivity/T5_n5_ckpt_16000.pth      |  Bin 346295 -> 0 bytes
+ .../curated/v2xsim/ablation1/A_ckpt_13000.pth      |  Bin 346295 -> 0 bytes
+ .../curated/v2xsim/ablation1/B_ckpt_13000.pth      |  Bin 366069 -> 0 bytes
+ .../v2xsim/ablation1/C_final_ckpt_13000.pth        |  Bin 366069 -> 0 bytes
+ .../curated/v2xsim/ablation1/D_ckpt_13000.pth      |  Bin 366069 -> 0 bytes
+ .../curated/v2xsim/ablation2/A1_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
+ .../curated/v2xsim/ablation2/A2_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
+ .../v2xsim/ablation2/A3_nearest_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
+ .../curated/v2xsim/ablation2/A4_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
+ .../v2xsim/ablation2/ABaseline_ckpt_13000.pth      |  Bin 346295 -> 0 bytes
+ .../curated/v2xsim/all_agents/ckpt_38000.pth       |  Bin 346295 -> 0 bytes
+ .../leave_one_out/agent1_best_ckpt_27000.pth       |  Bin 366069 -> 0 bytes
+ .../leave_one_out/agent2_best_ckpt_33000_h.pth     |  Bin 366069 -> 0 bytes
+ .../leave_one_out/agent3_best_ckpt_35000_h.pth     |  Bin 366069 -> 0 bytes
+ .../leave_one_out/agent4_best_ckpt_33000_h.pth     |  Bin 366069 -> 0 bytes
+ .../leave_one_out/agent5_best_ckpt_44000_h.pth     |  Bin 366069 -> 0 bytes
+ results/260615_fill/missing_cells.csv              |  596 -----
+ results/260615_fill/status.json                    |  101 +-
+ .../official_baselines/summary_partial.csv         |   28 +
+ results/dair_v2x/tables/dair_revision_tables.tex   |   25 +
+ .../dair_v2x/tables/official_baselines_table.csv   |   28 +
+ results/summary/checkpoint_manifest.csv            |   44 +-
+ scripts/fill_260615_results.py                     |  676 ++++-
+ scripts/restore_curated_checkpoints.sh             |   68 +-
+ 35 files changed, 3636 insertions(+), 894 deletions(-)

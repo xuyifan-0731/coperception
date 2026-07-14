@@ -1,0 +1,7 @@
+method,comm_delay_frames,comp_delay_frames,AP@0.5,AP@0.7,BEV AP@0.5,BEV AP@0.7,source,notes
+DATA + Ours joint IFAM residual,0,2,74.38,62.41,,,data_v2xsim_joint_detector_compensation,input_compensation=ours; joint_ckpt=checkpoints/curated/ours_models/v2xsim_data_ifam_joint_delay_comp.pth; gate=0.059584; used=1000; skipped=0
+DATA + Ours joint IFAM residual,1,2,74.05,62.02,,,data_v2xsim_joint_detector_compensation,input_compensation=ours; joint_ckpt=checkpoints/curated/ours_models/v2xsim_data_ifam_joint_delay_comp.pth; gate=0.059584; used=1000; skipped=0
+DATA + Ours joint IFAM residual,2,2,73.58,61.58,,,data_v2xsim_joint_detector_compensation,input_compensation=ours; joint_ckpt=checkpoints/curated/ours_models/v2xsim_data_ifam_joint_delay_comp.pth; gate=0.059584; used=1000; skipped=0
+DATA + Ours joint IFAM residual,3,2,72.84,61.06,,,data_v2xsim_joint_detector_compensation,input_compensation=ours; joint_ckpt=checkpoints/curated/ours_models/v2xsim_data_ifam_joint_delay_comp.pth; gate=0.059584; used=1000; skipped=0
+DATA + Ours joint IFAM residual,4,2,72.42,60.58,,,data_v2xsim_joint_detector_compensation,input_compensation=ours; joint_ckpt=checkpoints/curated/ours_models/v2xsim_data_ifam_joint_delay_comp.pth; gate=0.059584; used=1000; skipped=0
+DATA + Ours joint IFAM residual,5,2,72.09,60.29,,,data_v2xsim_joint_detector_compensation,input_compensation=ours; joint_ckpt=checkpoints/curated/ours_models/v2xsim_data_ifam_joint_delay_comp.pth; gate=0.059584; used=1000; skipped=0

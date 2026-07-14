@@ -1,0 +1,20 @@
+method,comm_delay_frames,comp_delay_frames,AP@0.5,AP@0.7,BEV AP@0.5,BEV AP@0.7,source,notes
+LRCP,0,0,,,1.7837,0.2193,dair_lrcp_latency_eval,no-delay LRCP from stage2 model at k=0
+LRCP + Ours,0,0,,,1.7837,0.2193,dair_lrcp_latency_eval,k=comm+comp=0
+LRCP + Ours,1,0,,,1.8135,0.2304,dair_lrcp_latency_eval,k=comm+comp=1
+LRCP + Ours,2,0,,,1.7369,0.2308,dair_lrcp_latency_eval,k=comm+comp=2
+LRCP + Ours,3,0,,,1.7229,0.2128,dair_lrcp_latency_eval,k=comm+comp=3
+LRCP + Ours,4,0,,,1.6727,0.2290,dair_lrcp_latency_eval,k=comm+comp=4
+LRCP + Ours,5,0,,,1.6810,0.2288,dair_lrcp_latency_eval,k=comm+comp=5
+LRCP + Ours,0,2,,,1.7369,0.2308,dair_lrcp_latency_eval,k=comm+comp=2
+LRCP + Ours,1,2,,,1.7229,0.2128,dair_lrcp_latency_eval,k=comm+comp=3
+LRCP + Ours,2,2,,,1.6727,0.2290,dair_lrcp_latency_eval,k=comm+comp=4
+LRCP + Ours,3,2,,,1.6810,0.2288,dair_lrcp_latency_eval,k=comm+comp=5
+LRCP + Ours,4,2,,,1.6450,0.2225,dair_lrcp_latency_eval,"k=comm+comp=6; stage2 trained with max delay 5, evaluated by temporal extrapolation"
+LRCP + Ours,5,2,,,1.6204,0.2095,dair_lrcp_latency_eval,"k=comm+comp=7; stage2 trained with max delay 5, evaluated by temporal extrapolation"
+LRCP + Ours,0,4,,,1.6727,0.2290,dair_lrcp_latency_eval,k=comm+comp=4
+LRCP + Ours,1,4,,,1.6810,0.2288,dair_lrcp_latency_eval,k=comm+comp=5
+LRCP + Ours,2,4,,,1.6450,0.2225,dair_lrcp_latency_eval,"k=comm+comp=6; stage2 trained with max delay 5, evaluated by temporal extrapolation"
+LRCP + Ours,3,4,,,1.6204,0.2095,dair_lrcp_latency_eval,"k=comm+comp=7; stage2 trained with max delay 5, evaluated by temporal extrapolation"
+LRCP + Ours,4,4,,,1.6587,0.2132,dair_lrcp_latency_eval,"k=comm+comp=8; stage2 trained with max delay 5, evaluated by temporal extrapolation"
+LRCP + Ours,5,4,,,1.6672,0.2060,dair_lrcp_latency_eval,"k=comm+comp=9; stage2 trained with max delay 5, evaluated by temporal extrapolation"

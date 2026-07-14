@@ -1,0 +1,2 @@
+method,comm_delay_frames,comp_delay_frames,AP@0.5,AP@0.7,BEV AP@0.5,BEV AP@0.7,source,notes
+LRCP + Ours,3,2,,,1.4659,0.2170,dair_lrcp_strict_dual_delay_eval,"strict-ish LRCP two-agent adapter: receiver=T-2 ego-motion aligned to T, sender=T-5; labels=T; LRCP learned compensation applies to the non-ego infrastructure agent only"

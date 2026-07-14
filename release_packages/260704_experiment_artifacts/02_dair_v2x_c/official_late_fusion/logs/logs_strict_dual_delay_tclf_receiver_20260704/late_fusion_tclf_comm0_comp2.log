@@ -1,0 +1,1173 @@
+[2026-07-04 18:55:37 UTC] strict late_fusion_tclf_comm0_comp2: isolated_root=/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0 gpu=0
+07/04/2026 18:55:49 - INFO - __main__ -   loading dataset
+07/04/2026 18:55:56 - INFO - dair_v2x_for_detection -   VIC-Async val dataset, overall 1760 frames
+07/04/2026 18:55:56 - INFO - __main__ -   loading evaluator
+07/04/2026 18:55:56 - INFO - __main__ -   loading model
+  0%|          | 0/1760 [00:00<?, ?it/s]  0%|          | 2/1760 [00:00<04:08,  7.09it/s]  0%|          | 3/1760 [00:00<04:57,  5.90it/s]  0%|          | 4/1760 [00:00<05:09,  5.67it/s]  0%|          | 5/1760 [00:00<04:24,  6.63it/s]  0%|          | 6/1760 [00:01<05:27,  5.35it/s]  0%|          | 7/1760 [00:01<05:21,  5.45it/s]  1%|          | 9/1760 [00:01<03:57,  7.37it/s]  1%|          | 10/1760 [00:01<04:39,  6.25it/s]  1%|          | 12/1760 [00:01<03:26,  8.47it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  1%|          | 14/1760 [00:02<03:44,  7.78it/s]  1%|          | 15/1760 [00:02<03:43,  7.80it/s]  1%|          | 17/1760 [00:02<03:06,  9.36it/s]  1%|          | 19/1760 [00:02<03:54,  7.41it/s]  1%|          | 20/1760 [00:03<05:06,  5.67it/s]  1%|          | 21/1760 [00:03<05:15,  5.50it/s]  1%|▏         | 22/1760 [00:03<05:59,  4.84it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  1%|▏         | 24/1760 [00:03<04:20,  6.67it/s]  1%|▏         | 26/1760 [00:03<03:18,  8.75it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  2%|▏         | 29/1760 [00:04<03:17,  8.78it/s]  2%|▏         | 31/1760 [00:04<03:31,  8.19it/s]  2%|▏         | 32/1760 [00:04<04:19,  6.67it/s]  2%|▏         | 33/1760 [00:04<05:13,  5.50it/s]  2%|▏         | 36/1760 [00:05<03:21,  8.57it/s]  2%|▏         | 38/1760 [00:05<04:04,  7.04it/s]  2%|▏         | 39/1760 [00:05<05:07,  5.60it/s]  2%|▏         | 40/1760 [00:06<05:50,  4.91it/s]  2%|▏         | 41/1760 [00:06<06:05,  4.71it/s]  2%|▏         | 43/1760 [00:06<05:28,  5.22it/s]  2%|▎         | 44/1760 [00:06<05:28,  5.22it/s]  3%|▎         | 45/1760 [00:07<05:52,  4.87it/s]  3%|▎         | 46/1760 [00:07<05:45,  4.97it/s]  3%|▎         | 47/1760 [00:07<05:47,  4.92it/s]  3%|▎         | 49/1760 [00:07<04:43,  6.03it/s]  3%|▎         | 50/1760 [00:08<05:24,  5.26it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  3%|▎         | 53/1760 [00:08<04:05,  6.95it/s]  3%|▎         | 54/1760 [00:08<04:30,  6.30it/s]  3%|▎         | 55/1760 [00:08<04:11,  6.77it/s]  3%|▎         | 56/1760 [00:08<04:00,  7.07it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  3%|▎         | 58/1760 [00:08<03:04,  9.20it/s]  3%|▎         | 60/1760 [00:09<02:44, 10.32it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  4%|▎         | 62/1760 [00:09<03:26,  8.23it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  4%|▎         | 63/1760 [00:09<03:30,  8.07it/s]  4%|▎         | 64/1760 [00:09<03:25,  8.24it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  4%|▍         | 66/1760 [00:09<02:52,  9.83it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  4%|▍         | 68/1760 [00:10<03:10,  8.87it/s]  4%|▍         | 70/1760 [00:10<03:12,  8.78it/s]  4%|▍         | 73/1760 [00:10<02:49,  9.93it/s]  4%|▍         | 75/1760 [00:10<03:10,  8.86it/s]  4%|▍         | 76/1760 [00:11<04:00,  7.00it/s]  4%|▍         | 77/1760 [00:11<03:47,  7.41it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  4%|▍         | 79/1760 [00:11<02:57,  9.44it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  5%|▍         | 81/1760 [00:11<02:34, 10.88it/s]  5%|▍         | 83/1760 [00:11<03:42,  7.55it/s]  5%|▍         | 85/1760 [00:12<03:46,  7.40it/s]  5%|▍         | 86/1760 [00:12<03:46,  7.38it/s]  5%|▌         | 88/1760 [00:12<03:57,  7.03it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  5%|▌         | 91/1760 [00:12<02:58,  9.33it/s]  5%|▌         | 93/1760 [00:13<03:04,  9.02it/s]  5%|▌         | 95/1760 [00:13<03:22,  8.21it/s]  5%|▌         | 96/1760 [00:13<03:45,  7.39it/s]  6%|▌         | 98/1760 [00:13<03:14,  8.54it/s]  6%|▌         | 100/1760 [00:13<03:26,  8.05it/s]  6%|▌         | 102/1760 [00:14<03:45,  7.37it/s]  6%|▌         | 104/1760 [00:14<03:38,  7.59it/s]  6%|▌         | 105/1760 [00:14<03:58,  6.94it/s]  6%|▌         | 106/1760 [00:14<03:49,  7.21it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  6%|▌         | 108/1760 [00:14<03:12,  8.58it/s]  6%|▌         | 109/1760 [00:15<03:16,  8.38it/s]  6%|▋         | 110/1760 [00:15<03:13,  8.52it/s]  6%|▋         | 111/1760 [00:15<03:20,  8.23it/s]  6%|▋         | 112/1760 [00:15<04:08,  6.63it/s]  6%|▋         | 113/1760 [00:15<05:09,  5.32it/s]  6%|▋         | 114/1760 [00:16<05:50,  4.70it/s]  7%|▋         | 115/1760 [00:16<06:24,  4.28it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  7%|▋         | 117/1760 [00:16<05:51,  4.68it/s]  7%|▋         | 119/1760 [00:17<05:29,  4.98it/s]  7%|▋         | 120/1760 [00:17<05:21,  5.10it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  7%|▋         | 121/1760 [00:17<04:49,  5.66it/s]  7%|▋         | 122/1760 [00:17<04:42,  5.81it/s]  7%|▋         | 123/1760 [00:17<04:43,  5.77it/s]  7%|▋         | 124/1760 [00:18<05:36,  4.87it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  7%|▋         | 126/1760 [00:18<04:00,  6.79it/s]  7%|▋         | 128/1760 [00:18<03:08,  8.64it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  7%|▋         | 130/1760 [00:18<03:38,  7.45it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  8%|▊         | 132/1760 [00:18<03:02,  8.90it/s]  8%|▊         | 134/1760 [00:19<04:11,  6.47it/s]no previous infrastructure frame found, time compensation is skipped
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  8%|▊         | 136/1760 [00:19<03:20,  8.12it/s]  8%|▊         | 138/1760 [00:19<03:36,  7.48it/s]  8%|▊         | 139/1760 [00:20<04:41,  5.75it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  8%|▊         | 141/1760 [00:20<03:44,  7.22it/s]  8%|▊         | 144/1760 [00:20<02:49,  9.52it/s]no previous infrastructure frame found, time compensation is skipped
+  8%|▊         | 146/1760 [00:20<02:30, 10.71it/s]  8%|▊         | 148/1760 [00:20<02:23, 11.25it/s]  9%|▊         | 150/1760 [00:21<03:25,  7.84it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  9%|▊         | 152/1760 [00:21<02:52,  9.30it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  9%|▉         | 154/1760 [00:21<03:32,  7.57it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  9%|▉         | 156/1760 [00:21<02:55,  9.13it/s]  9%|▉         | 158/1760 [00:22<03:59,  6.68it/s]  9%|▉         | 159/1760 [00:22<04:18,  6.19it/s]  9%|▉         | 160/1760 [00:22<05:16,  5.05it/s]  9%|▉         | 162/1760 [00:23<04:19,  6.17it/s]  9%|▉         | 163/1760 [00:23<05:19,  5.00it/s]  9%|▉         | 165/1760 [00:23<04:17,  6.19it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+  9%|▉         | 167/1760 [00:23<03:38,  7.30it/s] 10%|▉         | 168/1760 [00:23<03:28,  7.63it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 10%|▉         | 170/1760 [00:24<03:24,  7.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 10%|▉         | 172/1760 [00:24<03:36,  7.33it/s] 10%|▉         | 173/1760 [00:24<04:18,  6.15it/s] 10%|▉         | 174/1760 [00:24<04:00,  6.59it/s] 10%|█         | 176/1760 [00:25<04:05,  6.44it/s] 10%|█         | 178/1760 [00:25<04:06,  6.42it/s] 10%|█         | 179/1760 [00:25<03:53,  6.77it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 10%|█         | 180/1760 [00:25<03:37,  7.27it/s] 10%|█         | 182/1760 [00:25<03:04,  8.54it/s] 10%|█         | 184/1760 [00:26<03:18,  7.93it/s] 11%|█         | 185/1760 [00:26<03:30,  7.47it/s] 11%|█         | 186/1760 [00:26<04:18,  6.08it/s] 11%|█         | 187/1760 [00:26<05:17,  4.95it/s] 11%|█         | 188/1760 [00:27<04:59,  5.25it/s] 11%|█         | 190/1760 [00:27<03:48,  6.87it/s] 11%|█         | 193/1760 [00:27<03:01,  8.63it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 11%|█         | 196/1760 [00:27<02:35, 10.06it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 11%|█▏        | 198/1760 [00:27<03:06,  8.39it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 11%|█▏        | 200/1760 [00:28<03:17,  7.89it/s] 11%|█▏        | 201/1760 [00:28<04:34,  5.68it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 12%|█▏        | 203/1760 [00:28<03:56,  6.58it/s] 12%|█▏        | 204/1760 [00:29<03:44,  6.92it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 12%|█▏        | 206/1760 [00:29<03:05,  8.38it/s] 12%|█▏        | 207/1760 [00:29<03:50,  6.74it/s] 12%|█▏        | 208/1760 [00:29<04:50,  5.34it/s] 12%|█▏        | 209/1760 [00:29<04:24,  5.85it/s] 12%|█▏        | 210/1760 [00:30<04:31,  5.72it/s] 12%|█▏        | 211/1760 [00:30<04:10,  6.18it/s] 12%|█▏        | 213/1760 [00:30<03:59,  6.47it/s] 12%|█▏        | 215/1760 [00:30<03:21,  7.66it/s] 12%|█▏        | 216/1760 [00:30<04:06,  6.26it/s] 12%|█▏        | 217/1760 [00:31<04:02,  6.35it/s] 12%|█▏        | 218/1760 [00:31<04:35,  5.60it/s] 12%|█▏        | 219/1760 [00:31<04:18,  5.97it/s] 12%|█▎        | 220/1760 [00:31<03:57,  6.49it/s] 13%|█▎        | 221/1760 [00:31<04:15,  6.03it/s] 13%|█▎        | 222/1760 [00:32<04:44,  5.40it/s] 13%|█▎        | 223/1760 [00:32<05:44,  4.46it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 13%|█▎        | 226/1760 [00:32<03:55,  6.52it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 13%|█▎        | 228/1760 [00:32<04:13,  6.04it/s] 13%|█▎        | 229/1760 [00:33<04:02,  6.33it/s] 13%|█▎        | 230/1760 [00:33<03:52,  6.58it/s] 13%|█▎        | 232/1760 [00:33<04:17,  5.94it/s] 13%|█▎        | 233/1760 [00:33<04:06,  6.20it/s] 13%|█▎        | 235/1760 [00:34<04:16,  5.96it/s] 14%|█▎        | 238/1760 [00:34<02:56,  8.60it/s] 14%|█▎        | 240/1760 [00:34<02:50,  8.92it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 14%|█▍        | 242/1760 [00:34<02:37,  9.62it/s] 14%|█▍        | 244/1760 [00:34<02:50,  8.88it/s] 14%|█▍        | 245/1760 [00:35<03:21,  7.54it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 14%|█▍        | 247/1760 [00:35<02:38,  9.52it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 14%|█▍        | 249/1760 [00:35<03:11,  7.90it/s] 14%|█▍        | 252/1760 [00:35<02:42,  9.29it/s] 14%|█▍        | 254/1760 [00:36<03:04,  8.15it/s] 15%|█▍        | 256/1760 [00:36<02:33,  9.78it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 15%|█▍        | 258/1760 [00:36<02:30, 10.00it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 15%|█▍        | 260/1760 [00:36<02:12, 11.28it/s] 15%|█▍        | 262/1760 [00:36<02:07, 11.77it/s] 15%|█▌        | 264/1760 [00:36<02:18, 10.81it/s] 15%|█▌        | 266/1760 [00:37<02:11, 11.33it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 15%|█▌        | 268/1760 [00:37<02:14, 11.11it/s] 15%|█▌        | 270/1760 [00:37<03:39,  6.80it/s] 15%|█▌        | 271/1760 [00:38<03:48,  6.50it/s]no previous infrastructure frame found, time compensation is skipped
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 16%|█▌        | 273/1760 [00:38<02:58,  8.32it/s] 16%|█▌        | 275/1760 [00:38<03:37,  6.83it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 16%|█▌        | 277/1760 [00:38<03:02,  8.12it/s] 16%|█▌        | 279/1760 [00:39<03:41,  6.68it/s] 16%|█▌        | 280/1760 [00:39<03:53,  6.33it/s] 16%|█▌        | 281/1760 [00:39<03:40,  6.72it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 16%|█▌        | 283/1760 [00:39<03:23,  7.25it/s] 16%|█▌        | 284/1760 [00:40<04:34,  5.39it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 16%|█▋        | 287/1760 [00:40<02:58,  8.25it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 16%|█▋        | 289/1760 [00:40<02:38,  9.28it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 17%|█▋        | 291/1760 [00:40<02:27,  9.96it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 17%|█▋        | 293/1760 [00:40<03:03,  8.01it/s] 17%|█▋        | 294/1760 [00:40<03:07,  7.84it/s]no previous infrastructure frame found, time compensation is skipped
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 17%|█▋        | 297/1760 [00:41<03:07,  7.80it/s] 17%|█▋        | 299/1760 [00:41<02:50,  8.59it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 17%|█▋        | 301/1760 [00:41<02:37,  9.28it/s] 17%|█▋        | 303/1760 [00:41<02:23, 10.14it/s] 17%|█▋        | 305/1760 [00:42<02:18, 10.51it/s] 17%|█▋        | 307/1760 [00:42<03:34,  6.76it/s] 18%|█▊        | 308/1760 [00:42<04:08,  5.85it/s] 18%|█▊        | 309/1760 [00:43<04:39,  5.19it/s] 18%|█▊        | 310/1760 [00:43<05:14,  4.61it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 18%|█▊        | 312/1760 [00:43<05:03,  4.77it/s] 18%|█▊        | 313/1760 [00:43<04:35,  5.26it/s] 18%|█▊        | 315/1760 [00:44<03:33,  6.77it/s] 18%|█▊        | 316/1760 [00:44<03:18,  7.27it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 18%|█▊        | 318/1760 [00:44<02:50,  8.47it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 18%|█▊        | 319/1760 [00:44<02:47,  8.62it/s] 18%|█▊        | 321/1760 [00:44<02:36,  9.19it/s] 18%|█▊        | 322/1760 [00:45<03:49,  6.26it/s] 18%|█▊        | 323/1760 [00:45<04:38,  5.17it/s] 18%|█▊        | 325/1760 [00:45<03:18,  7.23it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 19%|█▊        | 327/1760 [00:45<02:52,  8.32it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 19%|█▊        | 329/1760 [00:45<02:26,  9.74it/s] 19%|█▉        | 331/1760 [00:46<03:36,  6.59it/s] 19%|█▉        | 332/1760 [00:46<03:34,  6.66it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 19%|█▉        | 334/1760 [00:46<02:52,  8.27it/s] 19%|█▉        | 337/1760 [00:46<02:11, 10.82it/s] 19%|█▉        | 339/1760 [00:47<03:27,  6.86it/s] 19%|█▉        | 341/1760 [00:47<03:08,  7.54it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 19%|█▉        | 343/1760 [00:47<02:41,  8.80it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 20%|█▉        | 345/1760 [00:47<02:51,  8.24it/s] 20%|█▉        | 347/1760 [00:48<02:25,  9.70it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 20%|█▉        | 349/1760 [00:48<02:17, 10.25it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 20%|██        | 352/1760 [00:48<01:58, 11.90it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 20%|██        | 354/1760 [00:48<01:46, 13.21it/s] 20%|██        | 356/1760 [00:48<02:26,  9.58it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 20%|██        | 358/1760 [00:49<02:30,  9.29it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 20%|██        | 360/1760 [00:49<02:11, 10.63it/s] 21%|██        | 362/1760 [00:49<01:57, 11.86it/s] 21%|██        | 364/1760 [00:49<02:17, 10.13it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 21%|██        | 366/1760 [00:49<02:17, 10.16it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 21%|██        | 368/1760 [00:49<02:07, 10.92it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 21%|██        | 371/1760 [00:50<01:40, 13.77it/s] 21%|██        | 373/1760 [00:50<01:51, 12.48it/s] 21%|██▏       | 375/1760 [00:50<02:08, 10.78it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 21%|██▏       | 377/1760 [00:50<02:05, 11.02it/s] 22%|██▏       | 379/1760 [00:50<02:29,  9.25it/s] 22%|██▏       | 381/1760 [00:51<02:07, 10.85it/s] 22%|██▏       | 383/1760 [00:51<02:31,  9.11it/s] 22%|██▏       | 385/1760 [00:51<02:56,  7.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 22%|██▏       | 387/1760 [00:51<02:29,  9.16it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 22%|██▏       | 389/1760 [00:52<02:19,  9.83it/s] 22%|██▏       | 391/1760 [00:52<02:02, 11.13it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 22%|██▏       | 393/1760 [00:52<01:50, 12.36it/s] 22%|██▏       | 395/1760 [00:52<01:52, 12.17it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 23%|██▎       | 397/1760 [00:52<01:56, 11.67it/s] 23%|██▎       | 399/1760 [00:52<02:20,  9.66it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 23%|██▎       | 401/1760 [00:53<02:00, 11.26it/s] 23%|██▎       | 403/1760 [00:53<02:42,  8.33it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 23%|██▎       | 405/1760 [00:53<02:52,  7.85it/s] 23%|██▎       | 406/1760 [00:53<02:46,  8.15it/s] 23%|██▎       | 408/1760 [00:53<02:30,  9.01it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 23%|██▎       | 410/1760 [00:54<02:11, 10.26it/s] 23%|██▎       | 413/1760 [00:54<01:38, 13.66it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 24%|██▎       | 415/1760 [00:54<02:17,  9.77it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 24%|██▍       | 418/1760 [00:54<01:43, 12.97it/s] 24%|██▍       | 420/1760 [00:54<02:06, 10.57it/s] 24%|██▍       | 422/1760 [00:55<02:05, 10.69it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 24%|██▍       | 424/1760 [00:55<01:53, 11.78it/s] 24%|██▍       | 426/1760 [00:55<02:00, 11.11it/s] 24%|██▍       | 428/1760 [00:55<02:18,  9.64it/s] 24%|██▍       | 430/1760 [00:56<02:23,  9.29it/s]no previous infrastructure frame found, time compensation is skipped
+ 25%|██▍       | 432/1760 [00:56<02:35,  8.52it/s] 25%|██▍       | 433/1760 [00:56<02:58,  7.43it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 25%|██▍       | 435/1760 [00:56<02:50,  7.78it/s] 25%|██▍       | 437/1760 [00:57<02:54,  7.58it/s] 25%|██▍       | 438/1760 [00:57<03:14,  6.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 25%|██▌       | 441/1760 [00:57<02:15,  9.74it/s] 25%|██▌       | 443/1760 [00:57<01:54, 11.50it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 25%|██▌       | 445/1760 [00:57<02:22,  9.22it/s] 25%|██▌       | 447/1760 [00:57<02:08, 10.25it/s] 26%|██▌       | 449/1760 [00:58<02:28,  8.83it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 26%|██▌       | 451/1760 [00:58<02:06, 10.32it/s] 26%|██▌       | 453/1760 [00:58<02:32,  8.56it/s] 26%|██▌       | 455/1760 [00:59<03:08,  6.92it/s] 26%|██▌       | 457/1760 [00:59<02:39,  8.16it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 26%|██▌       | 460/1760 [00:59<02:01, 10.73it/s] 26%|██▋       | 462/1760 [00:59<01:50, 11.75it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 26%|██▋       | 465/1760 [00:59<01:39, 13.08it/s] 27%|██▋       | 467/1760 [00:59<01:56, 11.08it/s] 27%|██▋       | 469/1760 [01:00<02:37,  8.21it/s] 27%|██▋       | 471/1760 [01:00<02:56,  7.31it/s] 27%|██▋       | 474/1760 [01:00<02:10,  9.89it/s] 27%|██▋       | 476/1760 [01:01<02:14,  9.56it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 27%|██▋       | 478/1760 [01:01<02:22,  9.01it/s] 27%|██▋       | 480/1760 [01:01<02:08,  9.94it/s] 27%|██▋       | 482/1760 [01:01<02:13,  9.55it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 28%|██▊       | 484/1760 [01:01<02:01, 10.46it/s] 28%|██▊       | 486/1760 [01:01<01:50, 11.57it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 28%|██▊       | 488/1760 [01:02<02:28,  8.57it/s] 28%|██▊       | 490/1760 [01:02<03:15,  6.49it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 28%|██▊       | 493/1760 [01:03<02:57,  7.13it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 28%|██▊       | 495/1760 [01:03<02:37,  8.02it/s] 28%|██▊       | 496/1760 [01:03<02:32,  8.28it/s] 28%|██▊       | 498/1760 [01:03<02:24,  8.72it/s] 28%|██▊       | 499/1760 [01:04<03:32,  5.94it/s] 28%|██▊       | 500/1760 [01:04<03:58,  5.28it/s] 28%|██▊       | 501/1760 [01:04<04:05,  5.13it/s] 29%|██▊       | 502/1760 [01:04<03:43,  5.63it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 29%|██▊       | 504/1760 [01:04<02:41,  7.79it/s] 29%|██▉       | 506/1760 [01:05<02:54,  7.19it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 29%|██▉       | 508/1760 [01:05<02:44,  7.60it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 29%|██▉       | 510/1760 [01:05<02:38,  7.91it/s] 29%|██▉       | 512/1760 [01:05<02:19,  8.92it/s] 29%|██▉       | 513/1760 [01:05<02:27,  8.44it/s] 29%|██▉       | 514/1760 [01:06<02:24,  8.60it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 29%|██▉       | 516/1760 [01:06<02:06,  9.86it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 29%|██▉       | 518/1760 [01:06<02:07,  9.76it/s] 30%|██▉       | 520/1760 [01:06<01:58, 10.50it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 30%|██▉       | 522/1760 [01:06<02:01, 10.20it/s] 30%|██▉       | 524/1760 [01:07<02:40,  7.72it/s] 30%|██▉       | 525/1760 [01:07<02:57,  6.94it/s] 30%|██▉       | 527/1760 [01:07<02:30,  8.17it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 30%|███       | 529/1760 [01:07<02:11,  9.37it/s] 30%|███       | 531/1760 [01:08<02:47,  7.36it/s] 30%|███       | 532/1760 [01:08<02:47,  7.33it/s] 30%|███       | 533/1760 [01:08<02:55,  7.01it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 30%|███       | 536/1760 [01:08<02:48,  7.25it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 31%|███       | 538/1760 [01:08<02:21,  8.64it/s] 31%|███       | 539/1760 [01:09<02:45,  7.36it/s] 31%|███       | 541/1760 [01:09<02:11,  9.28it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 31%|███       | 544/1760 [01:09<01:36, 12.66it/s] 31%|███       | 546/1760 [01:09<01:49, 11.09it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 31%|███       | 548/1760 [01:09<01:54, 10.55it/s] 31%|███▏      | 551/1760 [01:10<01:55, 10.46it/s] 31%|███▏      | 553/1760 [01:10<02:54,  6.93it/s] 31%|███▏      | 554/1760 [01:10<02:55,  6.87it/s] 32%|███▏      | 556/1760 [01:10<02:22,  8.46it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 32%|███▏      | 558/1760 [01:11<02:42,  7.39it/s] 32%|███▏      | 560/1760 [01:11<02:13,  8.99it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 32%|███▏      | 563/1760 [01:11<01:39, 12.09it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 32%|███▏      | 565/1760 [01:11<01:43, 11.50it/s] 32%|███▏      | 567/1760 [01:11<01:33, 12.70it/s] 32%|███▏      | 569/1760 [01:12<02:01,  9.81it/s] 32%|███▏      | 571/1760 [01:12<02:33,  7.74it/s] 33%|███▎      | 573/1760 [01:12<03:02,  6.51it/s] 33%|███▎      | 574/1760 [01:13<03:28,  5.69it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 33%|███▎      | 575/1760 [01:13<03:12,  6.17it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 33%|███▎      | 577/1760 [01:13<02:34,  7.64it/s] 33%|███▎      | 579/1760 [01:13<02:09,  9.12it/s] 33%|███▎      | 581/1760 [01:14<02:54,  6.75it/s] 33%|███▎      | 583/1760 [01:14<02:22,  8.26it/s] 33%|███▎      | 585/1760 [01:14<02:08,  9.15it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 33%|███▎      | 588/1760 [01:14<02:05,  9.34it/s] 34%|███▎      | 590/1760 [01:15<02:44,  7.09it/s] 34%|███▎      | 592/1760 [01:15<03:05,  6.28it/s] 34%|███▎      | 593/1760 [01:15<03:29,  5.58it/s] 34%|███▍      | 594/1760 [01:15<03:23,  5.73it/s] 34%|███▍      | 595/1760 [01:16<04:08,  4.68it/s] 34%|███▍      | 596/1760 [01:16<04:57,  3.92it/s] 34%|███▍      | 597/1760 [01:16<04:38,  4.17it/s] 34%|███▍      | 599/1760 [01:17<03:14,  5.98it/s] 34%|███▍      | 600/1760 [01:17<03:01,  6.39it/s] 34%|███▍      | 601/1760 [01:17<03:18,  5.83it/s] 34%|███▍      | 602/1760 [01:17<03:37,  5.33it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 34%|███▍      | 604/1760 [01:17<02:41,  7.14it/s] 34%|███▍      | 605/1760 [01:17<02:44,  7.04it/s] 34%|███▍      | 606/1760 [01:18<03:33,  5.40it/s] 34%|███▍      | 607/1760 [01:18<03:44,  5.14it/s] 35%|███▍      | 609/1760 [01:18<02:50,  6.75it/s] 35%|███▍      | 611/1760 [01:18<02:44,  6.97it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 35%|███▍      | 612/1760 [01:18<02:34,  7.41it/s] 35%|███▍      | 614/1760 [01:19<02:01,  9.46it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 35%|███▌      | 616/1760 [01:19<01:52, 10.14it/s] 35%|███▌      | 618/1760 [01:19<01:57,  9.73it/s] 35%|███▌      | 620/1760 [01:19<01:45, 10.79it/s] 35%|███▌      | 622/1760 [01:19<02:12,  8.61it/s] 35%|███▌      | 623/1760 [01:20<02:10,  8.72it/s] 35%|███▌      | 624/1760 [01:20<02:34,  7.37it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 36%|███▌      | 627/1760 [01:20<01:43, 10.99it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 36%|███▌      | 629/1760 [01:20<01:30, 12.43it/s] 36%|███▌      | 631/1760 [01:20<01:26, 13.11it/s] 36%|███▌      | 633/1760 [01:20<01:27, 12.95it/s] 36%|███▌      | 635/1760 [01:21<01:46, 10.59it/s] 36%|███▌      | 637/1760 [01:21<02:01,  9.22it/s] 36%|███▋      | 639/1760 [01:21<02:07,  8.80it/s] 36%|███▋      | 641/1760 [01:21<02:03,  9.06it/s] 37%|███▋      | 643/1760 [01:21<01:47, 10.38it/s] 37%|███▋      | 645/1760 [01:22<01:56,  9.60it/s] 37%|███▋      | 647/1760 [01:22<02:43,  6.80it/s] 37%|███▋      | 648/1760 [01:22<02:46,  6.69it/s]no previous infrastructure frame found, time compensation is skipped
+ 37%|███▋      | 650/1760 [01:22<02:08,  8.61it/s] 37%|███▋      | 652/1760 [01:23<02:17,  8.06it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 37%|███▋      | 654/1760 [01:23<01:55,  9.58it/s] 37%|███▋      | 656/1760 [01:23<01:40, 11.03it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 37%|███▋      | 658/1760 [01:23<02:01,  9.08it/s] 38%|███▊      | 660/1760 [01:23<01:55,  9.54it/s] 38%|███▊      | 662/1760 [01:24<02:34,  7.09it/s] 38%|███▊      | 664/1760 [01:24<02:24,  7.58it/s] 38%|███▊      | 665/1760 [01:24<02:22,  7.66it/s] 38%|███▊      | 666/1760 [01:24<02:30,  7.26it/s] 38%|███▊      | 668/1760 [01:25<02:08,  8.50it/s] 38%|███▊      | 669/1760 [01:25<02:20,  7.79it/s] 38%|███▊      | 671/1760 [01:25<02:19,  7.83it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 38%|███▊      | 673/1760 [01:25<02:06,  8.62it/s] 38%|███▊      | 674/1760 [01:26<02:53,  6.27it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 38%|███▊      | 676/1760 [01:26<02:21,  7.64it/s] 38%|███▊      | 677/1760 [01:26<02:21,  7.68it/s]no previous infrastructure frame found, time compensation is skipped
+ 39%|███▊      | 680/1760 [01:26<01:43, 10.47it/s] 39%|███▉      | 682/1760 [01:26<02:05,  8.61it/s] 39%|███▉      | 683/1760 [01:27<02:44,  6.56it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 39%|███▉      | 686/1760 [01:27<01:55,  9.30it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 39%|███▉      | 689/1760 [01:27<01:27, 12.22it/s] 39%|███▉      | 691/1760 [01:27<01:36, 11.05it/s]no previous infrastructure frame found, time compensation is skipped
+ 39%|███▉      | 693/1760 [01:27<01:45, 10.08it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 39%|███▉      | 695/1760 [01:28<02:16,  7.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 40%|███▉      | 697/1760 [01:28<01:54,  9.27it/s] 40%|███▉      | 699/1760 [01:28<02:21,  7.52it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 40%|███▉      | 701/1760 [01:29<02:25,  7.28it/s] 40%|███▉      | 702/1760 [01:29<02:23,  7.35it/s] 40%|███▉      | 703/1760 [01:29<02:33,  6.88it/s] 40%|████      | 704/1760 [01:29<03:12,  5.50it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 40%|████      | 707/1760 [01:29<02:14,  7.81it/s] 40%|████      | 708/1760 [01:30<02:17,  7.66it/s] 40%|████      | 709/1760 [01:30<02:12,  7.92it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 40%|████      | 711/1760 [01:30<01:46,  9.85it/s] 41%|████      | 713/1760 [01:30<02:15,  7.71it/s] 41%|████      | 714/1760 [01:30<02:29,  7.02it/s] 41%|████      | 715/1760 [01:31<02:50,  6.13it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 41%|████      | 717/1760 [01:31<02:17,  7.61it/s] 41%|████      | 718/1760 [01:31<02:10,  7.97it/s] 41%|████      | 719/1760 [01:31<02:12,  7.89it/s] 41%|████      | 721/1760 [01:31<02:05,  8.29it/s] 41%|████      | 723/1760 [01:31<01:58,  8.73it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 41%|████      | 725/1760 [01:32<01:37, 10.62it/s] 41%|████▏     | 727/1760 [01:32<01:47,  9.59it/s] 41%|████▏     | 729/1760 [01:32<02:02,  8.40it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 42%|████▏     | 731/1760 [01:32<01:48,  9.45it/s] 42%|████▏     | 733/1760 [01:33<02:04,  8.23it/s]no previous infrastructure frame found, time compensation is skipped
+ 42%|████▏     | 734/1760 [01:33<02:14,  7.60it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 42%|████▏     | 736/1760 [01:33<02:31,  6.74it/s] 42%|████▏     | 738/1760 [01:33<02:32,  6.70it/s] 42%|████▏     | 740/1760 [01:34<02:11,  7.75it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 42%|████▏     | 743/1760 [01:34<01:51,  9.11it/s] 42%|████▏     | 744/1760 [01:34<02:05,  8.08it/s] 42%|████▏     | 745/1760 [01:34<02:48,  6.02it/s] 42%|████▏     | 747/1760 [01:35<02:59,  5.65it/s] 43%|████▎     | 749/1760 [01:35<02:32,  6.65it/s] 43%|████▎     | 751/1760 [01:35<02:07,  7.90it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 43%|████▎     | 753/1760 [01:35<01:54,  8.78it/s] 43%|████▎     | 754/1760 [01:35<01:52,  8.92it/s] 43%|████▎     | 755/1760 [01:36<02:15,  7.43it/s] 43%|████▎     | 757/1760 [01:36<01:50,  9.05it/s] 43%|████▎     | 759/1760 [01:36<01:56,  8.63it/s] 43%|████▎     | 760/1760 [01:36<02:28,  6.72it/s] 43%|████▎     | 762/1760 [01:36<02:13,  7.50it/s]no previous infrastructure frame found, time compensation is skipped
+ 43%|████▎     | 763/1760 [01:37<02:14,  7.41it/s] 43%|████▎     | 765/1760 [01:37<01:59,  8.32it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 44%|████▎     | 768/1760 [01:37<01:34, 10.49it/s] 44%|████▍     | 770/1760 [01:37<01:53,  8.71it/s] 44%|████▍     | 772/1760 [01:38<02:03,  8.02it/s] 44%|████▍     | 774/1760 [01:38<02:00,  8.21it/s] 44%|████▍     | 776/1760 [01:38<01:39,  9.92it/s] 44%|████▍     | 778/1760 [01:38<01:37, 10.06it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 44%|████▍     | 781/1760 [01:38<01:16, 12.73it/s] 44%|████▍     | 783/1760 [01:38<01:19, 12.22it/s] 45%|████▍     | 785/1760 [01:39<02:07,  7.64it/s] 45%|████▍     | 787/1760 [01:39<01:50,  8.77it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 45%|████▍     | 789/1760 [01:39<01:44,  9.32it/s] 45%|████▍     | 791/1760 [01:39<01:31, 10.54it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 45%|████▌     | 793/1760 [01:40<01:21, 11.84it/s] 45%|████▌     | 796/1760 [01:40<01:34, 10.18it/s] 45%|████▌     | 798/1760 [01:40<02:06,  7.63it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 45%|████▌     | 800/1760 [01:40<01:46,  9.01it/s] 46%|████▌     | 802/1760 [01:41<02:12,  7.24it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 46%|████▌     | 804/1760 [01:41<01:53,  8.40it/s] 46%|████▌     | 806/1760 [01:41<02:02,  7.81it/s] 46%|████▌     | 807/1760 [01:42<02:13,  7.14it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 46%|████▌     | 809/1760 [01:42<02:11,  7.23it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 46%|████▌     | 811/1760 [01:42<01:50,  8.60it/s] 46%|████▌     | 812/1760 [01:42<01:49,  8.68it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 46%|████▋     | 814/1760 [01:42<01:38,  9.57it/s] 46%|████▋     | 817/1760 [01:42<01:11, 13.17it/s] 47%|████▋     | 819/1760 [01:43<01:31, 10.28it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 47%|████▋     | 821/1760 [01:43<01:26, 10.81it/s] 47%|████▋     | 823/1760 [01:43<01:39,  9.42it/s] 47%|████▋     | 825/1760 [01:43<01:33,  9.99it/s] 47%|████▋     | 827/1760 [01:44<01:48,  8.57it/s] 47%|████▋     | 828/1760 [01:44<01:49,  8.50it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 47%|████▋     | 830/1760 [01:44<01:32, 10.01it/s] 47%|████▋     | 832/1760 [01:44<01:43,  8.92it/s] 47%|████▋     | 833/1760 [01:44<01:49,  8.45it/s] 47%|████▋     | 835/1760 [01:44<01:53,  8.16it/s] 48%|████▊     | 837/1760 [01:45<01:53,  8.15it/s] 48%|████▊     | 839/1760 [01:45<01:54,  8.03it/s] 48%|████▊     | 840/1760 [01:45<02:16,  6.76it/s] 48%|████▊     | 841/1760 [01:46<02:49,  5.42it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 48%|████▊     | 843/1760 [01:46<02:13,  6.89it/s] 48%|████▊     | 845/1760 [01:46<01:46,  8.58it/s] 48%|████▊     | 847/1760 [01:46<01:47,  8.48it/s] 48%|████▊     | 848/1760 [01:46<01:57,  7.77it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 48%|████▊     | 850/1760 [01:47<01:55,  7.88it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 48%|████▊     | 852/1760 [01:47<01:32,  9.77it/s] 49%|████▊     | 854/1760 [01:47<01:46,  8.53it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 49%|████▊     | 856/1760 [01:47<01:40,  9.03it/s] 49%|████▉     | 858/1760 [01:47<01:35,  9.42it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 49%|████▉     | 860/1760 [01:47<01:23, 10.77it/s] 49%|████▉     | 862/1760 [01:48<01:52,  7.96it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 49%|████▉     | 863/1760 [01:48<01:49,  8.17it/s] 49%|████▉     | 865/1760 [01:48<01:50,  8.12it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 49%|████▉     | 867/1760 [01:48<01:31,  9.80it/s] 49%|████▉     | 869/1760 [01:49<01:43,  8.64it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 49%|████▉     | 871/1760 [01:49<01:29,  9.93it/s] 50%|████▉     | 873/1760 [01:49<01:29,  9.87it/s] 50%|████▉     | 875/1760 [01:49<02:08,  6.89it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 50%|████▉     | 877/1760 [01:50<01:46,  8.26it/s] 50%|████▉     | 879/1760 [01:50<02:16,  6.44it/s] 50%|█████     | 880/1760 [01:50<02:10,  6.76it/s] 50%|█████     | 882/1760 [01:50<01:42,  8.58it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 50%|█████     | 885/1760 [01:51<01:35,  9.18it/s] 50%|█████     | 887/1760 [01:51<01:28,  9.91it/s] 51%|█████     | 889/1760 [01:51<02:01,  7.20it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 51%|█████     | 892/1760 [01:51<01:43,  8.41it/s] 51%|█████     | 894/1760 [01:52<01:53,  7.65it/s] 51%|█████     | 896/1760 [01:52<01:50,  7.83it/s] 51%|█████     | 897/1760 [01:52<02:16,  6.31it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 51%|█████     | 900/1760 [01:52<01:36,  8.90it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 51%|█████▏    | 902/1760 [01:53<01:32,  9.26it/s] 51%|█████▏    | 904/1760 [01:53<01:42,  8.32it/s] 51%|█████▏    | 906/1760 [01:53<01:48,  7.86it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 52%|█████▏    | 909/1760 [01:53<01:21, 10.48it/s] 52%|█████▏    | 911/1760 [01:54<01:22, 10.24it/s] 52%|█████▏    | 914/1760 [01:54<01:07, 12.46it/s] 52%|█████▏    | 917/1760 [01:54<00:57, 14.73it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 52%|█████▏    | 919/1760 [01:54<01:17, 10.81it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 52%|█████▏    | 921/1760 [01:54<01:19, 10.60it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 52%|█████▏    | 923/1760 [01:55<01:33,  8.98it/s] 53%|█████▎    | 925/1760 [01:55<01:25,  9.75it/s] 53%|█████▎    | 927/1760 [01:55<01:32,  8.97it/s] 53%|█████▎    | 929/1760 [01:56<02:13,  6.24it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 53%|█████▎    | 931/1760 [01:56<01:51,  7.46it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 53%|█████▎    | 933/1760 [01:56<01:52,  7.37it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 53%|█████▎    | 934/1760 [01:56<01:49,  7.51it/s] 53%|█████▎    | 935/1760 [01:56<02:03,  6.65it/s] 53%|█████▎    | 936/1760 [01:57<02:14,  6.13it/s] 53%|█████▎    | 938/1760 [01:57<01:51,  7.38it/s] 53%|█████▎    | 939/1760 [01:57<01:52,  7.27it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 54%|█████▎    | 943/1760 [01:57<01:22,  9.94it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 54%|█████▎    | 945/1760 [01:57<01:12, 11.25it/s] 54%|█████▍    | 947/1760 [01:58<01:19, 10.17it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 54%|█████▍    | 949/1760 [01:58<01:29,  9.09it/s] 54%|█████▍    | 950/1760 [01:58<02:06,  6.42it/s] 54%|█████▍    | 951/1760 [01:59<02:42,  4.97it/s] 54%|█████▍    | 954/1760 [01:59<02:08,  6.28it/s]no previous infrastructure frame found, time compensation is skipped
+ 54%|█████▍    | 956/1760 [01:59<02:23,  5.60it/s] 54%|█████▍    | 958/1760 [02:00<02:19,  5.73it/s] 54%|█████▍    | 959/1760 [02:00<02:11,  6.11it/s] 55%|█████▍    | 961/1760 [02:00<02:02,  6.50it/s] 55%|█████▍    | 962/1760 [02:00<02:10,  6.10it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 55%|█████▍    | 964/1760 [02:01<01:44,  7.64it/s] 55%|█████▍    | 966/1760 [02:01<01:31,  8.66it/s] 55%|█████▍    | 967/1760 [02:01<01:42,  7.76it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 55%|█████▌    | 969/1760 [02:01<01:51,  7.12it/s] 55%|█████▌    | 970/1760 [02:01<02:18,  5.70it/s] 55%|█████▌    | 971/1760 [02:02<02:39,  4.96it/s] 55%|█████▌    | 972/1760 [02:02<03:22,  3.89it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 55%|█████▌    | 973/1760 [02:02<02:54,  4.51it/s] 55%|█████▌    | 976/1760 [02:03<01:58,  6.63it/s] 56%|█████▌    | 977/1760 [02:03<02:01,  6.43it/s] 56%|█████▌    | 979/1760 [02:03<02:02,  6.37it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 56%|█████▌    | 981/1760 [02:03<01:41,  7.64it/s] 56%|█████▌    | 983/1760 [02:03<01:26,  8.97it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 56%|█████▌    | 986/1760 [02:04<01:02, 12.38it/s] 56%|█████▌    | 988/1760 [02:04<01:15, 10.17it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 56%|█████▋    | 990/1760 [02:04<01:08, 11.17it/s]no previous infrastructure frame found, time compensation is skipped
+ 56%|█████▋    | 992/1760 [02:04<01:21,  9.44it/s] 56%|█████▋    | 994/1760 [02:04<01:14, 10.28it/s] 57%|█████▋    | 996/1760 [02:05<01:58,  6.42it/s] 57%|█████▋    | 997/1760 [02:05<02:03,  6.17it/s] 57%|█████▋    | 998/1760 [02:05<01:57,  6.48it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 57%|█████▋    | 999/1760 [02:05<02:02,  6.19it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 57%|█████▋    | 1001/1760 [02:06<01:37,  7.81it/s] 57%|█████▋    | 1004/1760 [02:06<01:13, 10.30it/s] 57%|█████▋    | 1006/1760 [02:06<01:28,  8.52it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 57%|█████▋    | 1008/1760 [02:06<01:36,  7.77it/s] 57%|█████▋    | 1009/1760 [02:07<01:52,  6.70it/s] 57%|█████▋    | 1010/1760 [02:07<01:44,  7.16it/s] 57%|█████▊    | 1012/1760 [02:07<01:26,  8.61it/s] 58%|█████▊    | 1014/1760 [02:07<01:18,  9.49it/s] 58%|█████▊    | 1016/1760 [02:07<01:10, 10.59it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 58%|█████▊    | 1018/1760 [02:07<01:07, 11.06it/s] 58%|█████▊    | 1020/1760 [02:08<01:23,  8.86it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 58%|█████▊    | 1022/1760 [02:08<01:20,  9.15it/s] 58%|█████▊    | 1024/1760 [02:08<01:12, 10.09it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 58%|█████▊    | 1026/1760 [02:08<01:24,  8.69it/s] 58%|█████▊    | 1027/1760 [02:09<01:56,  6.30it/s] 58%|█████▊    | 1028/1760 [02:09<02:11,  5.57it/s] 59%|█████▊    | 1030/1760 [02:09<01:47,  6.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 59%|█████▊    | 1032/1760 [02:09<01:39,  7.30it/s] 59%|█████▉    | 1034/1760 [02:10<01:25,  8.51it/s] 59%|█████▉    | 1035/1760 [02:10<01:44,  6.93it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 59%|█████▉    | 1037/1760 [02:10<01:23,  8.69it/s] 59%|█████▉    | 1039/1760 [02:10<01:13,  9.79it/s] 59%|█████▉    | 1041/1760 [02:10<01:16,  9.35it/s] 59%|█████▉    | 1043/1760 [02:11<01:24,  8.44it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 59%|█████▉    | 1045/1760 [02:11<01:35,  7.50it/s] 59%|█████▉    | 1046/1760 [02:11<01:37,  7.32it/s] 59%|█████▉    | 1047/1760 [02:11<01:53,  6.27it/s] 60%|█████▉    | 1049/1760 [02:12<01:37,  7.30it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 60%|█████▉    | 1051/1760 [02:12<01:53,  6.26it/s] 60%|█████▉    | 1052/1760 [02:12<01:45,  6.71it/s] 60%|█████▉    | 1053/1760 [02:12<01:37,  7.21it/s] 60%|█████▉    | 1054/1760 [02:12<01:50,  6.40it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+no previous infrastructure frame found, time compensation is skipped
+ 60%|██████    | 1057/1760 [02:13<01:09, 10.11it/s] 60%|██████    | 1059/1760 [02:13<01:27,  8.01it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 60%|██████    | 1061/1760 [02:13<01:18,  8.90it/s]no previous infrastructure frame found, time compensation is skipped
+ 60%|██████    | 1063/1760 [02:13<01:28,  7.84it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 61%|██████    | 1065/1760 [02:14<01:35,  7.31it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 61%|██████    | 1067/1760 [02:14<01:41,  6.83it/s]no previous infrastructure frame found, time compensation is skipped
+ 61%|██████    | 1069/1760 [02:14<01:26,  7.95it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 61%|██████    | 1071/1760 [02:14<01:15,  9.09it/s] 61%|██████    | 1073/1760 [02:15<01:26,  7.98it/s] 61%|██████    | 1074/1760 [02:15<01:36,  7.09it/s] 61%|██████    | 1075/1760 [02:15<01:46,  6.44it/s] 61%|██████    | 1076/1760 [02:15<01:39,  6.84it/s] 61%|██████    | 1077/1760 [02:15<02:04,  5.50it/s] 61%|██████▏   | 1078/1760 [02:16<01:59,  5.70it/s] 61%|██████▏   | 1079/1760 [02:16<02:09,  5.25it/s] 61%|██████▏   | 1080/1760 [02:16<01:57,  5.79it/s] 61%|██████▏   | 1081/1760 [02:16<02:05,  5.40it/s] 61%|██████▏   | 1082/1760 [02:16<01:50,  6.13it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 62%|██████▏   | 1084/1760 [02:16<01:23,  8.11it/s] 62%|██████▏   | 1086/1760 [02:17<01:06, 10.12it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 62%|██████▏   | 1088/1760 [02:17<00:57, 11.63it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 62%|██████▏   | 1090/1760 [02:17<00:52, 12.81it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 62%|██████▏   | 1093/1760 [02:17<00:52, 12.83it/s] 62%|██████▏   | 1095/1760 [02:17<01:05, 10.22it/s] 62%|██████▏   | 1097/1760 [02:18<01:14,  8.91it/s] 62%|██████▏   | 1098/1760 [02:18<01:27,  7.59it/s]no previous infrastructure frame found, time compensation is skipped
+ 62%|██████▎   | 1100/1760 [02:18<01:17,  8.56it/s] 63%|██████▎   | 1102/1760 [02:18<01:10,  9.35it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 63%|██████▎   | 1105/1760 [02:18<00:51, 12.60it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+no previous infrastructure frame found, time compensation is skipped
+ 63%|██████▎   | 1108/1760 [02:18<00:41, 15.64it/s] 63%|██████▎   | 1110/1760 [02:19<00:49, 13.02it/s] 63%|██████▎   | 1112/1760 [02:19<01:00, 10.80it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 63%|██████▎   | 1114/1760 [02:19<01:07,  9.61it/s] 63%|██████▎   | 1116/1760 [02:20<01:31,  7.02it/s] 63%|██████▎   | 1117/1760 [02:20<01:34,  6.81it/s] 64%|██████▎   | 1118/1760 [02:20<01:33,  6.84it/s] 64%|██████▎   | 1119/1760 [02:20<01:48,  5.89it/s] 64%|██████▎   | 1120/1760 [02:21<02:24,  4.44it/s] 64%|██████▎   | 1121/1760 [02:21<02:22,  4.49it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 64%|██████▍   | 1123/1760 [02:21<01:38,  6.48it/s] 64%|██████▍   | 1125/1760 [02:21<01:17,  8.21it/s] 64%|██████▍   | 1127/1760 [02:21<01:03,  9.97it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 64%|██████▍   | 1129/1760 [02:21<01:00, 10.35it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 64%|██████▍   | 1131/1760 [02:22<01:00, 10.43it/s]no previous infrastructure frame found, time compensation is skipped
+ 64%|██████▍   | 1134/1760 [02:22<01:02, 10.02it/s] 65%|██████▍   | 1136/1760 [02:22<01:11,  8.76it/s] 65%|██████▍   | 1138/1760 [02:23<01:24,  7.40it/s] 65%|██████▍   | 1139/1760 [02:23<01:20,  7.67it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 65%|██████▍   | 1141/1760 [02:23<01:07,  9.17it/s] 65%|██████▍   | 1143/1760 [02:23<01:24,  7.32it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 65%|██████▌   | 1145/1760 [02:23<01:10,  8.77it/s] 65%|██████▌   | 1147/1760 [02:24<01:18,  7.76it/s] 65%|██████▌   | 1148/1760 [02:24<01:27,  6.99it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 65%|██████▌   | 1150/1760 [02:24<01:19,  7.64it/s] 65%|██████▌   | 1151/1760 [02:24<01:27,  6.97it/s] 65%|██████▌   | 1152/1760 [02:24<01:21,  7.44it/s] 66%|██████▌   | 1153/1760 [02:25<01:31,  6.61it/s]no previous infrastructure frame found, time compensation is skipped
+ 66%|██████▌   | 1155/1760 [02:25<01:08,  8.90it/s] 66%|██████▌   | 1157/1760 [02:25<01:09,  8.72it/s] 66%|██████▌   | 1159/1760 [02:25<01:28,  6.82it/s] 66%|██████▌   | 1160/1760 [02:26<01:26,  6.94it/s] 66%|██████▌   | 1161/1760 [02:26<01:22,  7.22it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 66%|██████▌   | 1163/1760 [02:26<01:36,  6.22it/s] 66%|██████▌   | 1164/1760 [02:26<01:56,  5.11it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 66%|██████▋   | 1167/1760 [02:26<01:11,  8.35it/s] 66%|██████▋   | 1169/1760 [02:27<01:09,  8.53it/s] 67%|██████▋   | 1171/1760 [02:27<01:08,  8.62it/s] 67%|██████▋   | 1173/1760 [02:27<01:00,  9.67it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 67%|██████▋   | 1175/1760 [02:27<01:03,  9.24it/s] 67%|██████▋   | 1177/1760 [02:28<01:16,  7.63it/s] 67%|██████▋   | 1178/1760 [02:28<01:19,  7.36it/s] 67%|██████▋   | 1180/1760 [02:28<01:18,  7.43it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 67%|██████▋   | 1183/1760 [02:28<00:57,  9.98it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 67%|██████▋   | 1186/1760 [02:28<00:47, 12.18it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 68%|██████▊   | 1190/1760 [02:29<00:46, 12.17it/s] 68%|██████▊   | 1192/1760 [02:29<01:07,  8.36it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 68%|██████▊   | 1194/1760 [02:29<01:05,  8.61it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 68%|██████▊   | 1197/1760 [02:30<01:04,  8.73it/s] 68%|██████▊   | 1198/1760 [02:30<01:14,  7.54it/s] 68%|██████▊   | 1199/1760 [02:30<01:30,  6.22it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 68%|██████▊   | 1202/1760 [02:31<01:21,  6.84it/s] 68%|██████▊   | 1203/1760 [02:31<01:27,  6.39it/s] 68%|██████▊   | 1205/1760 [02:31<01:16,  7.26it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 69%|██████▊   | 1207/1760 [02:31<01:03,  8.70it/s] 69%|██████▊   | 1208/1760 [02:31<01:15,  7.33it/s] 69%|██████▉   | 1210/1760 [02:32<01:02,  8.87it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 69%|██████▉   | 1212/1760 [02:32<01:07,  8.13it/s] 69%|██████▉   | 1213/1760 [02:32<01:08,  7.96it/s] 69%|██████▉   | 1215/1760 [02:32<00:59,  9.09it/s] 69%|██████▉   | 1216/1760 [02:32<01:06,  8.21it/s] 69%|██████▉   | 1217/1760 [02:33<01:39,  5.43it/s] 69%|██████▉   | 1219/1760 [02:33<01:20,  6.75it/s] 69%|██████▉   | 1220/1760 [02:33<01:27,  6.14it/s] 69%|██████▉   | 1221/1760 [02:33<01:29,  6.05it/s] 69%|██████▉   | 1223/1760 [02:34<01:32,  5.80it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 70%|██████▉   | 1225/1760 [02:34<01:10,  7.55it/s] 70%|██████▉   | 1228/1760 [02:34<00:53,  9.88it/s]no previous infrastructure frame found, time compensation is skipped
+ 70%|██████▉   | 1230/1760 [02:34<01:07,  7.84it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 70%|███████   | 1232/1760 [02:35<00:59,  8.88it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 70%|███████   | 1234/1760 [02:35<01:06,  7.95it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 70%|███████   | 1236/1760 [02:35<00:56,  9.28it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 70%|███████   | 1238/1760 [02:35<01:02,  8.36it/s] 70%|███████   | 1239/1760 [02:35<01:05,  7.98it/s] 70%|███████   | 1240/1760 [02:36<01:08,  7.57it/s] 71%|███████   | 1241/1760 [02:36<01:22,  6.31it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 71%|███████   | 1243/1760 [02:36<01:18,  6.62it/s] 71%|███████   | 1244/1760 [02:36<01:14,  6.92it/s] 71%|███████   | 1246/1760 [02:36<01:07,  7.61it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 71%|███████   | 1249/1760 [02:37<00:48, 10.54it/s]no previous infrastructure frame found, time compensation is skipped
+ 71%|███████   | 1251/1760 [02:37<00:45, 11.08it/s] 71%|███████   | 1253/1760 [02:37<00:52,  9.65it/s] 71%|███████▏  | 1255/1760 [02:37<01:08,  7.32it/s] 71%|███████▏  | 1256/1760 [02:38<01:16,  6.62it/s] 71%|███████▏  | 1258/1760 [02:38<01:13,  6.82it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 72%|███████▏  | 1260/1760 [02:38<00:58,  8.60it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 72%|███████▏  | 1262/1760 [02:38<00:50,  9.92it/s] 72%|███████▏  | 1264/1760 [02:39<00:59,  8.34it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 72%|███████▏  | 1266/1760 [02:39<00:52,  9.46it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 72%|███████▏  | 1268/1760 [02:39<01:06,  7.45it/s] 72%|███████▏  | 1270/1760 [02:39<01:04,  7.62it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 72%|███████▏  | 1273/1760 [02:39<00:48,  9.94it/s] 72%|███████▏  | 1275/1760 [02:40<01:02,  7.79it/s] 73%|███████▎  | 1277/1760 [02:40<00:57,  8.45it/s] 73%|███████▎  | 1279/1760 [02:41<01:11,  6.76it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 73%|███████▎  | 1281/1760 [02:41<00:58,  8.23it/s]no previous infrastructure frame found, time compensation is skipped
+ 73%|███████▎  | 1283/1760 [02:41<00:58,  8.17it/s] 73%|███████▎  | 1285/1760 [02:41<01:05,  7.30it/s] 73%|███████▎  | 1286/1760 [02:42<01:19,  5.96it/s] 73%|███████▎  | 1288/1760 [02:42<01:19,  5.91it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 73%|███████▎  | 1291/1760 [02:42<00:56,  8.31it/s] 73%|███████▎  | 1293/1760 [02:42<00:51,  9.00it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 74%|███████▎  | 1295/1760 [02:42<00:50,  9.19it/s] 74%|███████▎  | 1297/1760 [02:43<00:47,  9.70it/s] 74%|███████▍  | 1299/1760 [02:43<00:42, 10.85it/s] 74%|███████▍  | 1301/1760 [02:43<00:40, 11.41it/s]no previous infrastructure frame found, time compensation is skipped
+ 74%|███████▍  | 1303/1760 [02:43<00:45, 10.05it/s] 74%|███████▍  | 1305/1760 [02:44<01:02,  7.34it/s] 74%|███████▍  | 1307/1760 [02:44<00:56,  8.05it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 74%|███████▍  | 1309/1760 [02:44<00:53,  8.47it/s] 74%|███████▍  | 1310/1760 [02:44<00:52,  8.64it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 75%|███████▍  | 1312/1760 [02:44<00:42, 10.61it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 75%|███████▍  | 1314/1760 [02:45<00:51,  8.59it/s] 75%|███████▍  | 1316/1760 [02:45<00:51,  8.68it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 75%|███████▍  | 1318/1760 [02:45<00:56,  7.87it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 75%|███████▌  | 1320/1760 [02:45<00:48,  9.15it/s] 75%|███████▌  | 1322/1760 [02:45<00:44,  9.86it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 75%|███████▌  | 1325/1760 [02:46<00:42, 10.12it/s] 75%|███████▌  | 1327/1760 [02:46<00:48,  8.97it/s] 75%|███████▌  | 1328/1760 [02:46<00:54,  7.87it/s] 76%|███████▌  | 1330/1760 [02:46<00:59,  7.20it/s] 76%|███████▌  | 1332/1760 [02:47<00:54,  7.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 76%|███████▌  | 1335/1760 [02:47<00:57,  7.35it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 76%|███████▌  | 1337/1760 [02:47<00:48,  8.80it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 76%|███████▌  | 1339/1760 [02:48<00:56,  7.50it/s] 76%|███████▌  | 1341/1760 [02:48<00:53,  7.79it/s] 76%|███████▋  | 1342/1760 [02:48<00:59,  7.00it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 76%|███████▋  | 1344/1760 [02:48<00:57,  7.28it/s] 76%|███████▋  | 1345/1760 [02:48<00:55,  7.44it/s] 77%|███████▋  | 1347/1760 [02:49<00:46,  8.85it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 77%|███████▋  | 1349/1760 [02:49<00:42,  9.75it/s] 77%|███████▋  | 1351/1760 [02:49<00:50,  8.05it/s] 77%|███████▋  | 1352/1760 [02:49<00:57,  7.04it/s] 77%|███████▋  | 1353/1760 [02:50<01:09,  5.86it/s] 77%|███████▋  | 1354/1760 [02:50<01:16,  5.29it/s] 77%|███████▋  | 1355/1760 [02:50<01:23,  4.82it/s] 77%|███████▋  | 1356/1760 [02:50<01:30,  4.47it/s] 77%|███████▋  | 1358/1760 [02:51<01:15,  5.32it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 77%|███████▋  | 1361/1760 [02:51<00:46,  8.52it/s]no previous infrastructure frame found, time compensation is skipped
+ 77%|███████▋  | 1363/1760 [02:51<00:54,  7.34it/s] 78%|███████▊  | 1365/1760 [02:51<00:48,  8.08it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 78%|███████▊  | 1367/1760 [02:51<00:40,  9.73it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+no previous infrastructure frame found, time compensation is skipped
+ 78%|███████▊  | 1369/1760 [02:52<00:45,  8.53it/s] 78%|███████▊  | 1371/1760 [02:52<00:38, 10.16it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 78%|███████▊  | 1374/1760 [02:52<00:29, 13.13it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 78%|███████▊  | 1376/1760 [02:52<00:42,  9.07it/s] 78%|███████▊  | 1378/1760 [02:53<00:45,  8.40it/s] 78%|███████▊  | 1380/1760 [02:53<01:04,  5.85it/s] 78%|███████▊  | 1381/1760 [02:53<01:01,  6.19it/s] 79%|███████▊  | 1382/1760 [02:54<01:04,  5.84it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 79%|███████▊  | 1384/1760 [02:54<00:53,  6.97it/s] 79%|███████▊  | 1385/1760 [02:54<00:53,  7.04it/s] 79%|███████▉  | 1387/1760 [02:54<00:41,  8.97it/s] 79%|███████▉  | 1389/1760 [02:54<00:40,  9.19it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 79%|███████▉  | 1391/1760 [02:54<00:33, 10.92it/s] 79%|███████▉  | 1393/1760 [02:55<00:54,  6.71it/s] 79%|███████▉  | 1394/1760 [02:55<00:52,  6.92it/s] 79%|███████▉  | 1395/1760 [02:55<01:02,  5.81it/s] 79%|███████▉  | 1397/1760 [02:56<01:04,  5.66it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 79%|███████▉  | 1398/1760 [02:56<00:58,  6.19it/s] 80%|███████▉  | 1400/1760 [02:56<00:56,  6.33it/s] 80%|███████▉  | 1402/1760 [02:56<00:56,  6.29it/s] 80%|███████▉  | 1403/1760 [02:57<00:57,  6.25it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 80%|███████▉  | 1405/1760 [02:57<00:45,  7.78it/s] 80%|███████▉  | 1407/1760 [02:57<00:39,  8.90it/s] 80%|████████  | 1408/1760 [02:57<00:51,  6.79it/s] 80%|████████  | 1409/1760 [02:57<00:52,  6.69it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 80%|████████  | 1411/1760 [02:57<00:41,  8.40it/s] 80%|████████  | 1412/1760 [02:58<00:48,  7.19it/s] 80%|████████  | 1413/1760 [02:58<00:47,  7.26it/s] 80%|████████  | 1415/1760 [02:58<00:41,  8.39it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 81%|████████  | 1418/1760 [02:58<00:30, 11.12it/s] 81%|████████  | 1420/1760 [02:58<00:39,  8.65it/s] 81%|████████  | 1422/1760 [02:59<00:42,  7.87it/s] 81%|████████  | 1424/1760 [02:59<00:38,  8.79it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 81%|████████  | 1425/1760 [02:59<00:38,  8.81it/s] 81%|████████  | 1427/1760 [02:59<00:30, 10.82it/s] 81%|████████  | 1429/1760 [03:00<00:51,  6.48it/s] 81%|████████▏ | 1430/1760 [03:00<01:05,  5.00it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 81%|████████▏ | 1433/1760 [03:00<00:46,  7.07it/s] 81%|████████▏ | 1434/1760 [03:00<00:44,  7.28it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 82%|████████▏ | 1436/1760 [03:01<00:39,  8.21it/s] 82%|████████▏ | 1437/1760 [03:01<00:39,  8.26it/s] 82%|████████▏ | 1439/1760 [03:01<00:43,  7.45it/s] 82%|████████▏ | 1441/1760 [03:01<00:43,  7.32it/s] 82%|████████▏ | 1442/1760 [03:01<00:42,  7.56it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 82%|████████▏ | 1444/1760 [03:02<00:36,  8.72it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 82%|████████▏ | 1446/1760 [03:02<00:30, 10.36it/s] 82%|████████▏ | 1448/1760 [03:02<00:35,  8.85it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 82%|████████▏ | 1451/1760 [03:02<00:26, 11.77it/s] 83%|████████▎ | 1453/1760 [03:02<00:23, 13.13it/s] 83%|████████▎ | 1455/1760 [03:02<00:22, 13.43it/s] 83%|████████▎ | 1457/1760 [03:03<00:31,  9.72it/s] 83%|████████▎ | 1459/1760 [03:03<00:40,  7.43it/s] 83%|████████▎ | 1461/1760 [03:03<00:33,  8.95it/s] 83%|████████▎ | 1463/1760 [03:04<00:40,  7.29it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 83%|████████▎ | 1465/1760 [03:04<00:35,  8.37it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 83%|████████▎ | 1469/1760 [03:04<00:23, 12.21it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 84%|████████▎ | 1471/1760 [03:04<00:21, 13.50it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 84%|████████▎ | 1473/1760 [03:04<00:26, 10.65it/s] 84%|████████▍ | 1475/1760 [03:05<00:30,  9.47it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 84%|████████▍ | 1477/1760 [03:05<00:27, 10.31it/s]no previous infrastructure frame found, time compensation is skipped
+ 84%|████████▍ | 1479/1760 [03:05<00:36,  7.77it/s] 84%|████████▍ | 1481/1760 [03:06<00:36,  7.72it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 84%|████████▍ | 1483/1760 [03:06<00:33,  8.39it/s] 84%|████████▍ | 1485/1760 [03:06<00:28,  9.49it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 84%|████████▍ | 1487/1760 [03:06<00:25, 10.72it/s] 85%|████████▍ | 1489/1760 [03:06<00:23, 11.78it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 85%|████████▍ | 1491/1760 [03:06<00:26, 10.10it/s] 85%|████████▍ | 1493/1760 [03:07<00:25, 10.30it/s] 85%|████████▍ | 1495/1760 [03:07<00:33,  7.99it/s] 85%|████████▌ | 1496/1760 [03:07<00:32,  8.23it/s] 85%|████████▌ | 1497/1760 [03:07<00:39,  6.70it/s] 85%|████████▌ | 1499/1760 [03:08<00:36,  7.23it/s] 85%|████████▌ | 1500/1760 [03:08<00:36,  7.09it/s] 85%|████████▌ | 1501/1760 [03:08<00:49,  5.23it/s] 85%|████████▌ | 1503/1760 [03:08<00:37,  6.89it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 86%|████████▌ | 1505/1760 [03:08<00:32,  7.74it/s] 86%|████████▌ | 1506/1760 [03:09<00:43,  5.78it/s] 86%|████████▌ | 1507/1760 [03:09<00:48,  5.24it/s] 86%|████████▌ | 1508/1760 [03:09<00:52,  4.78it/s] 86%|████████▌ | 1510/1760 [03:10<00:53,  4.72it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 86%|████████▌ | 1512/1760 [03:10<00:40,  6.12it/s] 86%|████████▌ | 1513/1760 [03:10<00:42,  5.78it/s] 86%|████████▌ | 1514/1760 [03:10<00:44,  5.53it/s] 86%|████████▌ | 1516/1760 [03:10<00:34,  7.17it/s] 86%|████████▌ | 1517/1760 [03:11<00:41,  5.79it/s] 86%|████████▋ | 1519/1760 [03:11<00:38,  6.25it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 86%|████████▋ | 1520/1760 [03:11<00:36,  6.66it/s] 86%|████████▋ | 1521/1760 [03:11<00:36,  6.54it/s] 86%|████████▋ | 1522/1760 [03:12<00:42,  5.65it/s] 87%|████████▋ | 1523/1760 [03:12<00:47,  4.99it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 87%|████████▋ | 1524/1760 [03:12<00:41,  5.70it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 87%|████████▋ | 1526/1760 [03:12<00:29,  7.93it/s] 87%|████████▋ | 1527/1760 [03:12<00:35,  6.59it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 87%|████████▋ | 1529/1760 [03:12<00:28,  8.19it/s] 87%|████████▋ | 1530/1760 [03:13<00:33,  6.96it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 87%|████████▋ | 1532/1760 [03:13<00:27,  8.27it/s] 87%|████████▋ | 1534/1760 [03:13<00:29,  7.77it/s] 87%|████████▋ | 1535/1760 [03:13<00:33,  6.65it/s] 87%|████████▋ | 1536/1760 [03:13<00:31,  7.07it/s] 87%|████████▋ | 1537/1760 [03:14<00:34,  6.52it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 87%|████████▋ | 1539/1760 [03:14<00:28,  7.62it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 88%|████████▊ | 1541/1760 [03:14<00:24,  9.08it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 88%|████████▊ | 1543/1760 [03:14<00:20, 10.77it/s] 88%|████████▊ | 1545/1760 [03:14<00:24,  8.72it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 88%|████████▊ | 1547/1760 [03:15<00:21,  9.76it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 88%|████████▊ | 1549/1760 [03:15<00:25,  8.40it/s] 88%|████████▊ | 1551/1760 [03:15<00:24,  8.39it/s] 88%|████████▊ | 1552/1760 [03:15<00:31,  6.52it/s] 88%|████████▊ | 1554/1760 [03:16<00:35,  5.81it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 88%|████████▊ | 1556/1760 [03:16<00:35,  5.71it/s] 88%|████████▊ | 1557/1760 [03:16<00:37,  5.48it/s] 89%|████████▊ | 1558/1760 [03:17<00:33,  6.05it/s] 89%|████████▊ | 1560/1760 [03:17<00:32,  6.11it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 89%|████████▉ | 1562/1760 [03:17<00:27,  7.18it/s] 89%|████████▉ | 1564/1760 [03:17<00:26,  7.39it/s] 89%|████████▉ | 1566/1760 [03:17<00:22,  8.58it/s] 89%|████████▉ | 1568/1760 [03:18<00:20,  9.43it/s] 89%|████████▉ | 1570/1760 [03:18<00:22,  8.38it/s] 89%|████████▉ | 1572/1760 [03:18<00:23,  8.06it/s] 89%|████████▉ | 1574/1760 [03:18<00:21,  8.46it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 90%|████████▉ | 1576/1760 [03:19<00:25,  7.31it/s] 90%|████████▉ | 1577/1760 [03:19<00:26,  6.82it/s] 90%|████████▉ | 1578/1760 [03:19<00:28,  6.32it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 90%|████████▉ | 1580/1760 [03:19<00:25,  6.93it/s] 90%|████████▉ | 1581/1760 [03:20<00:33,  5.32it/s] 90%|████████▉ | 1583/1760 [03:20<00:26,  6.72it/s] 90%|█████████ | 1584/1760 [03:20<00:29,  5.91it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 90%|█████████ | 1587/1760 [03:20<00:19,  8.80it/s] 90%|█████████ | 1590/1760 [03:21<00:17,  9.58it/s] 90%|█████████ | 1592/1760 [03:21<00:15, 10.68it/s] 91%|█████████ | 1594/1760 [03:21<00:19,  8.55it/s] 91%|█████████ | 1597/1760 [03:21<00:17,  9.23it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 91%|█████████ | 1599/1760 [03:21<00:15, 10.15it/s] 91%|█████████ | 1601/1760 [03:22<00:14, 10.89it/s] 91%|█████████ | 1603/1760 [03:22<00:20,  7.60it/s] 91%|█████████ | 1604/1760 [03:22<00:22,  6.84it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 91%|█████████▏| 1606/1760 [03:22<00:18,  8.52it/s] 91%|█████████▏| 1608/1760 [03:23<00:16,  9.19it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 91%|█████████▏| 1610/1760 [03:23<00:17,  8.39it/s] 92%|█████████▏| 1611/1760 [03:23<00:17,  8.46it/s] 92%|█████████▏| 1613/1760 [03:23<00:18,  8.15it/s] 92%|█████████▏| 1614/1760 [03:23<00:18,  8.00it/s] 92%|█████████▏| 1615/1760 [03:24<00:21,  6.88it/s] 92%|█████████▏| 1616/1760 [03:24<00:20,  7.00it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 92%|█████████▏| 1618/1760 [03:24<00:15,  9.19it/s] 92%|█████████▏| 1620/1760 [03:24<00:15,  8.94it/s] 92%|█████████▏| 1621/1760 [03:24<00:16,  8.39it/s] 92%|█████████▏| 1622/1760 [03:24<00:18,  7.45it/s]no previous infrastructure frame found, time compensation is skipped
+ 92%|█████████▏| 1623/1760 [03:25<00:18,  7.45it/s] 92%|█████████▏| 1624/1760 [03:25<00:17,  7.61it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 92%|█████████▏| 1626/1760 [03:25<00:13,  9.96it/s] 92%|█████████▎| 1628/1760 [03:25<00:12, 10.99it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 93%|█████████▎| 1630/1760 [03:25<00:14,  8.87it/s] 93%|█████████▎| 1632/1760 [03:26<00:17,  7.42it/s] 93%|█████████▎| 1633/1760 [03:26<00:19,  6.38it/s] 93%|█████████▎| 1635/1760 [03:26<00:17,  7.07it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 93%|█████████▎| 1637/1760 [03:26<00:13,  8.88it/s] 93%|█████████▎| 1639/1760 [03:26<00:13,  9.07it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 93%|█████████▎| 1642/1760 [03:27<00:10, 11.25it/s] 93%|█████████▎| 1644/1760 [03:27<00:14,  7.90it/s] 94%|█████████▎| 1646/1760 [03:28<00:18,  6.15it/s] 94%|█████████▎| 1648/1760 [03:28<00:16,  6.72it/s] 94%|█████████▎| 1649/1760 [03:28<00:19,  5.81it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 94%|█████████▍| 1651/1760 [03:28<00:14,  7.47it/s] 94%|█████████▍| 1653/1760 [03:28<00:14,  7.62it/s] 94%|█████████▍| 1655/1760 [03:29<00:15,  6.86it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 94%|█████████▍| 1657/1760 [03:29<00:15,  6.74it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 94%|█████████▍| 1659/1760 [03:29<00:15,  6.61it/s] 94%|█████████▍| 1660/1760 [03:30<00:14,  6.72it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 94%|█████████▍| 1663/1760 [03:30<00:10,  9.58it/s] 95%|█████████▍| 1665/1760 [03:30<00:10,  9.10it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 95%|█████████▍| 1667/1760 [03:30<00:08, 10.61it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 95%|█████████▍| 1669/1760 [03:30<00:08, 11.01it/s] 95%|█████████▍| 1671/1760 [03:31<00:09,  8.95it/s] 95%|█████████▌| 1673/1760 [03:31<00:13,  6.51it/s] 95%|█████████▌| 1674/1760 [03:31<00:12,  6.72it/s] 95%|█████████▌| 1675/1760 [03:31<00:12,  7.00it/s] 95%|█████████▌| 1677/1760 [03:32<00:11,  7.08it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 95%|█████████▌| 1679/1760 [03:32<00:09,  8.91it/s] 96%|█████████▌| 1681/1760 [03:32<00:10,  7.80it/s] 96%|█████████▌| 1682/1760 [03:32<00:12,  6.09it/s] 96%|█████████▌| 1683/1760 [03:33<00:13,  5.81it/s] 96%|█████████▌| 1684/1760 [03:33<00:13,  5.74it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 96%|█████████▌| 1686/1760 [03:33<00:10,  7.37it/s] 96%|█████████▌| 1687/1760 [03:33<00:09,  7.70it/s] 96%|█████████▌| 1688/1760 [03:33<00:09,  7.99it/s] 96%|█████████▌| 1691/1760 [03:33<00:07,  8.72it/s] 96%|█████████▌| 1692/1760 [03:33<00:07,  8.87it/s] 96%|█████████▌| 1693/1760 [03:34<00:09,  6.77it/s] 96%|█████████▋| 1694/1760 [03:34<00:11,  5.76it/s] 96%|█████████▋| 1695/1760 [03:34<00:10,  6.16it/s] 96%|█████████▋| 1696/1760 [03:34<00:10,  5.87it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 96%|█████████▋| 1698/1760 [03:35<00:08,  7.34it/s] 97%|█████████▋| 1700/1760 [03:35<00:07,  7.57it/s] 97%|█████████▋| 1702/1760 [03:35<00:06,  9.19it/s] 97%|█████████▋| 1704/1760 [03:35<00:05,  9.58it/s] 97%|█████████▋| 1706/1760 [03:35<00:05,  9.96it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 97%|█████████▋| 1708/1760 [03:35<00:04, 11.24it/s] 97%|█████████▋| 1710/1760 [03:36<00:06,  7.81it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 97%|█████████▋| 1712/1760 [03:36<00:05,  8.83it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 97%|█████████▋| 1714/1760 [03:36<00:05,  7.86it/s] 97%|█████████▋| 1715/1760 [03:37<00:07,  5.87it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 98%|█████████▊| 1717/1760 [03:37<00:07,  5.92it/s] 98%|█████████▊| 1719/1760 [03:37<00:07,  5.33it/s] 98%|█████████▊| 1720/1760 [03:38<00:07,  5.56it/s] 98%|█████████▊| 1721/1760 [03:38<00:07,  5.25it/s] 98%|█████████▊| 1723/1760 [03:38<00:05,  6.64it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 98%|█████████▊| 1725/1760 [03:38<00:04,  8.48it/s] 98%|█████████▊| 1727/1760 [03:39<00:04,  6.76it/s] 98%|█████████▊| 1730/1760 [03:39<00:03,  9.33it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 98%|█████████▊| 1732/1760 [03:39<00:02, 10.92it/s] 99%|█████████▊| 1735/1760 [03:39<00:01, 13.77it/s] 99%|█████████▊| 1737/1760 [03:39<00:01, 12.14it/s] 99%|█████████▉| 1739/1760 [03:39<00:01, 12.06it/s] 99%|█████████▉| 1741/1760 [03:39<00:01, 12.06it/s] 99%|█████████▉| 1743/1760 [03:40<00:01, 10.04it/s] 99%|█████████▉| 1745/1760 [03:40<00:01, 11.62it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: divide by zero encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 99%|█████████▉| 1747/1760 [03:40<00:01, 12.63it/s]/raid/xuyifan/v2x_code_ckpt/external/DAIR-V2X-isolated/gpu0/v2x/v2x_utils/filter_utils.py:8: RuntimeWarning: invalid value encountered in true_divide
+  diff = np.abs(frame1.center[i] - frame2.center[j]) / size
+ 99%|█████████▉| 1749/1760 [03:40<00:01, 10.91it/s] 99%|█████████▉| 1751/1760 [03:40<00:00, 11.88it/s]100%|█████████▉| 1753/1760 [03:41<00:00,  7.20it/s]no previous infrastructure frame found, time compensation is skipped
+100%|█████████▉| 1755/1760 [03:41<00:00,  8.29it/s]100%|█████████▉| 1757/1760 [03:41<00:00,  6.89it/s]100%|█████████▉| 1758/1760 [03:42<00:00,  5.94it/s]100%|██████████| 1760/1760 [03:42<00:00,  7.07it/s]100%|██████████| 1760/1760 [03:42<00:00,  7.91it/s]
+car 3d IoU threshold 0.30, Average Precision = 40.39
+car 3d IoU threshold 0.50, Average Precision = 15.41
+car 3d IoU threshold 0.70, Average Precision = 5.68
+car bev IoU threshold 0.30, Average Precision = 45.94
+car bev IoU threshold 0.50, Average Precision = 21.93
+car bev IoU threshold 0.70, Average Precision = 10.55
+Average Communication Cost = 2104.48 Bytes

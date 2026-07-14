@@ -1,0 +1,7 @@
+dataset,method,split,delay_ms,delay_ego_ms,samples,AP@0.5,AP@0.7,notes
+DAIR-V2X-Seq/SPD,TraF-Align + Ours joint delay-comp only,test,400,400,3316,26.39,9.21,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_delay_comp_only_spconv2121; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align + Ours joint delay-comp only,test,500,400,3316,24.88,8.81,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_delay_comp_only_spconv2121; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align + Ours joint delay-comp only,test,600,400,3316,23.95,8.40,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_delay_comp_only_spconv2121; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align + Ours joint delay-comp only,test,700,400,3316,23.21,8.20,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_delay_comp_only_spconv2121; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align + Ours joint delay-comp only,test,800,400,3316,22.95,8.03,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_delay_comp_only_spconv2121; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align + Ours joint delay-comp only,test,900,400,3316,22.56,7.90,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_delay_comp_only_spconv2121; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"

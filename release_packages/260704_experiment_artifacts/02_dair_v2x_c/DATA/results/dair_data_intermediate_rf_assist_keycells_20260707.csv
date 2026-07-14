@@ -1,0 +1,5 @@
+dataset,method,policy,rf_score_scale,comp_delay,comm_delay,ap30,ap50,ap70,skipped,total
+DAIR-V2X-C,"DATA intermediate + RF assist (concat_nms,scale=0.3)",concat_nms,0.3,0,0,66.4976,54.7138,37.7529,0,1783
+DAIR-V2X-C,"DATA intermediate + RF assist (concat_nms,scale=0.3)",concat_nms,0.3,2,0,44.2659,20.9981,8.4393,0,1783
+DAIR-V2X-C,"DATA intermediate + RF assist (concat_nms,scale=1)",concat_nms,1.0,0,0,61.5616,49.4436,34.2088,0,1783
+DAIR-V2X-C,"DATA intermediate + RF assist (concat_nms,scale=1)",concat_nms,1.0,2,0,49.7949,28.4379,9.5932,0,1783

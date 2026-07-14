@@ -44,6 +44,12 @@ test_result*/
 *.zip.part
 *.aistudio.part
 
+# Curated GitHub upload packages are explicitly versioned, including logs and
+# checkpoint files tracked through Git LFS.
+!release_packages/
+!release_packages/260704_experiment_artifacts/
+!release_packages/260704_experiment_artifacts/**
+
 # Python and editor caches.
 __pycache__/
 *.py[cod]

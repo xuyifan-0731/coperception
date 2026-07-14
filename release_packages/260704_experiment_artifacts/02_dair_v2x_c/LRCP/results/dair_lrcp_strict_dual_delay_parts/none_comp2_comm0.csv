@@ -1,0 +1,2 @@
+method,comm_delay_frames,comp_delay_frames,AP@0.5,AP@0.7,BEV AP@0.5,BEV AP@0.7,source,notes
+LRCP w/o compensation,0,2,,,1.4857,0.2273,dair_lrcp_strict_dual_delay_eval,"strict-ish LRCP two-agent adapter: receiver=T-2 ego-motion aligned to T, sender=T-2; labels=T"

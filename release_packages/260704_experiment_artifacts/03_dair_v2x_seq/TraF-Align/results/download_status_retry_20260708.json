@@ -1,0 +1,56 @@
+{
+  "updated_at": "2026-07-08T09:40:54Z",
+  "folder_url": "https://drive.google.com/drive/folders/1gnrw5llXAIxuB9sEKKCm6xTaJ5HQAw2e?usp=sharing",
+  "example_file_id": "1gjOmGEBMcipvDzu2zOrO9ex_OscUZMYY",
+  "out_dir": "/raid/xuyifan/v2x_code_ckpt/datasets/DAIR-V2X-Seq",
+  "attempts": [
+    {
+      "target": "Public-V2X-Datasets folder",
+      "tool": "curl HEAD",
+      "proxies": [
+        "http://127.0.0.1:18889",
+        "http://127.0.0.1:7890",
+        "http://127.0.0.1:17890",
+        "socks5h://127.0.0.1:7890",
+        "socks5h://127.0.0.1:17890",
+        "direct"
+      ],
+      "result": "failed: TLS handshake EOF or timeout before any HTTP response from drive.google.com"
+    },
+    {
+      "target": "THU DAIR coop-forecast page",
+      "tool": "curl HEAD",
+      "proxies": [
+        "http://127.0.0.1:18889",
+        "http://127.0.0.1:7890",
+        "http://127.0.0.1:17890",
+        "socks5h://127.0.0.1:7890",
+        "socks5h://127.0.0.1:17890",
+        "direct"
+      ],
+      "result": "failed: TLS handshake EOF/reset or timeout before useful HTTP response"
+    },
+    {
+      "target": "V2X-Seq-SPD-Example direct Google Drive file",
+      "tool": "gdown",
+      "proxies": [
+        "http://127.0.0.1:18889",
+        "http://127.0.0.1:7890",
+        "direct"
+      ],
+      "result": "failed: proxied attempts ended with UNEXPECTED_EOF_WHILE_READING; direct attempt hung without progress and was killed"
+    },
+    {
+      "target": "GitHub issues/API lookup for alternate file ids",
+      "tool": "requests",
+      "proxies": [
+        "direct",
+        "http://127.0.0.1:18889",
+        "http://127.0.0.1:7890"
+      ],
+      "result": "failed: api.github.com also returned TLS EOF, indicating a broader HTTPS egress problem on this machine"
+    }
+  ],
+  "downloaded_files": [],
+  "conclusion": "Retry did not download DAIR-V2X-Seq/SPD. The blocker is still network/TLS egress, not dataset script logic or certificate verification."
+}

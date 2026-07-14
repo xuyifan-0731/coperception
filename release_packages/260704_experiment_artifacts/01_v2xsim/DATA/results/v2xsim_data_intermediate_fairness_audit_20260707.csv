@@ -1,0 +1,55 @@
+method,comm_delay_frames,comp_delay_frames,AP@0.5,AP@0.7
+DATA w/o compensation,0,0,84.4644,78.8502
+DATA w/o compensation,0,2,72.1418,62.3114
+DATA w/o compensation,0,4,67.2820,58.0774
+DATA w/o compensation,1,0,83.4686,76.6726
+DATA w/o compensation,1,2,72.0294,62.6052
+DATA w/o compensation,1,4,67.7935,58.6611
+DATA w/o compensation,2,0,82.7122,76.1525
+DATA w/o compensation,2,2,72.3353,63.0645
+DATA w/o compensation,2,4,68.5892,59.2086
+DATA w/o compensation,3,0,82.1870,75.3982
+DATA w/o compensation,3,2,72.2401,62.8782
+DATA w/o compensation,3,4,68.6944,59.1656
+DATA w/o compensation,4,0,81.8852,75.4725
+DATA w/o compensation,4,2,72.2588,63.0359
+DATA w/o compensation,4,4,68.9429,59.2846
+DATA w/o compensation,5,0,81.7768,75.1638
+DATA w/o compensation,5,2,72.3257,63.0888
+DATA w/o compensation,5,4,68.8997,59.1769
+DATA + Ours pose-warp,0,0,84.4700,78.9000
+DATA + Ours pose-warp,1,0,83.5300,76.7500
+DATA + Ours pose-warp,2,0,82.7200,76.2800
+DATA + Ours pose-warp,3,0,82.2100,75.4600
+DATA + Ours pose-warp,4,0,81.9500,75.4700
+DATA + Ours pose-warp,5,0,81.7900,75.3900
+DATA + Ours pose-warp,0,2,72.2100,62.8000
+DATA + Ours pose-warp,1,2,72.2800,63.2000
+DATA + Ours pose-warp,2,2,72.5800,63.4600
+DATA + Ours pose-warp,3,2,72.4400,63.3400
+DATA + Ours pose-warp,4,2,72.2900,63.3900
+DATA + Ours pose-warp,5,2,72.3500,63.3600
+DATA + Ours pose-warp,0,4,67.6300,59.1400
+DATA + Ours pose-warp,1,4,68.1300,59.5000
+DATA + Ours pose-warp,2,4,68.7800,60.0000
+DATA + Ours pose-warp,3,4,68.8200,59.8000
+DATA + Ours pose-warp,4,4,69.0200,60.1900
+DATA + Ours pose-warp,5,4,68.9800,60.1500
+DATA + SyncNet pose-warp,0,0,84.4700,78.8700
+DATA + SyncNet pose-warp,1,0,83.5100,76.6800
+DATA + SyncNet pose-warp,2,0,82.7200,76.3200
+DATA + SyncNet pose-warp,3,0,82.2000,75.5100
+DATA + SyncNet pose-warp,4,0,81.9600,75.4000
+DATA + SyncNet pose-warp,5,0,81.8100,75.4600
+DATA + SyncNet pose-warp,0,2,72.2400,62.8100
+DATA + SyncNet pose-warp,1,2,72.2800,63.1100
+DATA + SyncNet pose-warp,2,2,72.5900,63.5000
+DATA + SyncNet pose-warp,3,2,72.4300,63.3700
+DATA + SyncNet pose-warp,4,2,72.3100,63.3100
+DATA + SyncNet pose-warp,5,2,72.3500,63.3800
+DATA + SyncNet pose-warp,0,4,67.6600,59.2400
+DATA + SyncNet pose-warp,1,4,68.1600,59.5100
+DATA + SyncNet pose-warp,2,4,68.7100,60.0300
+DATA + SyncNet pose-warp,3,4,68.8000,59.8700
+DATA + SyncNet pose-warp,4,4,69.0100,60.2000
+DATA + SyncNet pose-warp,5,4,69.0000,60.1700
