@@ -1,0 +1,79 @@
+diff --git a/datasets/Basedataset/v2xseq_basedataset.py b/datasets/Basedataset/v2xseq_basedataset.py
+index c2c328c..bc5da7a 100644
+--- a/datasets/Basedataset/v2xseq_basedataset.py
++++ b/datasets/Basedataset/v2xseq_basedataset.py
+@@ -91,6 +91,9 @@ class V2XSEQBaseDataset(Dataset):
+             self.agent_i_delay_train_aug = wild_parms.get(
+                 "agent_i_delay_train_aug", [0, 0]
+             )
++            self.ego_delay_train_aug = wild_parms.get(
++                "ego_delay_train_aug", self.agent_i_delay_train_aug
++            )
+ 
+         else:
+             self.async_flag = False
+@@ -102,6 +105,7 @@ class V2XSEQBaseDataset(Dataset):
+             self.ego_agent = None
+             self.lidar_freq = 10
+             self.async_ego = False
++            self.ego_delay_train_aug = [0, 0]
+ 
+         self.root_dir = params["root_dir"]
+ 
+@@ -653,13 +657,14 @@ class V2XSEQBaseDataset(Dataset):
+         ):
+             return 0
+         if self.train == False and ego_flag and self.params.get("delay_ego", 0) != 0:
+-            return self.params.get("delay_ego", 0) // (interval)
++            return int(self.params.get("delay_ego", 0) // (interval))
+ 
+         time_delay = np.abs(self.agent_i_delay)
+ 
+         if self.train:
++            delay_aug = self.ego_delay_train_aug if ego_flag else self.agent_i_delay_train_aug
+             rand_delay = randint(
+-                self.agent_i_delay_train_aug[0], self.agent_i_delay_train_aug[1]
++                delay_aug[0], delay_aug[1]
+             )
+             time_delay = rand_delay // interval * interval
+ 
+diff --git a/models/modules/deform/traf_align_fusion.py b/models/modules/deform/traf_align_fusion.py
+index e403f91..bb8a53f 100644
+--- a/models/modules/deform/traf_align_fusion.py
++++ b/models/modules/deform/traf_align_fusion.py
+@@ -8,6 +8,7 @@ from models.modules.compressor.naive_compress import NaiveCompressor as compress
+ from models.modules.deform.trafalign_transformer import (
+     TrafalignTransformer as attention,
+ )
++from models.modules.deform.joint_delay_compensation import GatedDelayResidualCompensator
+ import datasets.data_utils.data_check.data_check_utils as check_utils
+ 
+ 
+@@ -82,6 +83,10 @@ class TrafAlign_(nn.Module):
+         else:
+             self.att_block = None
+ 
++        self.delay_compensator = None
++        if cfg["model"].get("delay_compensation", {}).get("enabled", False):
++            self.delay_compensator = GatedDelayResidualCompensator(self.deform_dim, cfg)
++
+         ## cross-agent fusion
+         self.core_method = cfg["model"]["deform"].get("fusion", "conv")
+         if self.core_method == "conv":
+@@ -123,6 +128,8 @@ class TrafAlign_(nn.Module):
+     def forward(self, x, data_dict, lidar):
+         # segment features of ego and agent i, and add temporal embeddings
+         x = self.regroup(x, data_dict, lidar["voxel_coords"])
++        if self.delay_compensator is not None:
++            x = self.delay_compensator(x, data_dict)
+         x = self.communicate(x)
+ 
+         batch = x.shape[0]
+@@ -278,6 +285,7 @@ class TrafAlign_(nn.Module):
+             c_ = torch.cat(c__, dim=0)
+             # filter coords that has points
+             if coords is not None:
++                coords = coords.long()
+                 b, c, h, w = c_.shape
+                 mask = torch.zeros((b, h, w)).type_as(features)
+                 stride = self.cfg["model"]["deform"]["input_stride"][0]

@@ -1,0 +1,22 @@
+{
+  "version": "v2xsim-det",
+  "dataroot": "/raid/xuyifan/v2x_code_ckpt/datasets/V2X-Sim-2.0",
+  "backend": "fast-json",
+  "splits": {
+    "train": {
+      "scene_count": 80,
+      "sample_count": 8000,
+      "path": "/raid/xuyifan/v2x_code_ckpt/datasets/v2xsim2_info/v2xsim_infos_train.pkl"
+    },
+    "val": {
+      "scene_count": 10,
+      "sample_count": 1000,
+      "path": "/raid/xuyifan/v2x_code_ckpt/datasets/v2xsim2_info/v2xsim_infos_val.pkl"
+    },
+    "test": {
+      "scene_count": 10,
+      "sample_count": 1000,
+      "path": "/raid/xuyifan/v2x_code_ckpt/datasets/v2xsim2_info/v2xsim_infos_test.pkl"
+    }
+  }
+}

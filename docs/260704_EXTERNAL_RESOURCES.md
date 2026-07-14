@@ -21,6 +21,7 @@ The current artifact package is already organized by the requested hierarchy:
 ```text
 release_packages/260704_experiment_artifacts/
   00_docs/                         # reports and documentation
+  00_reproduction_assets/           # small reproduction assets: patches, split files, env refs
   00_code_scripts/                 # scripts used by the experiments
   00_code_version/                 # git state when the package was created
   01_v2xsim/
@@ -53,6 +54,8 @@ Use these package-level indexes:
 | `CHECKPOINT_SPLIT_MANIFEST.csv` | Original checkpoint path, size, SHA256, and split parts. |
 | `MANIFEST_EXCLUDED_LARGE_CACHE.csv` | Large generated caches intentionally excluded from GitHub. |
 | `restore_split_checkpoints.py` | Rebuilds split checkpoints and verifies SHA256. |
+| `00_docs/260704_REPRODUCTION_CHECKLIST.md` | Newcomer checklist for preparing datasets, external code, patches, environments, and reruns. |
+| `00_reproduction_assets/README.md` | Explains uploaded small reproduction assets. |
 
 Restore split checkpoints before rerunning experiments:
 
@@ -65,9 +68,9 @@ python restore_split_checkpoints.py
 
 | Dataset | Used In | Public Source | Required Content / Version | Expected Local Layout | Current GitHub Status |
 |---|---|---|---|---|---|
-| V2X-Sim 2.0 | V2X-Sim DATA; V2VNet/DiscoNet paper-table references | `https://ai4ce.github.io/V2X-Sim/download.html` | Select the V2X-Sim 2.0 full dataset. LRCP README describes the decompressed root as `v2xsim2/` with `lidarseg`, `maps`, `sweeps`, `v1.0-mini`. | DATA/OpenCOOD scripts use local dataset/info paths such as `datasets/v2xsim2_info/` and DATA model configs. | Dataset not uploaded; only final CSVs/checkpoints are uploaded. |
-| DAIR-V2X-C | DAIR official late fusion/TCLF; DAIR DATA; DAIR LRCP | `https://thudair.baai.ac.cn/index`; code/docs at `https://github.com/AIR-THU/DAIR-V2X` | DAIR-V2X cooperative vehicle-infrastructure data. Official README also points to full dataset via Public-V2X-Datasets Google Drive. | `datasets/DAIR-V2X/cooperative-vehicle-infrastructure/` plus split file under `external/DAIR-V2X/data/split_datas/`. | Dataset not uploaded; final CSVs/logs/checkpoints uploaded. |
-| DAIR-V2X-Seq / V2X-Seq-SPD | TraF-Align baseline and ours | `https://thudair.baai.ac.cn/index`; DAIR-V2X README links V2X-Seq-SPD example and full Public-V2X-Datasets Drive; code at `https://github.com/AIR-THU/DAIR-V2X` and `https://github.com/AIR-THU/DAIR-V2X-Seq` | V2X-Seq-SPD sequential perception dataset. | `datasets/DAIR-V2X-Seq/V2X-Seq-SPD/`; TraF-Align split file under `/tmp/TraF-Align_partial/datasets/Basedataset/V2XSeq_dataset_split_official.yaml`. | Dataset not uploaded; download helper/status files uploaded. |
+| V2X-Sim 2.0 | V2X-Sim DATA; V2VNet/DiscoNet paper-table references | `https://ai4ce.github.io/V2X-Sim/download.html` | Select the V2X-Sim 2.0 full dataset. LRCP README describes the decompressed root as `v2xsim2/` with `lidarseg`, `maps`, `sweeps`, `v1.0-mini`. | DATA/OpenCOOD scripts use local dataset/info paths such as `datasets/v2xsim2_info/` and DATA model configs. | Dataset not uploaded. `v2xsim2_info` summary is uploaded, but `.pkl` files are not uploaded because they are large generated metadata. |
+| DAIR-V2X-C | DAIR official late fusion/TCLF; DAIR DATA; DAIR LRCP | `https://thudair.baai.ac.cn/index`; code/docs at `https://github.com/AIR-THU/DAIR-V2X` | DAIR-V2X cooperative vehicle-infrastructure data. Official README also points to full dataset via Public-V2X-Datasets Google Drive. | `datasets/DAIR-V2X/cooperative-vehicle-infrastructure/` plus split file under `external/DAIR-V2X/data/split_datas/`. | Dataset not uploaded. Split JSON files are uploaded under `00_reproduction_assets/split_files/dair_v2x/`. |
+| DAIR-V2X-Seq / V2X-Seq-SPD | TraF-Align baseline and ours | `https://thudair.baai.ac.cn/index`; DAIR-V2X README links V2X-Seq-SPD example and full Public-V2X-Datasets Drive; code at `https://github.com/AIR-THU/DAIR-V2X` and `https://github.com/AIR-THU/DAIR-V2X-Seq` | V2X-Seq-SPD sequential perception dataset. | `datasets/DAIR-V2X-Seq/V2X-Seq-SPD/`; TraF-Align split file under `/tmp/TraF-Align_partial/datasets/Basedataset/V2XSeq_dataset_split_official.yaml`. | Dataset not uploaded. Official split YAML is uploaded under `00_reproduction_assets/split_files/trafalign/`. |
 
 Dataset helper scripts included in the package:
 
@@ -80,18 +83,26 @@ Dataset helper scripts included in the package:
 | `00_code_scripts/scripts/generate_dair_lrcp_flow_offsets.py` | Generates LRCP DAIR BEV flow-offset labels when official flow files are not present. |
 | `00_code_scripts/scripts/prepare_trafalign_dair_compat.py` | Builds a DAIR-V2X-C compatibility view for TraF-Align diagnostics; not a formal main result. |
 
+Small dataset-side reproduction files now included:
+
+| File / Folder | Role |
+|---|---|
+| `00_reproduction_assets/split_files/dair_v2x/*.json` | DAIR-V2X split files used by OpenDAIRV2X and related scripts. |
+| `00_reproduction_assets/split_files/trafalign/V2XSeq_dataset_split_official.yaml` | TraF-Align official V2X-Seq split file used locally. |
+| `00_reproduction_assets/dataset_info/v2xsim2_info/summary.json` | Summary of the local V2X-Sim info files. The large `.pkl` files are intentionally excluded. |
+
 ## 3. Public Baseline Code And Local Patch Status
 
 | Baseline / Codebase | Public Repository | Local Commit Used | Local Changes? | Required For | GitHub Upload Status |
 |---|---|---:|---|---|---|
-| DATA | `https://github.com/ChengchangTian/DATA` | `5df7eb6f5659db0d6809fa3cc218aa425bc287b4` | Yes: 5 modified files, including DAIR/V2XSim dataset loaders, fusion module, inference. | V2X-Sim DATA and DAIR-V2X-C DATA. | Full external repo and patch bundle are not uploaded; only wrapper scripts, results, checkpoints/configs are uploaded. |
-| LRCP | `https://github.com/JesseWong333/LRCP` | `1eb3793b9befd9d36dd8705e461d895a41b39d33` | Yes: 6 modified files and added DAIR hypes directory. | DAIR-V2X-C LRCP strict dual-delay. | Full external repo and patch bundle are not uploaded; baseline checkpoint/config and results are uploaded. |
-| OpenDAIRV2X / DAIR-V2X | `https://github.com/AIR-THU/DAIR-V2X` | `c885c54af0c34bc515fa9ca8b5e8fda76a15462c` | Yes: 6 modified files, including late-fusion detector/eval scripts. | DAIR official late fusion/TCLF and RF cache generation. | External repo and patch bundle are not uploaded; logs/results/RF checkpoints are uploaded. |
+| DATA | `https://github.com/ChengchangTian/DATA` | `5df7eb6f5659db0d6809fa3cc218aa425bc287b4` | Yes: 5 modified files, including DAIR/V2XSim dataset loaders, fusion module, inference. | V2X-Sim DATA and DAIR-V2X-C DATA. | Patch uploaded: `00_reproduction_assets/patches/DATA_local_changes.patch`. Full external repo is not vendored. |
+| LRCP | `https://github.com/JesseWong333/LRCP` | `1eb3793b9befd9d36dd8705e461d895a41b39d33` | Yes: 6 modified files and added DAIR hypes directory. | DAIR-V2X-C LRCP strict dual-delay. | Patch uploaded: `00_reproduction_assets/patches/LRCP_local_changes.patch`; new DAIR hypes yaml uploaded under `patches/extra_files/LRCP/`. Full external repo is not vendored. |
+| OpenDAIRV2X / DAIR-V2X | `https://github.com/AIR-THU/DAIR-V2X` | `c885c54af0c34bc515fa9ca8b5e8fda76a15462c` | Yes: 6 modified files, including late-fusion detector/eval scripts. | DAIR official late fusion/TCLF and RF cache generation. | Patch uploaded: `00_reproduction_assets/patches/OpenDAIRV2X_local_changes.patch`. Full external repo is not vendored. |
 | DAIR-V2X isolated copies | Derived from OpenDAIRV2X | no `.git` in `external/DAIR-V2X-isolated/gpu*/v2x` | Local copies used for multi-GPU runs. | DAIR official late fusion/TCLF. | Not uploaded. Need recreate from patched OpenDAIRV2X or copy local tree. |
-| TraF-Align | `https://github.com/zhyingS/TraF-Align` | `0f6f98de60dcb86f29f4eb99ed871054b05bf280` | Yes: 2 modified files and new `models/modules/deform/joint_delay_compensation.py`. | DAIR-V2X-Seq TraF-Align baseline and ours joint delay-comp. | Full external repo and patch bundle are not uploaded; checkpoint/config/results/scripts are uploaded. |
+| TraF-Align | `https://github.com/zhyingS/TraF-Align` | `0f6f98de60dcb86f29f4eb99ed871054b05bf280` | Yes: 2 modified files and new `models/modules/deform/joint_delay_compensation.py`. | DAIR-V2X-Seq TraF-Align baseline and ours joint delay-comp. | Patch uploaded: `00_reproduction_assets/patches/TraFAlign_local_changes.patch`; new module uploaded under `patches/extra_files/TraF-Align/`. Full external repo is not vendored. |
 | V2VNet / DiscoNet / SyncNet | V2X-Sim/DLPCM paper comparison sources; DiscoNet public code exists at `https://github.com/ai4ce/DiscoNet` | not rerun in this package | Not applicable for current package. | V2X-Sim V2VNet/DiscoNet paper-table rows. | Only DLPCM paper table sources are uploaded; not a full rerun package for these baselines. |
 
-Important gap: to make this package fully rerunnable from a fresh clone, add patch files or vendored snapshots for `external/DATA`, `external/LRCP`, `external/DAIR-V2X`, and `/tmp/TraF-Align_partial`.
+Important: public upstream repos still need to be cloned separately, but the local patch bundles and small added files are now included in `00_reproduction_assets/patches/`.
 
 ## 4. External Checkpoints
 
@@ -136,7 +147,9 @@ python opencood/utils/setup.py build_ext --inplace
 python opencood/pcdet_utils/setup.py build_ext --inplace
 ```
 
-Gap: exact Python, PyTorch, CUDA, and spconv versions used by the local DATA reruns are not yet locked in GitHub.
+Reference file uploaded: `00_reproduction_assets/env_refs/DATA/requirements.txt`.
+
+Remaining gap: exact Python, PyTorch, CUDA, and spconv versions used by the local DATA reruns are not yet locked.
 
 ### 6.2 LRCP Environment
 
@@ -155,7 +168,14 @@ cd opencood/utils/ms_deform_attn_ops && sh ./make.sh
 
 It also asks for `spconv 1.2.1`.
 
-Gap: exact local DAIR adapter dependencies and compiled extension versions are not exported as a lock file.
+Reference files uploaded:
+
+```text
+00_reproduction_assets/env_refs/LRCP/requirements.txt
+00_reproduction_assets/env_refs/LRCP/environment.yml
+```
+
+Remaining gap: exact local DAIR adapter dependencies and compiled extension versions are not exported as a lock file.
 
 ### 6.3 OpenDAIRV2X Official Late-Fusion Environment
 
@@ -182,6 +202,8 @@ cumm-cu113==0.2.9
 
 This matters: newer `spconv 2.3.6 / cumm 0.4.11` produced near-zero AP for the official TraF-Align checkpoint in local testing.
 
+Reference file uploaded: `00_reproduction_assets/env_refs/TraF-Align/requirements.txt`.
+
 ## 7. Large Generated Data Not Uploaded
 
 | Generated Data | Size / Reason | Regeneration Script |
@@ -198,8 +220,8 @@ These are not final result files and are too large for GitHub. They should be re
 
 | Priority | Missing Item | Why It Is Needed |
 |---:|---|---|
-| 1 | Patch bundles for DATA, LRCP, OpenDAIRV2X, TraF-Align | Public upstream repos alone do not include local strict-delay and Ours integrations. |
-| 2 | Environment lock files per baseline | Prevents dependency drift and spconv/cumm mismatch. |
-| 3 | Dataset setup scripts and checksum manifests | Avoids silent split/path mismatches. |
-| 4 | Command-level runbook | Needed to map every table/result to exact commands. See `260704_RUNBOOK.md`. |
+| 1 | Full environment lock files per baseline | Prevents dependency drift and spconv/cumm mismatch. Current package has requirements references, not exact lock files. |
+| 2 | Dataset archive checksum manifests and post-extract file counts | Avoids silent dataset version/path mismatches. |
+| 3 | V2X-Sim info `.pkl` generation details | The `.pkl` files are large and not uploaded; only summary is included. |
+| 4 | Runtime path materialization script | Package paths are archival; run commands still expect historical runtime paths. |
 | 5 | Cache regeneration validation | Needed for large omitted feature/box caches. |

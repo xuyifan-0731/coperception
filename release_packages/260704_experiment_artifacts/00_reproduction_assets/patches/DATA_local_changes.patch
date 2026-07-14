@@ -1,0 +1,562 @@
+diff --git a/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py b/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py
+index 16f0c6f..0571b1e 100644
+--- a/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py
++++ b/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py
+@@ -74,11 +74,27 @@ class DAIRV2XBaseDataset(Dataset):
+         self.root_dir = params['data_dir']
+ 
+         self.split_info = read_json(split_dir)
+-        co_datainfo = read_json(os.path.join(self.root_dir, 'cooperative/data_info.json'))
++        latency_cfg = params.get('latency_eval', {})
++        self.latency_eval = (not train) and bool(latency_cfg.get('enabled', False))
++        self.comm_delay = int(latency_cfg.get('comm_delay', 0))
++        self.comp_delay = int(latency_cfg.get('comp_delay', 0))
++        self.compensation_method = latency_cfg.get('compensation_method', 'none')
++        self.align_delayed_ego_to_current = bool(
++            latency_cfg.get('align_delayed_ego_to_current', True))
++
++        data_info_name = 'cooperative/data_info.json'
++        processed_data_info = os.path.join(
++            self.root_dir, 'cooperative/data_info_processed_updated.json')
++        if self.latency_eval and os.path.exists(processed_data_info):
++            data_info_name = 'cooperative/data_info_processed_updated.json'
++        co_datainfo = read_json(os.path.join(self.root_dir, data_info_name))
+         self.co_data = OrderedDict()
++        self.inf_data = OrderedDict()
+         for frame_info in co_datainfo:
+             veh_frame_id = frame_info['vehicle_image_path'].split("/")[-1].replace(".jpg", "")
++            inf_frame_id = frame_info['infrastructure_image_path'].split("/")[-1].replace(".jpg", "")
+             self.co_data[veh_frame_id] = frame_info
++            self.inf_data[inf_frame_id] = frame_info
+ 
+         if "noise_setting" not in self.params:
+             self.params['noise_setting'] = OrderedDict()
+@@ -116,16 +132,19 @@ class DAIRV2XBaseDataset(Dataset):
+         data[0]['params'] = OrderedDict()
+         data[1]['params'] = OrderedDict()
+         
+-        # pose of agent 
+-        lidar_to_novatel = read_json(os.path.join(self.root_dir,'vehicle-side/calib/lidar_to_novatel/'+str(veh_frame_id)+'.json'))
+-        novatel_to_world = read_json(os.path.join(self.root_dir,'vehicle-side/calib/novatel_to_world/'+str(veh_frame_id)+'.json'))
+-        transformation_matrix = veh_side_rot_and_trans_to_trasnformation_matrix(lidar_to_novatel, novatel_to_world)
+-        data[0]['params']['lidar_pose'] = tfm_to_pose(transformation_matrix)
++        # pose of agent
++        current_vehicle_tfm = self.load_vehicle_tfm(veh_frame_id)
++        data[0]['params']['lidar_pose'] = tfm_to_pose(current_vehicle_tfm)
+ 
+         inf_frame_id = frame_info['infrastructure_image_path'].split("/")[-1].replace(".jpg", "")
+-        virtuallidar_to_world = read_json(os.path.join(self.root_dir,'infrastructure-side/calib/virtuallidar_to_world/'+str(inf_frame_id)+'.json'))
+-        transformation_matrix = inf_side_rot_and_trans_to_trasnformation_matrix(virtuallidar_to_world, system_error_offset)
+-        data[1]['params']['lidar_pose'] = tfm_to_pose(transformation_matrix)
++        inf_delay = self.comm_delay + self.comp_delay if self.latency_eval else 0
++        inf_target_delay = 0 if self.compensation_method != 'none' else inf_delay
++        inf_params = self.load_inf_params_timeindex(inf_target_delay, frame_info)
++        if inf_params is None:
++            if self.train:
++                return self.retrieve_base_data(random.randint(0, len(self.split_info)-1))
++            return None
++        data[1]['params']['lidar_pose'] = inf_params['lidar_pose']
+ 
+         # data[0]['params']['vehicles_front'] = read_json(os.path.join(self.root_dir,frame_info['cooperative_label_path'].replace("label_world", "label_world_backup"))) 
+         data[0]['params']['vehicles_front'] = read_json(os.path.join(self.root_dir,frame_info['cooperative_label_path']))
+@@ -152,8 +171,41 @@ class DAIRV2XBaseDataset(Dataset):
+ 
+ 
+         if self.load_lidar_file or self.visualize:
+-            data[0]['lidar_np'], _ = pcd_utils.read_pcd(os.path.join(self.root_dir,frame_info["vehicle_pointcloud_path"]))
+-            data[1]['lidar_np'], _ = pcd_utils.read_pcd(os.path.join(self.root_dir,frame_info["infrastructure_pointcloud_path"]))
++            if self.latency_eval and self.comp_delay > 0:
++                ego_lidar_np, ego_frame_id = self.load_vehicle_lidar_timeindex(
++                    self.comp_delay, frame_info)
++                if ego_lidar_np is None:
++                    if self.train:
++                        return self.retrieve_base_data(random.randint(0, len(self.split_info)-1))
++                    return None
++                if self.align_delayed_ego_to_current:
++                    delayed_vehicle_tfm = self.load_vehicle_tfm(ego_frame_id)
++                    ego_lidar_np = self.project_lidar_between_frames(
++                        ego_lidar_np,
++                        delayed_vehicle_tfm,
++                        current_vehicle_tfm,
++                    )
++                data[0]['lidar_np'] = ego_lidar_np
++            else:
++                data[0]['lidar_np'], _ = pcd_utils.read_pcd(os.path.join(self.root_dir,frame_info["vehicle_pointcloud_path"]))
++
++            data[1]['lidar_np'] = self.load_lidar_timeindex(inf_delay, frame_info)
++            if data[1]['lidar_np'] is None:
++                if self.train:
++                    return self.retrieve_base_data(random.randint(0, len(self.split_info)-1))
++                return None
++            if self.latency_eval and self.compensation_method != 'none' and inf_delay > 0:
++                delayed_inf_tfm = self.load_inf_tfm_timeindex(inf_delay, frame_info)
++                current_inf_tfm = self.load_inf_tfm_timeindex(0, frame_info)
++                if delayed_inf_tfm is None or current_inf_tfm is None:
++                    if self.train:
++                        return self.retrieve_base_data(random.randint(0, len(self.split_info)-1))
++                    return None
++                data[1]['lidar_np'] = self.project_lidar_between_frames(
++                    data[1]['lidar_np'],
++                    delayed_inf_tfm,
++                    current_inf_tfm,
++                )
+ 
+ 
+         # Label for single side
+@@ -207,6 +259,120 @@ class DAIRV2XBaseDataset(Dataset):
+ 
+         return data
+ 
++    def get_vehid_with_timeindex(self, time_index, frame_info):
++        if time_index == 0:
++            return frame_info["vehicle_pointcloud_path"].split("/")[-1].replace(".pcd", "")
++        prev_key = "previous_veh_" + str(time_index)
++        if prev_key in frame_info and frame_info[prev_key] is not None:
++            prev = frame_info[prev_key]
++            if isinstance(prev, list):
++                prev = prev[0]
++            return prev.split("/")[-1].replace(".pcd", "")
++        veh_id = frame_info["vehicle_pointcloud_path"].split("/")[-1].replace(".pcd", "")
++        try:
++            return str(int(veh_id) - int(time_index)).zfill(len(veh_id))
++        except ValueError:
++            return None
++
++    def is_vehicle_frame_exists(self, index, frame_info):
++        veh_id = self.get_vehid_with_timeindex(index, frame_info)
++        if veh_id is None:
++            return False
++        required = [
++            os.path.join(self.root_dir, "vehicle-side/velodyne/" + str(veh_id) + ".pcd"),
++            os.path.join(self.root_dir, "vehicle-side/calib/lidar_to_novatel/" + str(veh_id) + ".json"),
++            os.path.join(self.root_dir, "vehicle-side/calib/novatel_to_world/" + str(veh_id) + ".json"),
++        ]
++        return all(os.path.exists(path) for path in required)
++
++    def load_vehicle_lidar_timeindex(self, time_index, frame_info):
++        if not self.is_vehicle_frame_exists(time_index, frame_info):
++            return None, None
++        veh_id = self.get_vehid_with_timeindex(time_index, frame_info)
++        lidar_np, _ = pcd_utils.read_pcd(os.path.join(
++            self.root_dir, "vehicle-side/velodyne/" + str(veh_id) + ".pcd"))
++        return lidar_np, veh_id
++
++    def load_vehicle_tfm(self, veh_id):
++        lidar_to_novatel = read_json(os.path.join(
++            self.root_dir, "vehicle-side/calib/lidar_to_novatel/" + str(veh_id) + ".json"))
++        novatel_to_world = read_json(os.path.join(
++            self.root_dir, "vehicle-side/calib/novatel_to_world/" + str(veh_id) + ".json"))
++        return veh_side_rot_and_trans_to_trasnformation_matrix(
++            lidar_to_novatel, novatel_to_world)
++
++    def project_lidar_between_frames(self, lidar_np, source_tfm, reference_tfm):
++        if lidar_np is None:
++            return None
++        transform = np.linalg.solve(reference_tfm, source_tfm)
++        lidar_projected = lidar_np.copy()
++        xyz1 = np.concatenate(
++            [lidar_projected[:, :3],
++             np.ones((lidar_projected.shape[0], 1), dtype=lidar_projected.dtype)],
++            axis=1,
++        )
++        lidar_projected[:, :3] = np.dot(xyz1, transform.T)[:, :3]
++        return lidar_projected
++
++    def is_inf_frame_exists(self, index, frame_info):
++        if index == 0:
++            return os.path.exists(os.path.join(
++                self.root_dir, frame_info["infrastructure_pointcloud_path"]))
++        prev_key = "previous_inf_" + str(index)
++        prev = frame_info.get(prev_key, None)
++        if prev is None:
++            return False
++        if isinstance(prev, list):
++            prev = prev[0]
++        return os.path.exists(os.path.join(self.root_dir, prev))
++
++    def get_infid_with_timeindex(self, time_index, frame_info):
++        if time_index == 0:
++            return frame_info["infrastructure_pointcloud_path"].split("/")[-1].replace(".pcd", "")
++        prev_key = "previous_inf_" + str(time_index)
++        prev = frame_info.get(prev_key, None)
++        if prev is None:
++            return None
++        if isinstance(prev, list):
++            prev = prev[0]
++        return prev.split("/")[-1].replace(".pcd", "")
++
++    def load_lidar_timeindex(self, time_index, frame_info):
++        if not self.is_inf_frame_exists(time_index, frame_info):
++            return None
++        if time_index == 0:
++            lidar_path = frame_info["infrastructure_pointcloud_path"]
++        else:
++            prev = frame_info["previous_inf_" + str(time_index)]
++            lidar_path = prev[0] if isinstance(prev, list) else prev
++        lidar_np, _ = pcd_utils.read_pcd(os.path.join(self.root_dir, lidar_path))
++        return lidar_np
++
++    def load_inf_params_timeindex(self, time_index, frame_info):
++        transformation_matrix = self.load_inf_tfm_timeindex(time_index, frame_info)
++        if transformation_matrix is None:
++            return None
++        params = OrderedDict()
++        params['lidar_pose'] = tfm_to_pose(transformation_matrix)
++        return params
++
++    def load_inf_tfm_timeindex(self, time_index, frame_info):
++        inf_id = self.get_infid_with_timeindex(time_index, frame_info)
++        if inf_id is None:
++            return None
++        calib_path = os.path.join(
++            self.root_dir,
++            'infrastructure-side/calib/virtuallidar_to_world/' + str(inf_id) + '.json')
++        if not os.path.exists(calib_path):
++            return None
++        hist_frame_info = self.inf_data.get(inf_id, frame_info)
++        virtuallidar_to_world = read_json(calib_path)
++        transformation_matrix = inf_side_rot_and_trans_to_trasnformation_matrix(
++            virtuallidar_to_world,
++            hist_frame_info["system_error_offset"],
++        )
++        return transformation_matrix
++
+ 
+     def __len__(self):
+         return len(self.split_info)
+@@ -301,4 +467,4 @@ class DAIRV2XBaseDataset(Dataset):
+         object_bbx_center = tmp_dict['object_bbx_center']
+         object_bbx_mask = tmp_dict['object_bbx_mask']
+ 
+-        return lidar_np, object_bbx_center, object_bbx_mask
+\ No newline at end of file
++        return lidar_np, object_bbx_center, object_bbx_mask
+diff --git a/opencood/data_utils/datasets/basedataset/v2xsim_basedataset.py b/opencood/data_utils/datasets/basedataset/v2xsim_basedataset.py
+index d869ccf..9c78e85 100644
+--- a/opencood/data_utils/datasets/basedataset/v2xsim_basedataset.py
++++ b/opencood/data_utils/datasets/basedataset/v2xsim_basedataset.py
+@@ -2,6 +2,7 @@
+ 
+ import os
+ import pickle
++import copy
+ from collections import OrderedDict
+ from typing import Dict
+ from abc import abstractmethod
+@@ -11,7 +12,7 @@ from torch.utils.data import Dataset
+ 
+ from opencood.data_utils.augmentor.data_augmentor import DataAugmentor
+ from opencood.utils.common_utils import read_json
+-from opencood.utils.transformation_utils import tfm_to_pose
++from opencood.utils.transformation_utils import tfm_to_pose, x_to_world
+ from opencood.data_utils.pre_processor import build_preprocessor
+ from opencood.data_utils.post_processor import build_postprocessor
+ 
+@@ -29,6 +30,11 @@ class V2XSIMBaseDataset(Dataset):
+         self.params = params
+         self.visualize = visualize
+         self.train = train
++        latency_cfg = params.get('latency_eval', {})
++        self.latency_eval = (not train) and bool(latency_cfg.get('enabled', False))
++        self.comm_delay = int(latency_cfg.get('comm_delay', 0))
++        self.comp_delay = int(latency_cfg.get('comp_delay', 0))
++        self.compensation_method = latency_cfg.get('compensation_method', 'none')
+ 
+         self.pre_processor = build_preprocessor(params["preprocess"], train)
+         self.post_processor = build_postprocessor(params["postprocess"], train)
+@@ -73,12 +79,45 @@ class V2XSIMBaseDataset(Dataset):
+         with open(self.root_dir, 'rb') as f:
+             dataset_info = pickle.load(f)
+         self.dataset_info_pkl = dataset_info
++        self._build_temporal_index()
+ 
+         # TODO param: one as ego or all as ego?
+         self.ego_mode = 'one'  # "all"
+ 
+         self.reinitialize()
+ 
++    def _build_temporal_index(self):
++        self.sample_token_to_index = {}
++        self.scene_to_indices = OrderedDict()
++        self.index_position_in_scene = {}
++
++        for idx, scene_info in enumerate(self.dataset_info_pkl):
++            token = scene_info.get('sample_token', scene_info.get('token', None))
++            if token is not None:
++                self.sample_token_to_index[token] = idx
++            scene_id = scene_info.get('scene_id', scene_info.get('scene_token', 0))
++            self.scene_to_indices.setdefault(scene_id, []).append(idx)
++
++        for _, indices in self.scene_to_indices.items():
++            indices.sort(key=lambda i: self.dataset_info_pkl[i].get('frame_id', i))
++            for pos, idx in enumerate(indices):
++                self.index_position_in_scene[idx] = pos
++
++    def _resolve_delayed_index(self, idx, delay):
++        if delay <= 0:
++            return idx
++
++        scene_info = self.dataset_info_pkl[idx]
++        prev_samples = scene_info.get('prev_samples', {})
++        prev_token = prev_samples.get(delay, None)
++        if prev_token is not None and prev_token in self.sample_token_to_index:
++            return self.sample_token_to_index[prev_token]
++
++        scene_id = scene_info.get('scene_id', scene_info.get('scene_token', 0))
++        indices = self.scene_to_indices.get(scene_id, [idx])
++        pos = self.index_position_in_scene.get(idx, 0)
++        return indices[max(0, pos - delay)]
++
+     def reinitialize(self):
+         self.scene_database = OrderedDict()
+         if self.ego_mode == 'one':
+@@ -122,6 +161,63 @@ class V2XSIMBaseDataset(Dataset):
+                 self.scene_database[i][cav_id]['params'][
+                     'object_ids'] = scene_info[f'labels_{cav_id}'][
+                         'gt_object_ids'].tolist()
++                self.scene_database[i][cav_id]['scene_id'] = scene_info.get('scene_id', None)
++                self.scene_database[i][cav_id]['frame_id'] = scene_info.get('frame_id', i)
++
++    def _copy_cav_for_latency(self, idx, cav_id, is_ego):
++        """Use delayed LiDAR/pose as input but keep current-frame labels for AP."""
++        current_scene = self.scene_database[idx]
++        current_cav = current_scene[cav_id]
++        delay = self.comp_delay if is_ego else (self.comm_delay + self.comp_delay)
++        source_idx = self._resolve_delayed_index(idx, delay)
++        source_scene = self.scene_database[source_idx]
++        source_cav = source_scene.get(cav_id, current_cav)
++        target_idx = source_idx
++        if self.compensation_method == 'syncnet':
++            target_idx = idx
++        elif self.compensation_method == 'ours':
++            target_idx = idx
++        elif self.compensation_method != 'none':
++            raise ValueError(f"Unknown compensation_method={self.compensation_method}")
++        target_scene = self.scene_database[target_idx]
++        target_cav = target_scene.get(cav_id, current_cav)
++
++        cav = copy.deepcopy(source_cav)
++        cav['ego'] = current_cav['ego']
++        source_pose = copy.deepcopy(source_cav['params']['lidar_pose'])
++        target_pose = copy.deepcopy(target_cav['params']['lidar_pose'])
++        if self.compensation_method != 'none':
++            cav['params']['lidar_pose'] = target_pose
++        cav['params']['vehicles'] = copy.deepcopy(current_cav['params']['vehicles'])
++        cav['params']['object_ids'] = copy.deepcopy(current_cav['params']['object_ids'])
++        cav['frame_id'] = current_cav.get('frame_id', idx)
++        cav['source_frame_id'] = source_cav.get('frame_id', source_idx)
++        cav['target_frame_id'] = target_cav.get('frame_id', target_idx)
++        cav['latency'] = {
++            'comm_delay': self.comm_delay,
++            'comp_delay': self.comp_delay,
++            'used_delay_frames': delay,
++            'compensation_method': self.compensation_method,
++            'source_pose': source_pose,
++            'target_pose': target_pose,
++        }
++        return cav
++
++    @staticmethod
++    def _transform_points_between_poses(points, source_pose, target_pose):
++        if points.size == 0:
++            return points
++        source_to_world = x_to_world(source_pose)
++        target_to_world = x_to_world(target_pose)
++        source_to_target = np.linalg.solve(target_to_world, source_to_world)
++        xyz1 = np.concatenate(
++            [points[:, :3], np.ones((points.shape[0], 1), dtype=points.dtype)],
++            axis=1,
++        )
++        transformed = (source_to_target @ xyz1.T).T[:, :3]
++        out = points.copy()
++        out[:, :3] = transformed.astype(out.dtype, copy=False)
++        return out
+ 
+     def __len__(self) -> int:
+         return self.len_record
+@@ -167,15 +263,32 @@ class V2XSIMBaseDataset(Dataset):
+         # }
+         scene = self.scene_database[idx]
+         for cav_id, cav_content in scene.items():
++            if self.latency_eval:
++                cav_content = self._copy_cav_for_latency(
++                    idx, cav_id, cav_content['ego'])
++            else:
++                cav_content = copy.deepcopy(cav_content)
++
+             data[f'{cav_id}'] = OrderedDict()
+             data[f'{cav_id}']['ego'] = cav_content['ego']
+ 
+             data[f'{cav_id}']['params'] = cav_content['params']
++            data[f'{cav_id}']['frame_id'] = cav_content.get('frame_id', idx)
++            if 'source_frame_id' in cav_content:
++                data[f'{cav_id}']['source_frame_id'] = cav_content['source_frame_id']
++                data[f'{cav_id}']['latency'] = cav_content['latency']
+ 
+             # load the corresponding data into the dictionary
+             nbr_dims = 4  # x,y,z,intensity
+             scan = np.fromfile(cav_content['lidar'], dtype='float32')
+             points = scan.reshape((-1, 5))[:, :nbr_dims]
++            latency = cav_content.get('latency', {})
++            if latency.get('compensation_method', 'none') != 'none':
++                points = self._transform_points_between_poses(
++                    points,
++                    latency['source_pose'],
++                    latency['target_pose'],
++                )
+             data[f'{cav_id}']['lidar_np'] = points
+             
+             data[f'{cav_id}']['modality_name'] = 'm1' # Currently, there is only lidar's api.
+@@ -238,4 +351,4 @@ class V2XSIMBaseDataset(Dataset):
+         object_bbx_center = tmp_dict['object_bbx_center']
+         object_bbx_mask = tmp_dict['object_bbx_mask']
+ 
+-        return lidar_np, object_bbx_center, object_bbx_mask
+\ No newline at end of file
++        return lidar_np, object_bbx_center, object_bbx_mask
+diff --git a/opencood/data_utils/datasets/intermediate_heter_fusion_dataset.py b/opencood/data_utils/datasets/intermediate_heter_fusion_dataset.py
+index 3d91568..591bf89 100644
+--- a/opencood/data_utils/datasets/intermediate_heter_fusion_dataset.py
++++ b/opencood/data_utils/datasets/intermediate_heter_fusion_dataset.py
+@@ -12,7 +12,10 @@ from collections import OrderedDict
+ import numpy as np
+ import torch
+ import open3d as o3d
+-from pcdet.ops.roiaware_pool3d import roiaware_pool3d_utils
++try:
++    from pcdet.ops.roiaware_pool3d import roiaware_pool3d_utils
++except ModuleNotFoundError:
++    from opencood.pcdet_utils.roiaware_pool3d import roiaware_pool3d_utils
+ 
+ from opencood.utils import box_utils as box_utils
+ from opencood.utils.box_utils import corner_to_center
+@@ -368,12 +371,17 @@ def getIntermediateheterFusionDataset(cls):
+                 *_sampled            -> R̃^in / R̃^out (after FPS)
+                 object_points_balanced -> P̃_{i,k} = R̃^in ∪ R̃^out
+             """
+-            ego_lidar_pose = base_data_dict[0]['params']['lidar_pose']
++            ego_key = next(
++                (key for key, content in base_data_dict.items()
++                 if content.get('ego', False)),
++                next(iter(base_data_dict))
++            )
++            ego_lidar_pose = base_data_dict[ego_key]['params']['lidar_pose']
+ 
+             transformation_matrix = x1_to_x2(
+-                base_data_dict[0]['params']['lidar_pose'], ego_lidar_pose
++                base_data_dict[ego_key]['params']['lidar_pose'], ego_lidar_pose
+             )
+-            lidar_np = base_data_dict[0]['lidar_np']
++            lidar_np = base_data_dict[ego_key]['lidar_np']
+             # project the lidar to ego space
+             lidar_np[:, :3] = box_utils.project_points_by_matrix_torch(
+                 lidar_np[:, :3], transformation_matrix
+@@ -382,7 +390,9 @@ def getIntermediateheterFusionDataset(cls):
+                 np.array([[0, 0, -0.3]]).astype('float32'), transformation_matrix
+             )
+             points = lidar_np
+-            annos = base_data_dict[0]['params']['vehicles_all']
++            if 'vehicles_all' not in base_data_dict[ego_key]['params']:
++                return base_data_dict
++            annos = base_data_dict[ego_key]['params']['vehicles_all']
+             if len(annos) == 0:
+                 return base_data_dict
+ 
+@@ -491,7 +501,7 @@ def getIntermediateheterFusionDataset(cls):
+                     new_point_cloud[:, :3], inverse_transform_matrix
+                 )
+ 
+-                base_data_dict[0]['lidar_np'] = new_point_cloud
++                base_data_dict[ego_key]['lidar_np'] = new_point_cloud
+ 
+             return base_data_dict
+ 
+@@ -1053,4 +1063,4 @@ def getIntermediateheterFusionDataset(cls):
+             gt_box_tensor = self.post_processor.generate_gt_bbx(data_dict)
+             return pred_box_tensor, pred_score, gt_box_tensor
+ 
+-    return IntermediateheterFusionDataset
+\ No newline at end of file
++    return IntermediateheterFusionDataset
+diff --git a/opencood/models/fuse_modules/data_fusion.py b/opencood/models/fuse_modules/data_fusion.py
+index 736319a..553c612 100644
+--- a/opencood/models/fuse_modules/data_fusion.py
++++ b/opencood/models/fuse_modules/data_fusion.py
+@@ -312,7 +312,15 @@ class IFAM(nn.Module):
+         h_ego = feat_in_ego[0:1]
+ 
+         pair = torch.cat([h_comp_j, h_ego], dim=0)               # (2, C, H, W)
+-        pos = self.spatial_map.repeat(pair.shape[0], 1, 1, 1)    # (2, 2, H, W)
++        pos = self.spatial_map
++        if pos.shape[-2:] != pair.shape[-2:]:
++            pos = F.interpolate(
++                pos,
++                size=pair.shape[-2:],
++                mode='bilinear',
++                align_corners=False,
++            )
++        pos = pos.repeat(pair.shape[0], 1, 1, 1)                 # (2, 2, H, W)
+         domain_logits = self.od_discriminator(torch.cat([pair, pos], dim=1))
+ 
+         # Bundle: 2 logit maps + N M-maps + N IV-maps along the batch dim.
+@@ -327,13 +335,15 @@ class IFAM(nn.Module):
+         fused_outs: List[torch.Tensor] = []
+         domain_outs: List[torch.Tensor] = []
+         for b in range(len(record_len)):
+-            N = record_len[b]
++            N = min(int(record_len[b]), split_feats[b].shape[0], affine_matrix.shape[1])
++            if N == 0:
++                continue
+             t_ego = affine_matrix[b][0, :N, :, :]  # ego row of pairwise tfm
+ 
+             feat_in_ego = warp_affine_simple(
+-                split_feats[b], t_ego, (H, W), align_corners=self.align_corners)
++                split_feats[b][:N], t_ego, (H, W), align_corners=self.align_corners)
+             scores_in_ego = warp_affine_simple(
+-                split_scores[b], t_ego, (H, W), align_corners=self.align_corners)
++                split_scores[b][:N], t_ego, (H, W), align_corners=self.align_corners)
+             occ_mask = warp_affine_simple(
+                 torch.ones_like(scores_in_ego), t_ego, (H, W),
+                 align_corners=self.align_corners)
+@@ -362,4 +372,4 @@ class IFAM(nn.Module):
+ 
+         fused_feat, domain_set = self._weighted_fuse(
+             spatial_features, scores, record_len, affine_matrix)
+-        return fused_feat, domain_set, [occ_map]
+\ No newline at end of file
++        return fused_feat, domain_set, [occ_map]
+diff --git a/opencood/tools/inference.py b/opencood/tools/inference.py
+index 8df466c..ec9a3c7 100644
+--- a/opencood/tools/inference.py
++++ b/opencood/tools/inference.py
+@@ -36,6 +36,13 @@ def test_parser():
+     parser.add_argument('--no_score', action='store_true',
+                         help="whether print the score of prediction")
+     parser.add_argument('--note', default="", type=str, help="any other thing?")
++    parser.add_argument('--comm_delay', type=int, default=0,
++                        help='communication delay in frames for latency eval')
++    parser.add_argument('--comp_delay', type=int, default=0,
++                        help='computation delay in frames for latency eval')
++    parser.add_argument('--compensation_method', type=str, default='none',
++                        choices=['none', 'syncnet', 'ours'],
++                        help='temporal compensation method for latency eval')
+     opt = parser.parse_args()
+     return opt
+ 
+@@ -46,6 +53,16 @@ def main():
+     assert opt.fusion_method in ['late', 'early', 'intermediate', 'no', 'no_w_uncertainty', 'single'] 
+ 
+     hypes = yaml_utils.load_yaml(None, opt)
++    if opt.comm_delay or opt.comp_delay or opt.compensation_method != 'none':
++        hypes['latency_eval'] = {
++            'enabled': True,
++            'comm_delay': opt.comm_delay,
++            'comp_delay': opt.comp_delay,
++            'compensation_method': opt.compensation_method,
++        }
++        if opt.compensation_method != 'none':
++            opt.note += f"_{opt.compensation_method}"
++        opt.note += f"_comm{opt.comm_delay}_comp{opt.comp_delay}"
+ 
+     if 'heter' in hypes:
+         # hypes['heter']['lidar_channels'] = 16

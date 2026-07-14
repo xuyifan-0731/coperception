@@ -4,6 +4,15 @@ This document maps each 260704 result group to environment, code, checkpoint, tr
 
 It assumes the external resources in `260704_EXTERNAL_RESOURCES.md` have already been prepared.
 
+For a first-time setup, read these two files before running commands:
+
+```text
+00_docs/260704_REPRODUCTION_CHECKLIST.md
+00_reproduction_assets/README.md
+```
+
+They explain which raw datasets must be downloaded externally, how to apply local patch bundles to upstream baseline repos, where to copy split files, and which environment reference files to start from.
+
 ## 0. Common Setup
 
 Clone the repository and checkout the uploaded branch:
@@ -38,6 +47,50 @@ Expected dataset roots:
 export V2XSIM_ROOT=$REPO_ROOT/datasets/V2X-Sim-2.0
 export DAIR_ROOT=$REPO_ROOT/datasets/DAIR-V2X/cooperative-vehicle-infrastructure
 export DAIR_SEQ_ROOT=$REPO_ROOT/datasets/DAIR-V2X-Seq/V2X-Seq-SPD
+```
+
+Apply local patches to external code before running the dataset/baseline-specific commands:
+
+```bash
+# DATA
+cd $DATA_ROOT
+git checkout 5df7eb6f5659db0d6809fa3cc218aa425bc287b4
+git apply $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/patches/DATA_local_changes.patch
+
+# LRCP
+cd $LRCP_ROOT
+git checkout 1eb3793b9befd9d36dd8705e461d895a41b39d33
+git apply $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/patches/LRCP_local_changes.patch
+cp -r $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/patches/extra_files/LRCP/opencood/hypes_yaml/dairv2x \
+  $LRCP_ROOT/opencood/hypes_yaml/
+
+# OpenDAIRV2X
+cd $DAIR_CODE_ROOT
+git checkout c885c54af0c34bc515fa9ca8b5e8fda76a15462c
+git apply $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/patches/OpenDAIRV2X_local_changes.patch
+cp $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/split_files/dair_v2x/*.json \
+  $DAIR_CODE_ROOT/data/split_datas/
+
+# TraF-Align
+cd $TRAF_ROOT
+git checkout 0f6f98de60dcb86f29f4eb99ed871054b05bf280
+git apply $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/patches/TraFAlign_local_changes.patch
+cp $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/patches/extra_files/TraF-Align/models/modules/deform/joint_delay_compensation.py \
+  $TRAF_ROOT/models/modules/deform/
+cp $REPO_ROOT/release_packages/260704_experiment_artifacts/00_reproduction_assets/split_files/trafalign/V2XSeq_dataset_split_official.yaml \
+  $TRAF_ROOT/datasets/Basedataset/
+```
+
+The V2X-Sim info `.pkl` files are not uploaded. The uploaded summary is:
+
+```text
+00_reproduction_assets/dataset_info/v2xsim2_info/summary.json
+```
+
+Regenerate or provide local files under:
+
+```text
+datasets/v2xsim2_info/
 ```
 
 All output CSVs below correspond to uploaded files in:

@@ -1,0 +1,1160 @@
+diff --git a/v2x/config.py b/v2x/config.py
+index 8e4cdec..78906e0 100644
+--- a/v2x/config.py
++++ b/v2x/config.py
+@@ -37,6 +37,9 @@ def add_arguments(parser):
+     )
+     parser.add_argument("--dataset", type=str, default="vic-sync")
+     parser.add_argument("--k", type=int, default=0)
++    parser.add_argument("--strict-dual-delay", action="store_true")
++    parser.add_argument("--comm-delay-frames", type=int, default=0)
++    parser.add_argument("--comp-delay-frames", type=int, default=0)
+     parser.add_argument("--pred-classes", nargs="+", default=["car"])
+     parser.add_argument("--model", type=str, default="single_veh")
+     parser.add_argument("--device", type=int, default=0)
+@@ -48,4 +51,4 @@ def add_arguments(parser):
+     parser.add_argument("--sensortype", type=str, default="lidar")
+     parser.add_argument("--eval-single", action="store_true")
+     parser.add_argument("--val-data-path", type=str, default="", help="Help evaluate feature flow net")
+-    parser.add_argument("--test-mode",  type=str, default="FlowPred", help="Feature Flow Net mode: {'FlowPred', 'OriginFeat', 'Async'}")
+\ No newline at end of file
++    parser.add_argument("--test-mode",  type=str, default="FlowPred", help="Feature Flow Net mode: {'FlowPred', 'OriginFeat', 'Async'}")
+diff --git a/v2x/dataset/dair_v2x_for_detection.py b/v2x/dataset/dair_v2x_for_detection.py
+index e2cf903..daa91f0 100644
+--- a/v2x/dataset/dair_v2x_for_detection.py
++++ b/v2x/dataset/dair_v2x_for_detection.py
+@@ -190,6 +190,38 @@ class VICDataset(DAIRV2XDataset):
+         segment = self.inf_frames[frame.batch_id]
+         return [f for f in segment if f.id[sensortype] < frame.id[sensortype] or not previous_only]
+ 
++    def _delayed_frame(self, side, index, delay, sensortype="lidar"):
++        if side == "infrastructure":
++            mapping = self.inf_path2info
++            prefix = "infrastructure-side/velodyne/" if sensortype == "lidar" else "infrastructure-side/image/"
++            frame_cls = InfFrame
++            root = self.path + "/infrastructure-side/"
++        elif side == "vehicle":
++            mapping = self.veh_path2info
++            prefix = "vehicle-side/velodyne/" if sensortype == "lidar" else "vehicle-side/image/"
++            frame_cls = VehFrame
++            root = self.path + "/vehicle-side/"
++        else:
++            raise ValueError(side)
++
++        suffix = ".pcd" if sensortype == "lidar" else ".jpg"
++        cur_key = prefix + index + suffix
++        cur = mapping[cur_key]
++        if int(delay) == 0:
++            ts_key = "pointcloud_timestamp" if sensortype == "lidar" else "image_timestamp"
++            return frame_cls(root, cur), 0.0
++        prev_idx = int(index) - int(delay)
++        prev_key = prefix + id_to_str(prev_idx) + suffix
++        if prev_key not in mapping:
++            return None, None
++        prev = mapping[prev_key]
++        if prev.get("batch_id") != cur.get("batch_id"):
++            return None, None
++        ts_key = "pointcloud_timestamp" if sensortype == "lidar" else "image_timestamp"
++        if sensortype == "camera":
++            get_annos(self.path, side + "-side", prev, "camera")
++        return frame_cls(root, prev), (int(cur[ts_key]) - int(prev[ts_key])) / 1000.0
++
+     def get_split(self, split_path, split, frame_pairs):
+         if osp.exists(split_path):
+             split_data = load_json(split_path)
+@@ -230,17 +262,36 @@ class VICAsyncDataset(VICDataset):
+     def __init__(self, path, args, split="train", sensortype="lidar", extended_range=None, val_data_path=""):
+         super().__init__(path, args, split, sensortype, extended_range)
+         self.k = args.k
++        self.strict_dual_delay = bool(getattr(args, "strict_dual_delay", False))
++        self.comm_delay_frames = int(getattr(args, "comm_delay_frames", 0))
++        self.comp_delay_frames = int(getattr(args, "comp_delay_frames", 0))
++        self.inf_delay_frames = self.comm_delay_frames + self.comp_delay_frames if self.strict_dual_delay else self.k
++        self.veh_delay_frames = self.comp_delay_frames if self.strict_dual_delay else 0
+         self.async_data = []
+         for vic_frame, coop_labels, filt in self.data:
+-            inf_frame, delta_t = self.prev_inf_frame(
++            inf_frame, inf_delta_t = self.delayed_inf_frame(
+                 vic_frame.inf_frame.id[sensortype],
++                self.inf_delay_frames,
+                 sensortype,
+             )
+-            if inf_frame is None:
++            veh_frame, veh_delta_t = self.delayed_veh_frame(
++                vic_frame.veh_frame.id[sensortype],
++                self.veh_delay_frames,
++                sensortype,
++            )
++            if inf_frame is None or veh_frame is None:
+                 continue
+-            else:
+-                new_vic_frame = VICFrame(path, {}, vic_frame.veh_frame, inf_frame, delta_t, vic_frame.offset)
+-                self.async_data.append((new_vic_frame, coop_labels, filt))
++            new_vic_frame = VICFrame(path, {}, veh_frame, inf_frame, inf_delta_t, vic_frame.offset)
++            new_vic_frame.strict_dual_delay = self.strict_dual_delay
++            new_vic_frame.comm_delay_frames = self.comm_delay_frames
++            new_vic_frame.comp_delay_frames = self.comp_delay_frames
++            new_vic_frame.inf_delay_frames = self.inf_delay_frames
++            new_vic_frame.veh_delay_frames = self.veh_delay_frames
++            new_vic_frame.inf_time_diff = inf_delta_t
++            new_vic_frame.veh_time_diff = veh_delta_t
++            new_vic_frame.target_inf_frame = vic_frame.inf_frame
++            new_vic_frame.target_veh_frame = vic_frame.veh_frame
++            self.async_data.append((new_vic_frame, coop_labels, filt))
+ 
+         logger.info("VIC-Async {} dataset, overall {} frames".format(split, len(self.async_data)))
+ 
+@@ -251,28 +302,16 @@ class VICAsyncDataset(VICDataset):
+         return len(self.async_data)
+ 
+     def prev_inf_frame(self, index, sensortype="lidar"):
+-        if sensortype == "lidar":
+-            cur = self.inf_path2info["infrastructure-side/velodyne/" + index + ".pcd"]
+-            if (
+-                int(index) - self.k < int(cur["batch_start_id"])
+-                or "infrastructure-side/velodyne/" + id_to_str(int(index) - self.k) + ".pcd" not in self.inf_path2info
+-            ):
+-                return None, None
+-            prev = self.inf_path2info["infrastructure-side/velodyne/" + id_to_str(int(index) - self.k) + ".pcd"]
+-            return (
+-                InfFrame(self.path + "/infrastructure-side/", prev),
+-                (int(cur["pointcloud_timestamp"]) - int(prev["pointcloud_timestamp"])) / 1000.0,
+-            )
+-        elif sensortype == "camera":
+-            cur = self.inf_path2info["infrastructure-side/image/" + index + ".jpg"]
+-            if int(index) - self.k < int(cur["batch_start_id"]):
+-                return None, None
+-            prev = self.inf_path2info["infrastructure-side/image/" + id_to_str(int(index) - self.k) + ".jpg"]
+-            get_annos(self.path, "infrastructure-side", prev, "camera")
+-            return (
+-                InfFrame(self.path + "/infrastructure-side/", prev),
+-                (int(cur["image_timestamp"]) - int(prev["image_timestamp"])) / 1000.0,
+-            )
++        return self.delayed_inf_frame(index, self.inf_delay_frames, sensortype)
++
++    def prev_veh_frame(self, index, sensortype="lidar"):
++        return self.delayed_veh_frame(index, self.veh_delay_frames, sensortype)
++
++    def delayed_inf_frame(self, index, delay, sensortype="lidar"):
++        return self._delayed_frame("infrastructure", index, delay, sensortype)
++
++    def delayed_veh_frame(self, index, delay, sensortype="lidar"):
++        return self._delayed_frame("vehicle", index, delay, sensortype)
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/v2x/models/detection_models/mmdet3d_anymodel_anymodality_late.py b/v2x/models/detection_models/mmdet3d_anymodel_anymodality_late.py
+index a6000fd..6c22bee 100644
+--- a/v2x/models/detection_models/mmdet3d_anymodel_anymodality_late.py
++++ b/v2x/models/detection_models/mmdet3d_anymodel_anymodality_late.py
+@@ -1,4 +1,6 @@
+ import os.path as osp
++import json
++import pickle
+ import numpy as np
+ import torch.nn as nn
+ import logging
+@@ -31,6 +33,263 @@ from v2x_utils import (
+     get_trans,
+     diff_label_filt,
+ )
++from v2x_utils.transformation_utils import Coord_transformation
++
++
++class ChainedTransform:
++    def __init__(self, *transforms):
++        self.transforms = transforms
++
++    def __call__(self, points):
++        out = points
++        for transform in self.transforms:
++            out = transform(out)
++        return out
++
++
++class TrainedMotionCompensator:
++    def __init__(self, model_path):
++        if not model_path:
++            raise ValueError("--time-compensation-method ours requires --ours-compensation-model")
++        self.rf_estimator = None
++        if str(model_path).endswith(".pkl"):
++            with open(model_path, "rb") as handle:
++                payload = pickle.load(handle)
++            self.metadata = dict(payload.get("metadata", {}))
++            self.model_kind = self.metadata.get("model_kind", "rf")
++            self.weights = None
++            self.layers = []
++            self.mean = np.asarray(payload["mean"], dtype=np.float64)
++            self.std = np.asarray(payload["std"], dtype=np.float64)
++            self.rf_estimator = payload["estimator"]
++            if hasattr(self.rf_estimator, "verbose"):
++                self.rf_estimator.verbose = 0
++            if hasattr(self.rf_estimator, "n_jobs"):
++                self.rf_estimator.n_jobs = 1
++        else:
++            data = np.load(model_path, allow_pickle=False)
++            metadata_raw = str(data["metadata"]) if "metadata" in data.files else "{}"
++            self.metadata = json.loads(metadata_raw)
++            self.model_kind = self.metadata.get("model_kind", "ridge")
++            self.weights = data["weights"].astype(np.float64) if "weights" in data.files else None
++            self.layers = []
++            layer_idx = 0
++            while f"layer{layer_idx}_weight" in data.files:
++                self.layers.append(
++                    (
++                        data[f"layer{layer_idx}_weight"].astype(np.float64),
++                        data[f"layer{layer_idx}_bias"].astype(np.float64),
++                    )
++                )
++                layer_idx += 1
++            self.mean = data["mean"].astype(np.float64)
++            self.std = data["std"].astype(np.float64)
++        self.model_path = model_path
++        self.history_frames = int(self.metadata.get("history_frames", self._infer_history_frames(self.mean.shape[0])))
++
++    @staticmethod
++    def _infer_history_frames(feature_dim):
++        if feature_dim >= 26 and (feature_dim - 21) % 5 == 0:
++            return max(int((feature_dim - 21) // 5) + 1, 2)
++        return 2
++
++    @staticmethod
++    def _box_geometry(boxes):
++        if len(boxes) == 0:
++            return (
++                np.zeros((0, 3), dtype=np.float64),
++                np.zeros((0, 3), dtype=np.float64),
++                np.zeros((0,), dtype=np.float64),
++            )
++        boxes = boxes.astype(np.float64)
++        center = np.mean(boxes, axis=1)
++        size = np.zeros((boxes.shape[0], 3), dtype=np.float64)
++        yaw = np.zeros((boxes.shape[0],), dtype=np.float64)
++        size[:, 2] = np.max(boxes[:, :, 2], axis=1) - np.min(boxes[:, :, 2], axis=1)
++        for i, box in enumerate(boxes):
++            xy = box[:, :2] - center[i, :2]
++            cov = xy.T @ xy
++            vals, vecs = np.linalg.eigh(cov)
++            main_axis = vecs[:, int(np.argmax(vals))]
++            side_axis = np.array([-main_axis[1], main_axis[0]], dtype=np.float64)
++            ext_main = xy @ main_axis
++            ext_side = xy @ side_axis
++            length = float(ext_main.max() - ext_main.min())
++            width = float(ext_side.max() - ext_side.min())
++            if width > length:
++                length, width = width, length
++            size[i, 0] = length
++            size[i, 1] = width
++            yaw[i] = np.arctan2(float(main_axis[1]), float(main_axis[0]))
++        return center, size, yaw
++
++    @staticmethod
++    def _valid_box_mask(frame):
++        if frame.num_boxes == 0:
++            return np.zeros((0,), dtype=bool)
++        score = frame.confidence
++        label = frame.label
++        boxes = frame.boxes
++        mask = np.ones((frame.num_boxes,), dtype=bool)
++        if score is not None:
++            mask &= np.asarray(score, dtype=np.float64) > 0.0
++        if label is not None:
++            mask &= np.asarray(label) >= 0
++        mask &= np.linalg.norm(boxes.reshape(frame.num_boxes, -1), axis=1) > 1e-6
++        return mask
++
++    @staticmethod
++    def _features(frame, horizon_frames):
++        n = frame.num_boxes
++        if n == 0:
++            return np.zeros((0, 18), dtype=np.float64)
++        center, size, yaw = TrainedMotionCompensator._box_geometry(frame.boxes)
++        size = np.clip(size.astype(np.float64), 1e-3, None)
++        h = np.full((n, 1), float(horizon_frames), dtype=np.float64)
++        base = np.concatenate(
++            [
++                center[:, :2],
++                center[:, 2:3],
++                size,
++                np.sin(2.0 * yaw)[:, None],
++                np.cos(2.0 * yaw)[:, None],
++                h,
++            ],
++            axis=1,
++        )
++        xy_h = base[:, [0, 1]] * h
++        h2 = h * h
++        inv_size = 1.0 / size[:, :2]
++        return np.concatenate([base, xy_h, h2, base[:, :2] ** 2, base[:, 3:5] ** 2, inv_size], axis=1)
++
++    @staticmethod
++    def _history_features(frame, prev_frames, prev_time_diffs, target_time_diff, horizon_frames, prefix, history_frames):
++        base = TrainedMotionCompensator._features(frame, horizon_frames)
++        n = frame.num_boxes
++        if n == 0:
++            return np.zeros((0, 21 + 5 * max(int(history_frames) - 1, 0)), dtype=np.float64)
++        history_slots = max(int(history_frames) - 1, 0)
++        hist_delta = np.zeros((n, history_slots * 2), dtype=np.float64)
++        temporal_delta = np.zeros((n, history_slots * 2), dtype=np.float64)
++        has_prev = np.zeros((n, history_slots), dtype=np.float64)
++        if history_slots:
++            cur_valid = TrainedMotionCompensator._valid_box_mask(frame)
++            cur_idx = np.where(cur_valid)[0]
++            cur_centers = frame.center[cur_idx, :2] if len(cur_idx) else np.zeros((0, 2), dtype=np.float64)
++            cur_labels = np.asarray(frame.label)[cur_idx] if len(cur_idx) else np.zeros((0,), dtype=np.float64)
++            for slot in range(history_slots):
++                if slot >= len(prev_frames) or slot >= len(prev_time_diffs):
++                    continue
++                prev_frame = prev_frames[slot]
++                prev_time_diff = prev_time_diffs[slot]
++                if (
++                    prev_frame is None
++                    or prev_frame.num_boxes == 0
++                    or prev_time_diff is None
++                    or float(prev_time_diff) <= 0
++                    or len(cur_idx) == 0
++                ):
++                    continue
++                prev_valid = TrainedMotionCompensator._valid_box_mask(prev_frame)
++                prev_idx = np.where(prev_valid)[0]
++                if len(prev_idx) == 0:
++                    continue
++                prev_centers = prev_frame.center[prev_idx, :2]
++                dist = np.linalg.norm(prev_centers[:, None, :] - cur_centers[None, :, :], axis=2)
++                prev_labels = np.asarray(prev_frame.label)[prev_idx]
++                dist[prev_labels[:, None] != cur_labels[None, :]] = 1e6
++                rows, cols = [], []
++                used_prev = set()
++                used_cur = set()
++                flat_order = np.argsort(dist, axis=None)
++                for flat in flat_order:
++                    row, col = np.unravel_index(int(flat), dist.shape)
++                    if dist[row, col] > 8.0:
++                        break
++                    if row in used_prev or col in used_cur:
++                        continue
++                    used_prev.add(row)
++                    used_cur.add(col)
++                    rows.append(row)
++                    cols.append(col)
++                if not rows:
++                    continue
++                dst = cur_idx[np.asarray(cols, dtype=np.int64)]
++                src = prev_idx[np.asarray(rows, dtype=np.int64)]
++                delta = frame.center[dst, :2] - prev_frame.center[src, :2]
++                hist_delta[dst, slot * 2 : slot * 2 + 2] = delta
++                temporal_delta[dst, slot * 2 : slot * 2 + 2] = delta * (
++                    float(target_time_diff) / max(float(prev_time_diff), 1e-6)
++                )
++                has_prev[dst, slot] = 1.0
++        score = np.zeros((n, 1), dtype=np.float64)
++        if frame.confidence is not None:
++            score[:, 0] = np.asarray(frame.confidence, dtype=np.float64)
++        label = np.zeros((n, 1), dtype=np.float64)
++        if frame.label is not None:
++            label[:, 0] = np.asarray(frame.label, dtype=np.float64)
++        side = np.full((n, 1), 1.0 if prefix == "veh" else 0.0, dtype=np.float64)
++        return np.concatenate([base, hist_delta, temporal_delta, has_prev, score, label, side], axis=1)
++
++    def compensate(self, frame, horizon_frames):
++        if frame.num_boxes == 0 or horizon_frames <= 0:
++            return np.zeros((frame.num_boxes, 2), dtype=np.float64)
++        valid = self._valid_box_mask(frame)
++        if not np.any(valid):
++            return np.zeros((frame.num_boxes, 2), dtype=np.float64)
++        x_all = self._features(frame, horizon_frames)
++        x = (x_all[valid] - self.mean) / self.std
++        if self.model_kind == "rf":
++            pred = self.rf_estimator.predict(x)
++        elif self.model_kind == "mlp":
++            out = x
++            for layer_idx, (weight, bias) in enumerate(self.layers):
++                out = out @ weight.T + bias
++                if layer_idx < len(self.layers) - 1:
++                    out = np.maximum(out, 0.0)
++            pred = out
++        else:
++            xb = np.concatenate([np.ones((x.shape[0], 1), dtype=x.dtype), x], axis=1)
++            pred = xb @ self.weights
++        offset = np.zeros((frame.num_boxes, 2), dtype=np.float64)
++        offset[valid] = pred
++        return offset
++
++    def compensate_history(self, frame, prev_frames, prev_time_diffs, target_time_diff, horizon_frames, prefix):
++        if frame.num_boxes == 0 or horizon_frames <= 0:
++            return np.zeros((frame.num_boxes, 2), dtype=np.float64)
++        valid = self._valid_box_mask(frame)
++        if not np.any(valid):
++            return np.zeros((frame.num_boxes, 2), dtype=np.float64)
++        if prev_frames is None or not isinstance(prev_frames, list):
++            prev_frames = [] if prev_frames is None else [prev_frames]
++        if prev_time_diffs is None or not isinstance(prev_time_diffs, list):
++            prev_time_diffs = [] if prev_time_diffs is None else [prev_time_diffs]
++        x_all = self._history_features(
++            frame,
++            prev_frames,
++            prev_time_diffs,
++            target_time_diff,
++            horizon_frames,
++            prefix,
++            self.history_frames,
++        )
++        x = (x_all[valid] - self.mean) / self.std
++        if self.model_kind == "rf":
++            pred = self.rf_estimator.predict(x)
++        elif self.model_kind == "mlp":
++            out = x
++            for layer_idx, (weight, bias) in enumerate(self.layers):
++                out = out @ weight.T + bias
++                if layer_idx < len(self.layers) - 1:
++                    out = np.maximum(out, 0.0)
++            pred = out
++        else:
++            xb = np.concatenate([np.ones((x.shape[0], 1), dtype=x.dtype), x], axis=1)
++            pred = xb @ self.weights
++        offset = np.zeros((frame.num_boxes, 2), dtype=np.float64)
++        offset[valid] = pred
++        return offset
+ 
+ 
+ def gen_pred_dict(id, timestamp, box, arrow, points, score, label):
+@@ -61,6 +320,49 @@ def get_box_info(result):
+     return box_lidar, box_ry, box_centers_lidar, arrow_ends_lidar
+ 
+ 
++def transform_and_filter_pred(id, timestamp, raw_pred, trans, pred_filter):
++    box = np.array(raw_pred["boxes_3d"], dtype=np.float64)
++    arrows = np.array(raw_pred["arrows"], dtype=np.float64)
++    box_center = arrows[:, 0:1, :]
++    arrow_ends = arrows[:, 1:2, :]
++    score = np.array(raw_pred["scores_3d"])
++    label = np.array(raw_pred["labels_3d"])
++
++    if trans is not None:
++        box = trans(box)
++        box_center = trans(box_center[:, 0, :])[:, np.newaxis, :]
++        arrow_ends = trans(arrow_ends[:, 0, :])[:, np.newaxis, :]
++
++    remain = []
++    if not (len(label) == 1 and label[0] == -1):
++        for i in range(box.shape[0]):
++            if pred_filter(box[i]):
++                remain.append(i)
++
++    if len(remain) >= 1:
++        box = box[remain]
++        box_center = box_center[remain]
++        arrow_ends = arrow_ends[remain]
++        score = score[remain]
++        label = label[remain]
++    else:
++        box = np.zeros((1, 8, 3))
++        box_center = np.zeros((1, 1, 3))
++        arrow_ends = np.zeros((1, 1, 3))
++        label = np.zeros((1))
++        score = np.zeros((1))
++
++    return gen_pred_dict(
++        id,
++        timestamp,
++        box,
++        np.concatenate([box_center, arrow_ends], axis=1),
++        np.array([]),
++        score.tolist(),
++        label.tolist(),
++    )
++
++
+ class LateFusionInf(nn.Module):
+     def __init__(self, args, pipe):
+         super().__init__()
+@@ -73,16 +375,18 @@ class LateFusionInf(nn.Module):
+             id = frame.id["lidar"]
+             logger.debug("infrastructure pointcloud_id: {}".format(id))
+             path = osp.join(self.args.output, "inf", "lidar", id + ".pkl")
++            raw_path = osp.join(self.args.output, "inf", "lidar_raw", id + ".pkl")
+             frame_timestamp = frame["pointcloud_timestamp"]
+         elif self.args.sensortype == "camera":
+             id = frame.id["camera"]
+             logger.debug("infrastructure image_id: {}".format(id))
+             path = osp.join(self.args.output, "inf", "camera", id + ".pkl")
++            raw_path = osp.join(self.args.output, "inf", "camera_raw", id + ".pkl")
+             frame_timestamp = frame["image_timestamp"]
+ 
+-        if osp.exists(path) and not self.args.overwrite_cache:
+-            pred_dict = load_pkl(path)
+-            return pred_dict, id
++        if osp.exists(raw_path) and not self.args.overwrite_cache:
++            raw_pred = load_pkl(raw_path)
++            return transform_and_filter_pred(id, frame_timestamp, raw_pred, trans, pred_filter), id
+ 
+         logger.debug("prediction not found, predicting...")
+         if self.model is None:
+@@ -96,25 +400,26 @@ class LateFusionInf(nn.Module):
+             annos = osp.join(self.args.input, "infrastructure-side", "annos", id + ".json")
+             result, _ = inference_mono_3d_detector(self.model, tmp, annos)
+         box, box_ry, box_center, arrow_ends = get_box_info(result)
++        raw_box = box.copy()
++        raw_box_center = box_center[:, np.newaxis, :].copy()
++        raw_arrow_ends = arrow_ends[:, np.newaxis, :].copy()
+ 
+-        # Convert to other coordinate
+         if trans is not None:
+             box = trans(box)
+             box_center = trans(box_center)[:, np.newaxis, :]
+             arrow_ends = trans(arrow_ends)[:, np.newaxis, :]
+ 
+-        # Filter out labels
+         remain = []
+         if len(result[0]["boxes_3d"].tensor) != 0:
+             for i in range(box.shape[0]):
+                 if pred_filter(box[i]):
+                     remain.append(i)
+ 
+-        # hard code by yuhb
+-        # TODO: new camera model
+         if self.args.sensortype == "camera":
+             for ii in range(len(result[0]["labels_3d"])):
+                 result[0]["labels_3d"][ii] = 2
++        raw_score = result[0]["scores_3d"].numpy() if len(result[0]["boxes_3d"].tensor) != 0 else np.zeros((1))
++        raw_label = result[0]["labels_3d"].numpy() if len(result[0]["boxes_3d"].tensor) != 0 else np.zeros((1))
+ 
+         if len(remain) >= 1:
+             box = box[remain]
+@@ -145,6 +450,16 @@ class LateFusionInf(nn.Module):
+             result[0]["scores_3d"].tolist(),
+             result[0]["labels_3d"].tolist(),
+         )
++        raw_pred_dict = gen_pred_dict(
++            id,
++            frame_timestamp,
++            raw_box,
++            np.concatenate([raw_box_center, raw_arrow_ends], axis=1),
++            np.array([]),
++            raw_score.tolist(),
++            raw_label.tolist(),
++        )
++        save_pkl(raw_pred_dict, raw_path)
+         save_pkl(pred_dict, path)
+ 
+         return pred_dict, id
+@@ -165,14 +480,31 @@ class LateFusionInf(nn.Module):
+         self.pipe.send("label", pred_dict["labels_3d"])
+ 
+         if prev_inf_frame_func is not None:
+-            prev_frame, delta_t = prev_inf_frame_func(id, sensortype=self.args.sensortype)
+-            if prev_frame is not None:
++            history_frames = max(int(getattr(self.args, "ours_history_frames", 2)), 2)
++            history_stride = getattr(self.args, "ours_history_stride", "horizon")
++            dataset = getattr(prev_inf_frame_func, "__self__", None)
++            history_boxes = []
++            history_labels = []
++            history_scores = []
++            history_time_diffs = []
++            next_id = id
++            for slot in range(1, history_frames):
++                if history_stride == "consecutive" and dataset is not None and hasattr(dataset, "delayed_inf_frame"):
++                    prev_frame, delta_t = dataset.delayed_inf_frame(id, slot, sensortype=self.args.sensortype)
++                else:
++                    prev_frame, delta_t = prev_inf_frame_func(next_id, sensortype=self.args.sensortype)
++                if prev_frame is None:
++                    history_boxes.append([])
++                    history_labels.append([])
++                    history_scores.append([])
++                    history_time_diffs.append(0.0)
++                    continue
+                 prev_frame_trans = prev_frame.transform(from_coord="Infrastructure_lidar", to_coord="Vehicle_lidar")
+                 prev_frame_trans.veh_name = trans.veh_name
+                 prev_frame_trans.delta_x = trans.delta_x
+                 prev_frame_trans.delta_y = trans.delta_y
+                 try:
+-                    pred_dict, _ = self.pred(
++                    prev_pred_dict, prev_id = self.pred(
+                         prev_frame,
+                         prev_frame_trans,
+                         pred_filter,
+@@ -184,39 +516,56 @@ class LateFusionInf(nn.Module):
+                         self.args.inf_model_path,
+                         device=self.args.device,
+                     )
+-                    pred_dict, _ = self.pred(
++                    prev_pred_dict, prev_id = self.pred(
+                         prev_frame,
+                         prev_frame_trans,
+                         pred_filter,
+                     )
+-                self.pipe.send("prev_boxes", pred_dict["boxes_3d"])
+-                self.pipe.send("prev_time_diff", delta_t)
+-                self.pipe.send("prev_label", pred_dict["labels_3d"])
++                history_boxes.append(prev_pred_dict["boxes_3d"])
++                history_labels.append(prev_pred_dict["labels_3d"])
++                history_scores.append(prev_pred_dict["scores_3d"])
++                history_time_diffs.append(delta_t)
++                if slot == 1:
++                    self.pipe.send("prev_inf_boxes", prev_pred_dict["boxes_3d"])
++                    self.pipe.send("prev_inf_time_diff", delta_t)
++                    self.pipe.send("prev_inf_label", prev_pred_dict["labels_3d"])
++                    self.pipe.send("prev_inf_score", prev_pred_dict["scores_3d"])
++                    self.pipe.send("prev_boxes", prev_pred_dict["boxes_3d"])
++                    self.pipe.send("prev_time_diff", delta_t)
++                    self.pipe.send("prev_label", prev_pred_dict["labels_3d"])
++                next_id = prev_id
++            self.pipe.send("prev_inf_boxes_list", history_boxes)
++            self.pipe.send("prev_inf_time_diff_list", history_time_diffs)
++            self.pipe.send("prev_inf_label_list", history_labels)
++            self.pipe.send("prev_inf_score_list", history_scores)
+ 
+         return id
+ 
+ 
+ class LateFusionVeh(nn.Module):
+-    def __init__(self, args):
++    def __init__(self, args, pipe):
+         super().__init__()
+         self.model = None
+         self.args = args
++        self.pipe = pipe
+ 
+     def pred(self, frame, trans, pred_filter):
+         if self.args.sensortype == "lidar":
+             id = frame.id["lidar"]
+             logger.debug("vehicle pointcloud_id: {}".format(id))
+             path = osp.join(self.args.output, "veh", "lidar", id + ".pkl")
++            raw_path = osp.join(self.args.output, "veh", "lidar_raw", id + ".pkl")
+             frame_timestamp = frame["pointcloud_timestamp"]
+         elif self.args.sensortype == "camera":
+             id = frame.id["camera"]
+             logger.debug("vehicle image_id: {}".format(id))
+             path = osp.join(self.args.output, "veh", "camera", id + ".pkl")
++            raw_path = osp.join(self.args.output, "veh", "camera_raw", id + ".pkl")
+             frame_timestamp = frame["image_timestamp"]
+ 
+-        if osp.exists(path) and not self.args.overwrite_cache:
+-            pred_dict = load_pkl(path)
+-            return pred_dict, id
++        if osp.exists(raw_path) and not self.args.overwrite_cache:
++            raw_pred = load_pkl(raw_path)
++            return transform_and_filter_pred(id, frame_timestamp, raw_pred, trans, pred_filter), id
+ 
+         logger.debug("prediction not found, predicting...")
+         if self.model is None:
+@@ -230,25 +579,26 @@ class LateFusionVeh(nn.Module):
+             annos = osp.join(self.args.input, "vehicle-side", "annos", id + ".json")
+             result, _ = inference_mono_3d_detector(self.model, tmp, annos)
+         box, box_ry, box_center, arrow_ends = get_box_info(result)
++        raw_box = box.copy()
++        raw_box_center = box_center[:, np.newaxis, :].copy()
++        raw_arrow_ends = arrow_ends[:, np.newaxis, :].copy()
+ 
+-        # Convert to other coordinate
+         if trans is not None:
+             box = trans(box)
+             box_center = trans(box_center)[:, np.newaxis, :]
+             arrow_ends = trans(arrow_ends)[:, np.newaxis, :]
+ 
+-        # Filter out labels
+         remain = []
+         if len(result[0]["boxes_3d"].tensor) != 0:
+             for i in range(box.shape[0]):
+                 if pred_filter(box[i]):
+                     remain.append(i)
+ 
+-        # hard code by yuhb
+-        # TODO: new camera model
+         if self.args.sensortype == "camera":
+             for ii in range(len(result[0]["labels_3d"])):
+                 result[0]["labels_3d"][ii] = 2
++        raw_score = result[0]["scores_3d"].numpy() if len(result[0]["boxes_3d"].tensor) != 0 else np.zeros((1))
++        raw_label = result[0]["labels_3d"].numpy() if len(result[0]["boxes_3d"].tensor) != 0 else np.zeros((1))
+ 
+         if len(remain) >= 1:
+             box = box[remain]
+@@ -279,11 +629,46 @@ class LateFusionVeh(nn.Module):
+             result[0]["scores_3d"].tolist(),
+             result[0]["labels_3d"].tolist(),
+         )
++        raw_pred_dict = gen_pred_dict(
++            id,
++            frame_timestamp,
++            raw_box,
++            np.concatenate([raw_box_center, raw_arrow_ends], axis=1),
++            np.array([]),
++            raw_score.tolist(),
++            raw_label.tolist(),
++        )
++        save_pkl(raw_pred_dict, raw_path)
+         save_pkl(pred_dict, path)
+ 
+         return pred_dict, id
+ 
+-    def forward(self, data, trans, pred_filter):
++    @staticmethod
++    def _frame_name(frame):
++        return frame["image_path"][-10:-4]
++
++    def _vehicle_to_target_transform(self, source_frame, target_frame):
++        if target_frame is None or self._frame_name(source_frame) == self._frame_name(target_frame):
++            return None
++        source_name = self._frame_name(source_frame)
++        target_name = self._frame_name(target_frame)
++        to_world = Coord_transformation(
++            "Vehicle_lidar",
++            "World",
++            "/".join(source_frame.path.split("/")[:-2]),
++            "",
++            source_name,
++        )
++        to_target = Coord_transformation(
++            "World",
++            "Vehicle_lidar",
++            "/".join(target_frame.path.split("/")[:-2]),
++            "",
++            target_name,
++        )
++        return ChainedTransform(to_world, to_target)
++
++    def forward(self, data, trans, pred_filter, prev_veh_frame_func=None, target_veh_frame=None):
+         try:
+             pred_dict, id = self.pred(data, trans, pred_filter)
+         except Exception:
+@@ -294,6 +679,52 @@ class LateFusionVeh(nn.Module):
+                 device=self.args.device,
+             )
+             pred_dict, id = self.pred(data, trans, pred_filter)
++
++        if prev_veh_frame_func is not None:
++            history_frames = max(int(getattr(self.args, "ours_history_frames", 2)), 2)
++            history_stride = getattr(self.args, "ours_history_stride", "horizon")
++            dataset = getattr(prev_veh_frame_func, "__self__", None)
++            history_boxes = []
++            history_labels = []
++            history_scores = []
++            history_time_diffs = []
++            next_id = id
++            for slot in range(1, history_frames):
++                if history_stride == "consecutive" and dataset is not None and hasattr(dataset, "delayed_veh_frame"):
++                    prev_frame, delta_t = dataset.delayed_veh_frame(id, slot, sensortype=self.args.sensortype)
++                else:
++                    prev_frame, delta_t = prev_veh_frame_func(next_id, sensortype=self.args.sensortype)
++                if prev_frame is None:
++                    history_boxes.append([])
++                    history_labels.append([])
++                    history_scores.append([])
++                    history_time_diffs.append(0.0)
++                    continue
++                prev_trans = self._vehicle_to_target_transform(prev_frame, target_veh_frame)
++                try:
++                    prev_pred_dict, prev_id = self.pred(prev_frame, prev_trans, pred_filter)
++                except Exception:
++                    logger.info("building model")
++                    self.model = init_model(
++                        self.args.veh_config_path,
++                        self.args.veh_model_path,
++                        device=self.args.device,
++                    )
++                    prev_pred_dict, prev_id = self.pred(prev_frame, prev_trans, pred_filter)
++                history_boxes.append(prev_pred_dict["boxes_3d"])
++                history_labels.append(prev_pred_dict["labels_3d"])
++                history_scores.append(prev_pred_dict["scores_3d"])
++                history_time_diffs.append(delta_t)
++                if slot == 1:
++                    self.pipe.send("prev_veh_boxes", prev_pred_dict["boxes_3d"])
++                    self.pipe.send("prev_veh_time_diff", delta_t)
++                    self.pipe.send("prev_veh_label", prev_pred_dict["labels_3d"])
++                    self.pipe.send("prev_veh_score", prev_pred_dict["scores_3d"])
++                next_id = prev_id
++            self.pipe.send("prev_veh_boxes_list", history_boxes)
++            self.pipe.send("prev_veh_time_diff_list", history_time_diffs)
++            self.pipe.send("prev_veh_label_list", history_labels)
++            self.pipe.send("prev_veh_score_list", history_scores)
+         return pred_dict, id
+ 
+ 
+@@ -304,33 +735,244 @@ class LateFusion(BaseModel):
+         parser.add_argument("--veh-config-path", type=str, default="")
+         parser.add_argument("--veh-model-path", type=str, default="")
+         parser.add_argument("--no-comp", action="store_true")
++        parser.add_argument(
++            "--time-compensation-method",
++            choices=["tclf", "syncnet", "ours"],
++            default="tclf",
++            help=(
++                "Detector-side temporal compensation method. tclf is the "
++                "official DAIR time compensator; syncnet uses the same box "
++                "synchronization interface as a temporal-only baseline; ours "
++                "adds an online residual alignment against current vehicle boxes."
++            ),
++        )
++        parser.add_argument(
++            "--temporal-compensation-target",
++            choices=["current", "receiver"],
++            default="current",
++            help=(
++                "For temporal comparison methods, current compensates delayed "
++                "boxes to the evaluation frame; receiver compensates only the "
++                "infrastructure boxes to the delayed receiver frame."
++            ),
++        )
++        parser.add_argument("--ours-compensation-model", type=str, default="")
++        parser.add_argument(
++            "--ours-temporal-source",
++            choices=["model", "temporal", "blend", "safe_hybrid", "history_model", "history_safe_hybrid"],
++            default="model",
++            help=(
++                "model: use the trained single-frame model only; temporal: use "
++                "previous/current infrastructure boxes; blend: convex blend of "
++                "temporal and model offsets; safe_hybrid: blend only when the "
++                "model agrees with temporal motion, otherwise fall back to temporal; "
++                "history_model: use a detector-side model trained with previous/current detector boxes; "
++                "history_safe_hybrid: apply safe_hybrid with history_model as the learned offset."
++            ),
++        )
++        parser.add_argument("--ours-model-blend", type=float, default=0.10)
++        parser.add_argument("--ours-disagreement-threshold", type=float, default=2.0)
++        parser.add_argument("--ours-max-offset", type=float, default=8.0)
++        parser.add_argument("--ours-history-frames", type=int, default=2)
++        parser.add_argument("--ours-history-stride", choices=["horizon", "consecutive"], default="horizon")
++        parser.add_argument(
++            "--ours-temporal-max-k",
++            type=int,
++            default=-1,
++            help="For k larger than this value, use zero offset as a no-regression fallback; negative disables it.",
++        )
++        parser.add_argument(
++            "--ours-fallback-model",
++            action="store_true",
++            help="Use the trained model when no previous infrastructure frame is available; otherwise use zero offset.",
++        )
++        parser.add_argument("--ours-use-residual", action="store_true")
+         parser.add_argument("--overwrite-cache", action="store_true")
+ 
+     def __init__(self, args, pipe):
+         super().__init__()
+         self.pipe = pipe
+         self.inf_model = LateFusionInf(args, pipe)
+-        self.veh_model = LateFusionVeh(args)
++        self.veh_model = LateFusionVeh(args, pipe)
+         self.args = args
+         self.space_compensator = SpaceCompensator()
+         self.time_compensator = TimeCompensator(EuclidianMatcher(diff_label_filt))
++        self.ours_motion_compensator = None
++        if not args.no_comp and args.time_compensation_method == "ours":
++            self.ours_motion_compensator = TrainedMotionCompensator(args.ours_compensation_model)
+         mkdir(args.output)
+         mkdir(osp.join(args.output, "inf"))
+         mkdir(osp.join(args.output, "veh"))
+         mkdir(osp.join(args.output, "inf", "lidar"))
+         mkdir(osp.join(args.output, "veh", "lidar"))
++        mkdir(osp.join(args.output, "inf", "lidar_raw"))
++        mkdir(osp.join(args.output, "veh", "lidar_raw"))
+         mkdir(osp.join(args.output, "inf", "camera"))
+         mkdir(osp.join(args.output, "veh", "camera"))
++        mkdir(osp.join(args.output, "inf", "camera_raw"))
++        mkdir(osp.join(args.output, "veh", "camera_raw"))
+         mkdir(osp.join(args.output, "result"))
+ 
++    def _clip_offsets(self, offset):
++        offset = np.asarray(offset, dtype=np.float64)
++        if offset.size == 0:
++            return offset
++        max_offset = float(getattr(self.args, "ours_max_offset", 0.0))
++        if max_offset <= 0:
++            return offset
++        norm = np.linalg.norm(offset, axis=1)
++        scale = np.ones_like(norm)
++        mask = norm > max_offset
++        scale[mask] = max_offset / np.maximum(norm[mask], 1e-6)
++        return offset * scale[:, None]
++
++    @staticmethod
++    def _frame_name(frame):
++        return frame["image_path"][-10:-4]
++
++    def _vehicle_to_target_transform(self, source_frame, target_frame):
++        if target_frame is None or self._frame_name(source_frame) == self._frame_name(target_frame):
++            return None
++        to_world = Coord_transformation(
++            "Vehicle_lidar",
++            "World",
++            "/".join(source_frame.path.split("/")[:-2]),
++            "",
++            self._frame_name(source_frame),
++        )
++        to_target = Coord_transformation(
++            "World",
++            "Vehicle_lidar",
++            "/".join(target_frame.path.split("/")[:-2]),
++            "",
++            self._frame_name(target_frame),
++        )
++        return ChainedTransform(to_world, to_target)
++
++    def _inf_to_target_vehicle_transform(self, vic_frame):
++        target_veh = getattr(vic_frame, "target_veh_frame", None)
++        if target_veh is None:
++            return vic_frame.transform(from_coord="Infrastructure_lidar", to_coord="Vehicle_lidar")
++        return Coord_transformation(
++            "Infrastructure_lidar",
++            "Vehicle_lidar",
++            vic_frame.path,
++            self._frame_name(vic_frame.infrastructure_frame()),
++            self._frame_name(target_veh),
++        )
++
++    def _temporal_offsets(self, pred_frame, target_time_diff, prefix):
++        prev_boxes = self.pipe.receive(f"prev_{prefix}_boxes")
++        if prev_boxes is None:
++            return None
++        pred_prev = BBoxList(
++            np.array(prev_boxes),
++            None,
++            np.array(self.pipe.receive(f"prev_{prefix}_label")),
++            None,
++        )
++        return self.time_compensator.compensate(
++            pred_prev,
++            pred_frame,
++            self.pipe.receive(f"prev_{prefix}_time_diff"),
++            target_time_diff,
++        )
++
++    def _history_model_offsets(self, pred_frame, target_time_diff, horizon_frames, prefix):
++        prev_boxes_list = self.pipe.receive(f"prev_{prefix}_boxes_list")
++        prev_label_list = self.pipe.receive(f"prev_{prefix}_label_list")
++        prev_score_list = self.pipe.receive(f"prev_{prefix}_score_list")
++        prev_time_diffs = self.pipe.receive(f"prev_{prefix}_time_diff_list")
++        if prev_boxes_list is None:
++            prev_boxes = self.pipe.receive(f"prev_{prefix}_boxes")
++            prev_boxes_list = [] if prev_boxes is None else [prev_boxes]
++            prev_label_list = [] if prev_boxes is None else [self.pipe.receive(f"prev_{prefix}_label")]
++            prev_score_list = [] if prev_boxes is None else [self.pipe.receive(f"prev_{prefix}_score")]
++            prev_time_diffs = [] if prev_boxes is None else [self.pipe.receive(f"prev_{prefix}_time_diff")]
++        prev_frames = []
++        for boxes, labels, scores in zip(prev_boxes_list or [], prev_label_list or [], prev_score_list or []):
++            boxes_arr = np.array(boxes)
++            if boxes_arr.ndim != 3 or boxes_arr.shape[0] == 0:
++                prev_frames.append(None)
++                continue
++            prev_frames.append(
++                BBoxList(
++                    boxes_arr,
++                    None,
++                    np.array(labels),
++                    np.array(scores),
++                )
++            )
++        return self.ours_motion_compensator.compensate_history(
++            pred_frame,
++            prev_frames,
++            prev_time_diffs or [],
++            target_time_diff,
++            horizon_frames,
++            prefix,
++        )
++
++    def _ours_offsets(self, pred_frame, target_time_diff, horizon_frames, prefix):
++        max_temporal_k = int(getattr(self.args, "ours_temporal_max_k", -1))
++        if max_temporal_k >= 0 and int(horizon_frames) > max_temporal_k:
++            return np.zeros((pred_frame.num_boxes, 2), dtype=np.float64)
++
++        source = getattr(self.args, "ours_temporal_source", "model")
++        if source in {"history_model", "history_safe_hybrid"}:
++            model_offset = self._history_model_offsets(pred_frame, target_time_diff, horizon_frames, prefix)
++        else:
++            model_offset = self.ours_motion_compensator.compensate(pred_frame, horizon_frames)
++        model_offset = self._clip_offsets(model_offset)
++        if source in {"model", "history_model"}:
++            return model_offset
++
++        temporal_offset = self._temporal_offsets(pred_frame, target_time_diff, prefix)
++        if temporal_offset is None:
++            if getattr(self.args, "ours_fallback_model", False):
++                return model_offset
++            return np.zeros((pred_frame.num_boxes, 2), dtype=np.float64)
++        temporal_offset = self._clip_offsets(temporal_offset)
++        if source == "temporal":
++            return temporal_offset
++
++        alpha = float(np.clip(getattr(self.args, "ours_model_blend", 0.10), 0.0, 1.0))
++        blended = temporal_offset * (1.0 - alpha) + model_offset * alpha
++        if source == "safe_hybrid":
++            disagreement = np.linalg.norm(model_offset - temporal_offset, axis=1)
++            threshold = float(getattr(self.args, "ours_disagreement_threshold", 2.0))
++            use_blend = disagreement <= threshold
++            offset = temporal_offset.copy()
++            offset[use_blend] = blended[use_blend]
++            return self._clip_offsets(offset)
++        return self._clip_offsets(blended)
++
+     def forward(self, vic_frame, filt, prev_inf_frame_func=None, *args):
++        comp_method = "none" if self.args.no_comp else self.args.time_compensation_method
++        ours_source = getattr(self.args, "ours_temporal_source", "model")
++        needs_prev_inf = comp_method in {"tclf", "syncnet"} or (comp_method == "ours" and ours_source != "model")
++        needs_prev_veh = (
++            (comp_method in {"tclf", "syncnet"} or (comp_method == "ours" and ours_source != "model"))
++            and getattr(vic_frame, "veh_delay_frames", 0) > 0
++        )
++        prev_veh_frame_func = getattr(prev_inf_frame_func, "__self__", None)
++        if prev_veh_frame_func is not None and hasattr(prev_veh_frame_func, "prev_veh_frame"):
++            prev_veh_frame_func = prev_veh_frame_func.prev_veh_frame
++        else:
++            prev_veh_frame_func = None
++        target_veh_frame = getattr(vic_frame, "target_veh_frame", vic_frame.vehicle_frame())
+         id_inf = self.inf_model(
+             vic_frame.infrastructure_frame(),
+-            vic_frame.transform(from_coord="Infrastructure_lidar", to_coord="Vehicle_lidar"),
++            self._inf_to_target_vehicle_transform(vic_frame),
++            filt,
++            prev_inf_frame_func if needs_prev_inf else None,
++        )
++        pred_dict, id_veh = self.veh_model(
++            vic_frame.vehicle_frame(),
++            self._vehicle_to_target_transform(vic_frame.vehicle_frame(), target_veh_frame),
+             filt,
+-            prev_inf_frame_func if not self.args.no_comp else None,
++            prev_veh_frame_func if needs_prev_veh else None,
++            target_veh_frame,
+         )
+-        pred_dict, id_veh = self.veh_model(vic_frame.vehicle_frame(), None, filt)
+ 
+         # logger.info("running late fusion...")
+         pred_inf = BBoxList(
+@@ -345,24 +987,52 @@ class LateFusion(BaseModel):
+             np.array(pred_dict["labels_3d"]),
+             np.array(pred_dict["scores_3d"]),
+         )
+-        if vic_frame.time_diff > 0 and not self.args.no_comp:
+-            if self.pipe.receive("prev_boxes") is not None:
+-                pred_inf_prev = BBoxList(
+-                    np.array(self.pipe.receive("prev_boxes")),
+-                    None,
+-                    np.array(self.pipe.receive("prev_label")),
+-                    None,
+-                )
+-                offset = self.time_compensator.compensate(
+-                    pred_inf_prev,
+-                    pred_inf,
+-                    self.pipe.receive("prev_time_diff"),
+-                    vic_frame.time_diff,
+-                )
+-                pred_inf.move_center(offset)
+-                logger.debug("time compensation: {}".format(offset))
++        inf_time_diff = getattr(vic_frame, "inf_time_diff", vic_frame.time_diff)
++        veh_time_diff = getattr(vic_frame, "veh_time_diff", 0)
++        inf_horizon = int(getattr(vic_frame, "inf_delay_frames", getattr(self.args, "k", 0)))
++        veh_horizon = int(getattr(vic_frame, "veh_delay_frames", 0))
++        if comp_method != "none" and (inf_time_diff > 0 or veh_time_diff > 0):
++            if comp_method == "ours":
++                if inf_time_diff > 0:
++                    offset = self._ours_offsets(pred_inf, inf_time_diff, inf_horizon, "inf")
++                    pred_inf.move_center(offset)
++                    logger.debug("ours trained DAIR infrastructure compensation: %s", offset)
++                if veh_time_diff > 0:
++                    offset = self._ours_offsets(pred_veh, veh_time_diff, veh_horizon, "veh")
++                    pred_veh.move_center(offset)
++                    logger.debug("ours trained DAIR vehicle compensation: %s", offset)
+             else:
+-                print("no previous frame found, time compensation is skipped")
++                temporal_target = getattr(self.args, "temporal_compensation_target", "current")
++                if temporal_target == "receiver":
++                    inf_target_time_diff = max(float(inf_time_diff) - float(veh_time_diff), 0.0)
++                    veh_target_time_diff = 0.0
++                else:
++                    inf_target_time_diff = inf_time_diff
++                    veh_target_time_diff = veh_time_diff
++                if inf_time_diff > 0:
++                    offset = self._temporal_offsets(pred_inf, inf_target_time_diff, "inf")
++                    if offset is not None:
++                        pred_inf.move_center(offset)
++                        logger.debug("%s infrastructure temporal compensation: %s", comp_method, offset)
++                    else:
++                        print("no previous infrastructure frame found, time compensation is skipped")
++                if veh_target_time_diff > 0:
++                    offset = self._temporal_offsets(pred_veh, veh_target_time_diff, "veh")
++                    if offset is not None:
++                        pred_veh.move_center(offset)
++                        logger.debug("%s vehicle temporal compensation: %s", comp_method, offset)
++                    else:
++                        print("no previous vehicle frame found, time compensation is skipped")
++
++            if (
++                comp_method == "ours"
++                and self.args.ours_use_residual
++                and pred_inf.num_boxes > 0
++                and pred_veh.num_boxes > 0
++            ):
++                residual = self.space_compensator.compensate(pred_inf, pred_veh)
++                pred_inf.move_center(residual)
++                logger.debug("ours residual spatial compensation: %s", residual)
+ 
+         matcher = EuclidianMatcher(diff_label_filt)
+         ind_inf, ind_veh, cost = matcher.match(pred_inf, pred_veh)
+diff --git a/v2x/models/model_utils/late_fusion_utils.py b/v2x/models/model_utils/late_fusion_utils.py
+index 4d3d11f..661bacb 100644
+--- a/v2x/models/model_utils/late_fusion_utils.py
++++ b/v2x/models/model_utils/late_fusion_utils.py
+@@ -55,12 +55,17 @@ class BBoxList(object):
+         pass
+ 
+     def move_center(self, offset):
+-        delta = np.array(offset)  # N * 2
++        delta_xy = np.array(offset)  # N * 2
++        delta = delta_xy
+         if self.num_dims == 3:
+             delta = np.insert(delta, 2, values=np.zeros(self.num_boxes), axis=1)  # N * 3
+         delta = delta[:, np.newaxis, :]  # N * 1 * 3
+         delta = np.repeat(delta, 8, axis=1)  # N * 8 * 3
+         self.boxes += delta
++        if self.num_dims == 3:
++            self.center[:, :2] += delta_xy
++        else:
++            self.center += delta_xy
+ 
+     # TODO: implement the following apis
+     def merge(self, box1):
+diff --git a/v2x/scripts/eval_lidar_early_fusion_pointpillars.sh b/v2x/scripts/eval_lidar_early_fusion_pointpillars.sh
+index 6f44123..5ed798a 100644
+--- a/v2x/scripts/eval_lidar_early_fusion_pointpillars.sh
++++ b/v2x/scripts/eval_lidar_early_fusion_pointpillars.sh
+@@ -1,6 +1,7 @@
+ DATA="../data/DAIR-V2X/cooperative-vehicle-infrastructure"
+ OUTPUT="../cache/vic-early-lidar"
+-rm -r ../cache
++rm -rf ../cache
++mkdir -p ../cache/vic-early-lidar ../cache/tmps
+ 
+ MODEL_ROOT='../configs/vic3d/early-fusion-pointcloud/pointpillars'
+ MODEL_NAME='vic3d_earlyfusion_veh_pointpillars_67fe2b82320754481ef37f176b647e43.pth'
+diff --git a/v2x/scripts/eval_lidar_late_fusion_pointpillars.sh b/v2x/scripts/eval_lidar_late_fusion_pointpillars.sh
+index 3d1d13f..71f9756 100644
+--- a/v2x/scripts/eval_lidar_late_fusion_pointpillars.sh
++++ b/v2x/scripts/eval_lidar_late_fusion_pointpillars.sh
+@@ -1,10 +1,17 @@
+ DATA="../data/DAIR-V2X/cooperative-vehicle-infrastructure"
+ OUTPUT="../cache/vic-late-lidar"
+-rm -r $OUTPUT
+-rm -r ../cache
++if [[ "${DAIR_KEEP_CACHE:-0}" != "1" ]]; then
++  rm -r $OUTPUT
++  rm -r ../cache
++  OVERWRITE_CACHE_ARG="--overwrite-cache"
++else
++  OVERWRITE_CACHE_ARG=""
++fi
+ mkdir -p $OUTPUT/result
+ mkdir -p $OUTPUT/inf/lidar
+ mkdir -p $OUTPUT/veh/lidar
++mkdir -p $OUTPUT/inf/lidar_raw
++mkdir -p $OUTPUT/veh/lidar_raw
+ 
+ INFRA_MODEL_PATH="../configs/vic3d/late-fusion-pointcloud/pointpillars"
+ INFRA_CONFIG_NAME="trainval_config_i.py"
+@@ -39,5 +46,5 @@ python eval.py \
+   --pred-class car \
+   --sensortype lidar \
+   --extended-range $EXTEND_RANGE_START -39.68 -3 $EXTEND_RANGE_END 39.68 1 \
+-  --overwrite-cache \
+-  $TIME_COMPENSATION
+\ No newline at end of file
++  $OVERWRITE_CACHE_ARG \
++  $TIME_COMPENSATION

@@ -5,6 +5,7 @@ This package organizes all checkpoints and final original result files reference
 Directory layout:
 
 - `00_docs/`: final markdown and Word report.
+- `00_reproduction_assets/`: small reproduction assets: external-code patches, split files, dataset-info summaries, and environment reference files.
 - `00_code_version/`: Git HEAD, branch, status, diff, and tracked-file list at packaging time.
 - `00_code_scripts/`: scripts referenced by the 260704 experiments.
 - `01_v2xsim/`: V2X-Sim artifacts, grouped by V2VNet, DATA, and DiscoNet.
@@ -22,5 +23,7 @@ Checkpoint files larger than 45MB are split into `*.split/*.partNNN` files for p
 Additional reproduction documentation:
 
 - `00_docs/260704_ARTIFACT_INDEX.md`: beginner-facing Chinese directory map, artifact index, and remaining reproduction gaps.
+- `00_docs/260704_REPRODUCTION_CHECKLIST.md`: Chinese newcomer checklist for preparing data, external code, patches, environments, checkpoints, and reruns.
 - `00_docs/260704_EXTERNAL_RESOURCES.md`: public datasets, external baseline code/checkpoints, environment requirements, and missing conditions.
 - `00_docs/260704_RUNBOOK.md`: command-level runbook organized by dataset, baseline, and experiment.
+- `00_reproduction_assets/README.md`: explains the packaged patch bundles, split files, dataset summaries, and environment references.

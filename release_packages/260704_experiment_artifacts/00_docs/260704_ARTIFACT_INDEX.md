@@ -15,8 +15,10 @@ release_packages/260704_experiment_artifacts/
 | 看最终实验结果 | `00_docs/260704_results.md` |
 | 看 Word 版整理报告 | `00_docs/260704_experiment_results.docx` |
 | 查公开数据集、外部 baseline 代码、外部 checkpoint 和缺口 | `00_docs/260704_EXTERNAL_RESOURCES.md` |
+| 从零准备复现环境 | `00_docs/260704_REPRODUCTION_CHECKLIST.md` |
 | 按命令重新训练/测试 | `00_docs/260704_RUNBOOK.md` |
 | 理解目录结构和复现缺口 | `00_docs/260704_ARTIFACT_INDEX.md` |
+| 使用 patch、split、环境参考文件 | `00_reproduction_assets/README.md` |
 | 查每个上传文件的位置、大小、SHA256 | `MANIFEST.csv` |
 | 恢复被切分的大 checkpoint | `restore_split_checkpoints.py` 和 `CHECKPOINT_SPLIT_MANIFEST.csv` |
 
@@ -33,6 +35,7 @@ release_packages/260704_experiment_artifacts/
 ```text
 release_packages/260704_experiment_artifacts/
   00_docs/             # 结果文档、复现说明、资源说明
+  00_reproduction_assets/ # 小型复现材料：patch、split、requirements、info summary
   00_code_scripts/     # 本次实验用到的脚本快照
   00_code_version/     # 打包时的 Git 状态、diff、commit 信息
   01_v2xsim/           # V2X-Sim 数据集相关实验
@@ -60,6 +63,9 @@ dataset/
 | 真实运行日志 | `logs/` |
 | 不是本次重跑、而是来自旧论文表格的结果 | `paper_sources/` |
 | 本次使用的脚本 | `00_code_scripts/scripts/` |
+| 外部代码本地修改 | `00_reproduction_assets/patches/` |
+| DAIR/TraF-Align 划分文件 | `00_reproduction_assets/split_files/` |
+| 环境 requirements 参考 | `00_reproduction_assets/env_refs/` |
 | 文件校验和来源路径 | `MANIFEST.csv` |
 
 ## 3. 按数据集快速定位
@@ -166,6 +172,9 @@ python restore_split_checkpoints.py
 | 运行日志 | 部分是 | DAIR official late fusion、LRCP 等有日志；部分 V2X-Sim/DATA 结果主要保留 CSV。 |
 | 实验脚本快照 | 是 | 存在于 `00_code_scripts/scripts/`。 |
 | Git 状态和 diff | 是 | 存在于 `00_code_version/`。 |
+| 外部代码 patch | 是 | 存在于 `00_reproduction_assets/patches/`，不包含原始数据或结果目录。 |
+| DAIR/TraF-Align split 文件 | 是 | 存在于 `00_reproduction_assets/split_files/`。 |
+| 环境 requirements 参考 | 是 | 存在于 `00_reproduction_assets/env_refs/`。 |
 
 ## 6. 从零复现还缺什么
 
@@ -177,14 +186,14 @@ python restore_split_checkpoints.py
 | DAIR-V2X-C 原始数据集 | 是，公开网址已列出 | 否 | 不能从零重跑 DAIR official late fusion、DATA、LRCP。 |
 | DAIR-V2X-Seq / SPD 原始数据集 | 是，公开网址已列出 | 否 | 不能从零重跑 TraF-Align。 |
 | 原始数据集的精确文件列表和 checksum | 不够完整 | 否 | 无法严格确认别人下载的数据版本与本地完全一致。 |
-| V2X-Sim info 文件，如 `datasets/v2xsim2_info/*.pkl` | 部分说明 | 否 | DATA/OpenCOOD 脚本依赖这些 info 文件。 |
-| DAIR cooperative split JSON 的规范副本 | 部分说明 | 否 | RF 训练和 DAIR 评估依赖精确 train/val/test 划分。 |
-| TraF-Align 官方 split YAML 的规范副本 | 部分说明 | 否 | TraF-Align 的训练/测试划分需要和官方一致。 |
-| `external/DATA` 本地修改补丁 | 已说明存在 | 否 | 上游 DATA 仓库不包含 strict-delay 和 ours 适配代码。 |
-| `external/LRCP` 本地修改补丁 | 已说明存在 | 否 | 上游 LRCP 仓库不包含本地 DAIR 适配和严格双时延测试代码。 |
-| `external/DAIR-V2X` 本地修改补丁 | 已说明存在 | 否 | 官方 OpenDAIRV2X 仓库不包含本地 late-fusion/TCLF/RF cache 修改。 |
-| TraF-Align 本地修改补丁 | 已说明存在 | 否 | 上游 TraF-Align 不包含 ours joint delay-comp 模块和适配逻辑。 |
-| 每个 baseline 的环境 lock 文件 | 只有大致说明 | 否 | 依赖版本漂移会导致结果不稳定，尤其是 spconv/cumm。 |
+| V2X-Sim info 文件，如 `datasets/v2xsim2_info/*.pkl` | 有 summary | 否 | `.pkl` 约 226MB，不上传；DATA/OpenCOOD 脚本依赖这些 info 文件，需要本地生成。 |
+| DAIR cooperative split JSON 的规范副本 | 是 | 是 | 已放入 `00_reproduction_assets/split_files/dair_v2x/`。 |
+| TraF-Align 官方 split YAML 的规范副本 | 是 | 是 | 已放入 `00_reproduction_assets/split_files/trafalign/`。 |
+| `external/DATA` 本地修改补丁 | 是 | 是 | 已放入 `00_reproduction_assets/patches/DATA_local_changes.patch`。 |
+| `external/LRCP` 本地修改补丁 | 是 | 是 | 已放入 `00_reproduction_assets/patches/LRCP_local_changes.patch`，新增 yaml 在 `extra_files/`。 |
+| `external/DAIR-V2X` 本地修改补丁 | 是 | 是 | 已放入 `00_reproduction_assets/patches/OpenDAIRV2X_local_changes.patch`。 |
+| TraF-Align 本地修改补丁 | 是 | 是 | 已放入 `00_reproduction_assets/patches/TraFAlign_local_changes.patch`，新增模块在 `extra_files/`。 |
+| 每个 baseline 的环境 lock 文件 | 有 requirements 参考 | 部分 | 已放入 requirements/environment 参考，但还不是严格 lock。 |
 | 运行路径恢复脚本 | 否 | 否 | 包内路径是归档结构，但很多脚本仍期望历史路径，例如 `checkpoints/curated/ours_models`、`runs/data_dair_official_eval`。 |
 | 大型中间 cache | 有生成命令 | 否 | 不是最终结果，但重训 DATA IFAM、TraF-Align feature predictor 时需要重新生成。 |
 
@@ -194,22 +203,22 @@ python restore_split_checkpoints.py
 
 如果目标是让新来的人直接复现，优先补这几项：
 
-1. 给 `external/DATA`、`external/LRCP`、`external/DAIR-V2X`、TraF-Align 各自生成 patch bundle，或者上传对应的 vendored code snapshot。
-2. 导出每个 baseline 的环境文件，例如 `environment.yml`、`pip freeze`、CUDA/PyTorch/spconv/cumm 版本说明。
-3. 增加数据集校验文档：下载链接、版本、解压后的目录树、关键文件数量、checksum。
-4. 把 DAIR split JSON、TraF-Align split YAML、V2X-Sim info 文件生成脚本或可上传副本放入 package。
-5. 增加一个 `materialize_runtime_paths.py`，把 package 中的 checkpoint/config 复制或软链接到 runbook 里的历史运行路径。
-6. 增加一个 `validate_repro_env.py`，运行前检查数据集、代码、checkpoint、环境版本是否齐全。
+1. 导出完整环境 lock，例如 `conda env export --from-history`、`pip freeze`、CUDA/PyTorch/spconv/cumm/mmcv/mmdet3d 版本。
+2. 增加数据集校验文档：压缩包版本、解压后的目录树、关键文件数量、checksum。
+3. 补充 V2X-Sim info `.pkl` 的生成脚本或更详细生成说明。
+4. 增加一个 `materialize_runtime_paths.py`，把 package 中的 checkpoint/config 复制或软链接到 runbook 里的历史运行路径。
+5. 增加一个 `validate_repro_env.py`，运行前检查数据集、代码、checkpoint、环境版本是否齐全。
 
 ## 8. 给新人的最短使用路径
 
 新读者建议按这个顺序看：
 
 1. 打开 `00_docs/260704_ARTIFACT_INDEX.md`，先理解目录结构。
-2. 打开 `00_docs/260704_results.md` 或 Word 文档，看最终结果。
-3. 根据想看的数据集进入 `01_v2xsim/`、`02_dair_v2x_c/` 或 `03_dair_v2x_seq/`。
-4. 根据 baseline 进入对应文件夹，例如 `DATA/`、`LRCP/`、`TraF-Align/`。
-5. 只看数字就打开 `results/`；查模型就打开 `checkpoints/`；查运行证据就打开 `logs/`。
-6. 如果要复现，先看 `00_docs/260704_EXTERNAL_RESOURCES.md`，再看 `00_docs/260704_RUNBOOK.md`。
-7. 如果 checkpoint 是 split 形式，先运行 `python restore_split_checkpoints.py`。
-8. 用 `MANIFEST.csv` 核对文件 SHA256，确认文件没有丢失或损坏。
+2. 打开 `00_docs/260704_REPRODUCTION_CHECKLIST.md`，理解从零复现需要准备什么。
+3. 打开 `00_docs/260704_results.md` 或 Word 文档，看最终结果。
+4. 根据想看的数据集进入 `01_v2xsim/`、`02_dair_v2x_c/` 或 `03_dair_v2x_seq/`。
+5. 根据 baseline 进入对应文件夹，例如 `DATA/`、`LRCP/`、`TraF-Align/`。
+6. 只看数字就打开 `results/`；查模型就打开 `checkpoints/`；查运行证据就打开 `logs/`。
+7. 如果要复现，先看 `00_docs/260704_EXTERNAL_RESOURCES.md`，再看 `00_reproduction_assets/README.md` 和 `00_docs/260704_RUNBOOK.md`。
+8. 如果 checkpoint 是 split 形式，先运行 `python restore_split_checkpoints.py`。
+9. 用 `MANIFEST.csv` 核对文件 SHA256，确认文件没有丢失或损坏。

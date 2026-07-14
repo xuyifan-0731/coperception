@@ -1,0 +1,295 @@
+diff --git a/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py b/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py
+index 33dd7c6..2e851c0 100644
+--- a/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py
++++ b/opencood/data_utils/datasets/basedataset/dairv2x_basedataset.py
+@@ -64,9 +64,12 @@ class DAIRV2XBaseDataset(Dataset):
+         self.split_info = read_json(split_dir)
+         co_datainfo = read_json(os.path.join(self.root_dir, 'cooperative/data_info_processed_updated.json'))
+         self.co_data = OrderedDict()
++        self.inf_data = OrderedDict()
+         for frame_info in co_datainfo:
+             veh_frame_id = frame_info['vehicle_image_path'].split("/")[-1].replace(".jpg", "")  # 使用vehicle作为帧的ID
++            inf_frame_id = frame_info['infrastructure_image_path'].split("/")[-1].replace(".jpg", "")
+             self.co_data[veh_frame_id] = frame_info
++            self.inf_data[inf_frame_id] = frame_info
+ 
+         if "noise_setting" not in self.params:
+             self.params['noise_setting'] = OrderedDict()
+@@ -76,6 +79,13 @@ class DAIRV2XBaseDataset(Dataset):
+             self.max_time_delay = params["time_delay"] # can only be [0, 1, 2, 3, 4, 5]
+         else:
+             self.max_time_delay = 0
++
++        self.strict_dual_delay = bool(params.get("strict_dual_delay", False))
++        self.ego_time_delay = int(params.get("ego_time_delay", 0))
++        # Keep the LRCP two-agent checkpoint contract: agent 0 is still the
++        # current ego reference, while its delayed point cloud is expressed in
++        # that current ego coordinate using ego odometry.
++        self.align_delayed_ego_to_current = bool(params.get("align_delayed_ego_to_current", True))
+         
+         if "load_history" in self.params and params["load_history"]:
+             self.load_history = True
+@@ -128,11 +138,9 @@ class DAIRV2XBaseDataset(Dataset):
+         data[0]['params'] = OrderedDict()
+         data[1]['params'] = OrderedDict()
+         
+-        # pose of agent 
+-        lidar_to_novatel = read_json(os.path.join(self.root_dir,'vehicle-side/calib/lidar_to_novatel/'+str(veh_frame_id)+'.json'))
+-        novatel_to_world = read_json(os.path.join(self.root_dir,'vehicle-side/calib/novatel_to_world/'+str(veh_frame_id)+'.json'))
+-        transformation_matrix = veh_side_rot_and_trans_to_trasnformation_matrix(lidar_to_novatel, novatel_to_world)
+-        data[0]['params']['lidar_pose'] = tfm_to_pose(transformation_matrix)
++        # pose of agent
++        current_vehicle_tfm = self.load_vehicle_tfm(veh_frame_id)
++        data[0]['params']['lidar_pose'] = tfm_to_pose(current_vehicle_tfm)
+ 
+         inf_frame_id = frame_info['infrastructure_image_path'].split("/")[-1].replace(".jpg", "")
+         virtuallidar_to_world = read_json(os.path.join(self.root_dir,'infrastructure-side/calib/virtuallidar_to_world/'+str(inf_frame_id)+'.json'))
+@@ -162,7 +170,23 @@ class DAIRV2XBaseDataset(Dataset):
+ 
+  
+         if self.load_lidar_file or self.visualize:
+-            data[0]['lidar_np'], _ = pcd_utils.read_pcd(os.path.join(self.root_dir,frame_info["vehicle_pointcloud_path"]))
++            if self.strict_dual_delay and self.ego_time_delay > 0:
++                ego_lidar_np, ego_frame_id = self.load_vehicle_lidar_timeindex(self.ego_time_delay, frame_info)
++                if ego_lidar_np is None:
++                    if self.train:
++                        return self.retrieve_base_data(random.randint(0, len(self.split_info)-1))
++                    else:
++                        return None
++                if self.align_delayed_ego_to_current:
++                    delayed_vehicle_tfm = self.load_vehicle_tfm(ego_frame_id)
++                    ego_lidar_np = self.project_lidar_between_frames(
++                        ego_lidar_np,
++                        delayed_vehicle_tfm,
++                        current_vehicle_tfm,
++                    )
++                data[0]['lidar_np'] = ego_lidar_np
++            else:
++                data[0]['lidar_np'], _ = pcd_utils.read_pcd(os.path.join(self.root_dir,frame_info["vehicle_pointcloud_path"]))
+             data[1]['lidar_np'] = self.load_lidar_timeindex(0, frame_info)
+             
+             if self.load_history:
+@@ -174,6 +198,8 @@ class DAIRV2XBaseDataset(Dataset):
+                         return None
+                 data[1]['lidar_np'] = self.load_lidar_timeindex(time_index, frame_info) # over write lidar_np
+                 data[1]['lidar_np_history'] = [self.load_lidar_timeindex(index, frame_info) for index in history_frame_index_l]
++                data[1]['params_single'] = self.load_inf_params_timeindex(time_index, frame_info)
++                data[1]['params_history'] = [self.load_inf_params_timeindex(index, frame_info) for index in history_frame_index_l]
+                 data[1]['time_delay'] = time_index * 100
+                 offset_path = os.path.join(self.root_dir, 'offset_maps_fix_flip', 'offset_'+veh_frame_id+'.npy')
+                 offset_map = torch.from_numpy(np.load(offset_path))   
+@@ -197,13 +223,63 @@ class DAIRV2XBaseDataset(Dataset):
+                                 'infrastructure-side/label/virtuallidar/{}.json'.format(inf_frame_id)))
+         return data
+     
+-    @staticmethod
+-    def is_frame_exits(index, frame_info):
++    def is_frame_exits(self, index, frame_info):
+         if index == 0:
+-            return True
+-        if frame_info["previous_inf_"+str(index)] is not None:
+-            return True
+-        return False
++            return os.path.exists(os.path.join(self.root_dir, frame_info["infrastructure_pointcloud_path"]))
++        prev = frame_info["previous_inf_"+str(index)]
++        if prev is None:
++            return False
++        return os.path.exists(os.path.join(self.root_dir, prev[0]))
++
++    def get_vehid_with_timeindex(self, time_index, frame_info):
++        if time_index == 0:
++            return frame_info["vehicle_pointcloud_path"].split("/")[-1].replace(".pcd", "")
++        prev_key = "previous_veh_" + str(time_index)
++        if prev_key in frame_info and frame_info[prev_key] is not None:
++            prev = frame_info[prev_key]
++            if isinstance(prev, list):
++                prev = prev[0]
++            return prev.split("/")[-1].replace(".pcd", "")
++        veh_id = frame_info["vehicle_pointcloud_path"].split("/")[-1].replace(".pcd", "")
++        try:
++            return str(int(veh_id) - int(time_index)).zfill(len(veh_id))
++        except ValueError:
++            return None
++
++    def is_vehicle_frame_exists(self, index, frame_info):
++        veh_id = self.get_vehid_with_timeindex(index, frame_info)
++        if veh_id is None:
++            return False
++        required = [
++            os.path.join(self.root_dir, "vehicle-side/velodyne/" + str(veh_id) + ".pcd"),
++            os.path.join(self.root_dir, "vehicle-side/calib/lidar_to_novatel/" + str(veh_id) + ".json"),
++            os.path.join(self.root_dir, "vehicle-side/calib/novatel_to_world/" + str(veh_id) + ".json"),
++        ]
++        return all(os.path.exists(path) for path in required)
++
++    def load_vehicle_lidar_timeindex(self, time_index, frame_info):
++        if not self.is_vehicle_frame_exists(time_index, frame_info):
++            return None, None
++        veh_id = self.get_vehid_with_timeindex(time_index, frame_info)
++        lidar_np, _ = pcd_utils.read_pcd(os.path.join(self.root_dir, "vehicle-side/velodyne/" + str(veh_id) + ".pcd"))
++        return lidar_np, veh_id
++
++    def load_vehicle_tfm(self, veh_id):
++        lidar_to_novatel = read_json(os.path.join(self.root_dir, "vehicle-side/calib/lidar_to_novatel/" + str(veh_id) + ".json"))
++        novatel_to_world = read_json(os.path.join(self.root_dir, "vehicle-side/calib/novatel_to_world/" + str(veh_id) + ".json"))
++        return veh_side_rot_and_trans_to_trasnformation_matrix(lidar_to_novatel, novatel_to_world)
++
++    def project_lidar_between_frames(self, lidar_np, source_tfm, reference_tfm):
++        if lidar_np is None:
++            return None
++        transform = np.linalg.solve(reference_tfm, source_tfm)
++        lidar_projected = lidar_np.copy()
++        xyz1 = np.concatenate(
++            [lidar_projected[:, :3], np.ones((lidar_projected.shape[0], 1), dtype=lidar_projected.dtype)],
++            axis=1,
++        )
++        lidar_projected[:, :3] = np.dot(xyz1, transform.T)[:, :3]
++        return lidar_projected
+     
+     def get_infid_with_timeindex(self, time_index, frame_info):
+         if time_index == 0:
+@@ -221,6 +297,18 @@ class DAIRV2XBaseDataset(Dataset):
+             lidar_np, _ = \
+                     pcd_utils.read_pcd(os.path.join(self.root_dir,frame_info["previous_inf_"+str(time_index)][0]))
+         return lidar_np
++
++    def load_inf_params_timeindex(self, time_index, frame_info):
++        inf_id = self.get_infid_with_timeindex(time_index, frame_info)
++        hist_frame_info = self.inf_data.get(inf_id, frame_info)
++        virtuallidar_to_world = read_json(os.path.join(self.root_dir, 'infrastructure-side/calib/virtuallidar_to_world/' + str(inf_id) + '.json'))
++        transformation_matrix = inf_side_rot_and_trans_to_trasnformation_matrix(
++            virtuallidar_to_world,
++            hist_frame_info["system_error_offset"],
++        )
++        params = OrderedDict()
++        params['lidar_pose'] = tfm_to_pose(transformation_matrix)
++        return params
+     
+     def frame_select(self, frame_info):
+         # return a list of Ids 
+@@ -329,4 +417,4 @@ class DAIRV2XBaseDataset(Dataset):
+         object_bbx_mask = tmp_dict['object_bbx_mask']
+ 
+         return lidar_np, object_bbx_center, object_bbx_mask
+-    
+\ No newline at end of file
++    
+diff --git a/opencood/data_utils/datasets/intermediate_latency_fusion_dataset.py b/opencood/data_utils/datasets/intermediate_latency_fusion_dataset.py
+index 32dd7c2..ee61ff6 100644
+--- a/opencood/data_utils/datasets/intermediate_latency_fusion_dataset.py
++++ b/opencood/data_utils/datasets/intermediate_latency_fusion_dataset.py
+@@ -544,9 +544,10 @@ def getIntermediatelatencyFusionDataset(cls):
+                 # For no ego agent, history frames; we need to do padding 
+                 for cav_id, agent_dict in batch[i].items():
+                     if cav_id != 'ego':
+-                       no_ego_info_dcit[cav_id]['offset'].append(agent_dict['offset'])
+-                       no_ego_info_dcit[cav_id]['time_delay'].append(agent_dict['time_delay'])  # 不同batch有的agent数量，不一样怎么处理； V2X-sim天然是dynamic的
+-                       no_ego_info_dcit[cav_id]['lidar_history'].append(agent_dict['processed_lidar_history'])
++                       cav_key = str(cav_id)
++                       no_ego_info_dcit[cav_key]['offset'].append(agent_dict['offset'])
++                       no_ego_info_dcit[cav_key]['time_delay'].append(agent_dict['time_delay'])  # 不同batch有的agent数量，不一样怎么处理； V2X-sim天然是dynamic的
++                       no_ego_info_dcit[cav_key]['lidar_history'].append(agent_dict['processed_lidar_history'])
+                 # for cav_id in range(1, self.max_cav):
+                 #     if cav_id not in batch[i]: # do padding
+                 #         offset_ = torch.zeros(1, self.bev_h, self.bev_w, 2)
+@@ -706,4 +707,3 @@ def getIntermediatelatencyFusionDataset(cls):
+ 
+     return IntermediateFusionDataset
+ 
+-
+diff --git a/opencood/data_utils/pre_processor/sp_voxel_preprocessor.py b/opencood/data_utils/pre_processor/sp_voxel_preprocessor.py
+index 13dd315..f1309ea 100644
+--- a/opencood/data_utils/pre_processor/sp_voxel_preprocessor.py
++++ b/opencood/data_utils/pre_processor/sp_voxel_preprocessor.py
+@@ -22,7 +22,27 @@ class SpVoxelPreprocessor(BasePreprocessor):
+         try:
+             from spconv.utils import VoxelGeneratorV2 as VoxelGenerator
+         except:
+-            from spconv.utils import VoxelGenerator
++            try:
++                from spconv.utils import VoxelGenerator
++            except ImportError:
++                from spconv.utils import Point2VoxelCPU3d
++                import cumm.tensorview as tv
++
++                class VoxelGenerator:
++                    def __init__(self, voxel_size, point_cloud_range, max_num_points, max_voxels):
++                        self.generator = Point2VoxelCPU3d(
++                            vsize_xyz=voxel_size,
++                            coors_range_xyz=point_cloud_range,
++                            num_point_features=4,
++                            max_num_voxels=max_voxels,
++                            max_num_points_per_voxel=max_num_points,
++                        )
++
++                    def generate(self, points):
++                        voxels, coordinates, num_points = self.generator.point_to_voxel(
++                            tv.from_numpy(points.astype(np.float32, copy=False))
++                        )
++                        return voxels.numpy(), coordinates.numpy(), num_points.numpy()
+ 
+         self.lidar_range = self.params['cav_lidar_range']
+         self.voxel_size = self.params['args']['voxel_size']
+diff --git a/opencood/models/meta_flow.py b/opencood/models/meta_flow.py
+index 5967a62..b9da7c4 100644
+--- a/opencood/models/meta_flow.py
++++ b/opencood/models/meta_flow.py
+@@ -116,8 +116,8 @@ class MetaFlow(nn.Module):
+         super().__init__()
+         self.encoder = CNNBackbone(args['backbone'])
+ 
+-        self.bev_h = 100
+-        self.bev_w = 252
++        self.bev_h = args.get('bev_h', 100)
++        self.bev_w = args.get('bev_w', 252)
+ 
+         embed_dims = args['embed_dims']
+ 
+@@ -205,4 +205,4 @@ class MetaFlow(nn.Module):
+         x = self.classifier(bev_queries)
+         x = x.view(B, H, W, 2)
+         return x
+-   
+\ No newline at end of file
++   
+diff --git a/opencood/utils/ms_deform_attn_ops/functions/ms_deform_attn_func.py b/opencood/utils/ms_deform_attn_ops/functions/ms_deform_attn_func.py
+index 8c5df8c..bf2f172 100644
+--- a/opencood/utils/ms_deform_attn_ops/functions/ms_deform_attn_func.py
++++ b/opencood/utils/ms_deform_attn_ops/functions/ms_deform_attn_func.py
+@@ -12,9 +12,12 @@ from __future__ import division
+ 
+ import torch
+ import torch.nn.functional as F
++import sys
+ from torch.autograd import Function
+ from torch.autograd.function import once_differentiable
++from pathlib import Path
+ 
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+ import MultiScaleDeformableAttention as MSDA
+ 
+ 
+diff --git a/opencood/utils/transformation_utils.py b/opencood/utils/transformation_utils.py
+index a144091..5b237c6 100644
+--- a/opencood/utils/transformation_utils.py
++++ b/opencood/utils/transformation_utils.py
+@@ -88,7 +88,11 @@ def get_pairwise_transformation_with_history(base_data_dict, max_cav, time_index
+         shape: (L, L, 4, 4), L is the max cav number in a scene
+         pairwise_t_matrix[i, j] is Tji, i_to_j
+     """
+-    pairwise_t_matrix = np.tile(np.eye(4), (max_cav, time_index+1, 1, 1)) # (L, T, 4, 4)
++    history_len = max(
++        [len(cav_content.get('params_history', [])) for cav_content in base_data_dict.values()
++         if not cav_content['ego']] + [time_index + 1]
++    )
++    pairwise_t_matrix = np.tile(np.eye(4), (max_cav, history_len, 1, 1)) # (L, T, 4, 4)
+ 
+     if proj_first:
+         # if lidar projected to ego first, then the pairwise matrix
+@@ -556,4 +560,4 @@ def test():
+     print(tfm2)
+ 
+ if __name__ == "__main__":
+-    test()
+\ No newline at end of file
++    test()
