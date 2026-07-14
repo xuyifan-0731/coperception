@@ -316,4 +316,6 @@ ALL,ALL,packaging,excluded_cache_manifest,generated,MANIFEST_EXCLUDED_LARGE_CACH
 ALL,ALL,packaging,missing_manifest,generated,MANIFEST_MISSING.csv,73,4c0f4e3df5d1d80c5d4a0180efd05fb6c3a4cdca2c79232a9fce2f37ef464806,Files requested by packaging list but missing locally.
 ALL,ALL,packaging,split_checkpoint_manifest,generated,CHECKPOINT_SPLIT_MANIFEST.csv,8204,2870d8ef79e283bad014b0630d66248449bc9f46524fe4c80a6b034f4c6d43b5,Mapping from split parts to original checkpoint files.
 ALL,ALL,packaging,restore_script,generated,restore_split_checkpoints.py,1650,bd6a1bcdabfb1730db844a435dabd520cc12ff6a6920a0addb6aa90d9ac44c11,Reconstructs split checkpoint files and verifies SHA256.
-ALL,ALL,packaging,package_readme,generated,README.md,1457,73819174249cb2e8af8737678ce3f7b5ec47c31c3a40f42dbd44496298520020,Package description.
+ALL,ALL,documentation,documentation,/raid/xuyifan/v2x_code_ckpt/docs/260704_EXTERNAL_RESOURCES.md,00_docs/260704_EXTERNAL_RESOURCES.md,14676,ca7f5be737e4f9f23791aa2c70bd45b5e5e58e65d79558e78850e716a4f66859,"External public resources, checkpoints, environments, and missing conditions."
+ALL,ALL,documentation,documentation,/raid/xuyifan/v2x_code_ckpt/docs/260704_RUNBOOK.md,00_docs/260704_RUNBOOK.md,19398,1987a596438825e28707f1d47f6f94d5d7fb29c11c880078eb70a8402c91fedd,Command-level reproduction runbook.
+ALL,ALL,documentation,package_readme,generated,README.md,1744,a1aa30bf0ca17e9b7814099e3ed22d606f5e8b7ed0aa88a014fd189144559a99,Package description.

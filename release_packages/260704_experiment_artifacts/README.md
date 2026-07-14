@@ -18,3 +18,8 @@ Large intermediate caches are intentionally not included. See `MANIFEST_EXCLUDED
 The DAIR-V2X-C TraF-Align compatibility smoke directory is also not copied in full; only its two debug CSV files are retained because it is not a formal 260704 result.
 
 Checkpoint files larger than 45MB are split into `*.split/*.partNNN` files for plain GitHub upload without Git LFS. Run `python restore_split_checkpoints.py` from this package root to reconstruct the exact original checkpoint files; original sizes and SHA256 hashes are recorded in `CHECKPOINT_SPLIT_MANIFEST.csv`.
+
+Additional reproduction documentation:
+
+- `00_docs/260704_EXTERNAL_RESOURCES.md`: public datasets, external baseline code/checkpoints, environment requirements, and missing conditions.
+- `00_docs/260704_RUNBOOK.md`: command-level runbook organized by dataset, baseline, and experiment.
