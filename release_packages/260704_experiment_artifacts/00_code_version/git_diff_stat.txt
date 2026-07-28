@@ -1,38 +1,156 @@
-warning: CRLF will be replaced by LF in results/dair_v2x/official_baselines/summary_partial.csv.
-The file will have its original line endings in your working directory
- ...233\256\345\211\215\350\277\233\345\272\246.md" | 2680 ++++++++++++++++++++
- "260615\347\273\223\346\236\234.md"                |  215 +-
- checkpoints/curated/README.md                      |   69 +-
- .../dair_v2x/mst_ablation/baseline_ckpt_16000.pth  |  Bin 346359 -> 0 bytes
- .../mst_ablation/bottleneck12_ckpt_16000.pth       |  Bin 275637 -> 0 bytes
- .../dair_v2x/mst_ablation/ds64_fp16_ckpt_16000.pth |  Bin 271285 -> 0 bytes
- .../dair_v2x/mst_ablation/gru_fp16_ckpt_16000.pth  |  Bin 271285 -> 0 bytes
- .../dair_v2x/sensitivity/T10_n15_ckpt_29000.pth    |  Bin 346295 -> 0 bytes
- .../dair_v2x/sensitivity/T10_n3_ckpt_16000.pth     |  Bin 346295 -> 0 bytes
- .../dair_v2x/sensitivity/T20_n5_ckpt_28000.pth     |  Bin 346295 -> 0 bytes
- .../dair_v2x/sensitivity/T30_n5_ckpt_52000.pth     |  Bin 346295 -> 0 bytes
- .../dair_v2x/sensitivity/T5_n5_ckpt_16000.pth      |  Bin 346295 -> 0 bytes
- .../curated/v2xsim/ablation1/A_ckpt_13000.pth      |  Bin 346295 -> 0 bytes
- .../curated/v2xsim/ablation1/B_ckpt_13000.pth      |  Bin 366069 -> 0 bytes
- .../v2xsim/ablation1/C_final_ckpt_13000.pth        |  Bin 366069 -> 0 bytes
- .../curated/v2xsim/ablation1/D_ckpt_13000.pth      |  Bin 366069 -> 0 bytes
- .../curated/v2xsim/ablation2/A1_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
- .../curated/v2xsim/ablation2/A2_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
- .../v2xsim/ablation2/A3_nearest_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
- .../curated/v2xsim/ablation2/A4_ckpt_13000.pth     |  Bin 346295 -> 0 bytes
- .../v2xsim/ablation2/ABaseline_ckpt_13000.pth      |  Bin 346295 -> 0 bytes
- .../curated/v2xsim/all_agents/ckpt_38000.pth       |  Bin 346295 -> 0 bytes
- .../leave_one_out/agent1_best_ckpt_27000.pth       |  Bin 366069 -> 0 bytes
- .../leave_one_out/agent2_best_ckpt_33000_h.pth     |  Bin 366069 -> 0 bytes
- .../leave_one_out/agent3_best_ckpt_35000_h.pth     |  Bin 366069 -> 0 bytes
- .../leave_one_out/agent4_best_ckpt_33000_h.pth     |  Bin 366069 -> 0 bytes
- .../leave_one_out/agent5_best_ckpt_44000_h.pth     |  Bin 366069 -> 0 bytes
- results/260615_fill/missing_cells.csv              |  596 -----
- results/260615_fill/status.json                    |  101 +-
- .../official_baselines/summary_partial.csv         |   28 +
- results/dair_v2x/tables/dair_revision_tables.tex   |   25 +
- .../dair_v2x/tables/official_baselines_table.csv   |   28 +
- results/summary/checkpoint_manifest.csv            |   44 +-
- scripts/fill_260615_results.py                     |  676 ++++-
- scripts/restore_curated_checkpoints.sh             |   68 +-
- 35 files changed, 3636 insertions(+), 894 deletions(-)
+ "260704\347\273\223\346\236\234.md"                |  771 +++++++
+ README.md                                          |    6 +
+ docs/260704_GITHUB_SYNC_AUDIT.md                   |   90 +
+ .../scripts/run_dair_data_joint_delay_comp.py      |  109 +-
+ .../scripts/run_trafalign_dair_v2x_seq_eval.py     |   22 +-
+ .../scripts/run_v2xsim_data_joint_delay_comp.py    |   89 +-
+ .../scripts/train_trafalign_joint_delay_comp.py    |   86 +-
+ .../scripts/update_260704_comp135_tables.py        |  249 ++
+ .../00_code_version/git_diff_stat.txt              |   18 +-
+ .../00_code_version/git_head.txt                   |    2 +-
+ .../00_code_version/git_status_short.txt           |  150 +-
+ .../00_code_version/git_tracked_files.txt          |  350 +++
+ .../00_code_version/working_tree_diff.patch        | 2417 +++++++++++++++++++-
+ .../00_docs/260704_GITHUB_SYNC_AUDIT.md            |   90 +
+ .../00_docs/260704_REPRODUCIBILITY_AUDIT.md        |  183 ++
+ .../00_docs/260704_experiment_results.docx         |  Bin 53055 -> 50844 bytes
+ .../00_docs/260704_referenced_artifact_audit.csv   |  159 ++
+ .../00_docs/260704_results.md                      |  712 ++++--
+ .../DATA/results/data_v2xsim_latency_ap.csv        |   36 +-
+ ...2xsim_data_compensation_ap_comp135_20260716.csv |   37 +
+ ...m_joint_delay_comp_scale01_comp135_20260716.csv |   19 +
+ ...am_head_lowcomp_weighted_lr1e5_1500.pth.part000 |  Bin 0 -> 41943040 bytes
+ ...am_head_lowcomp_weighted_lr1e5_1500.pth.part001 |  Bin 0 -> 14374223 bytes
+ ...d_lowcomp_weighted_lr1e5_1500.train_metrics.csv |   17 +
+ ..._comp_unfreeze_ifam_head_lr1e5_1500.pth.part000 |  Bin 0 -> 41943040 bytes
+ ..._comp_unfreeze_ifam_head_lr1e5_1500.pth.part001 |  Bin 0 -> 14374223 bytes
+ ...unfreeze_ifam_head_lr1e5_1500.train_metrics.csv |   17 +
+ ..._box_latefusion_fair_oldrf_comp135_20260716.csv |   19 +
+ ...tefusion_fair_rf_trainonly_comp135_20260716.csv |   37 +
+ ...a_ifam_feature_t10n10_ours_comp135_20260716.csv |   19 +
+ ...data_ifam_joint_delay_comp_comp135_20260716.csv |   19 +
+ ...lay_comp_delayaware_bypass_comp0_1_20260716.csv |   37 +
+ ...fam_joint_delay_comp_scale05_comp1_20260716.csv |    7 +
+ ...elay_comp_unfreeze_ifam_head_lr1e5_20260716.csv |   37 +
+ ..._unfreeze_ifam_head_lr1e5_keycells_20260716.csv |    9 +
+ ...y_comp_unfreeze_weighted_comp1_key_20260716.csv |    7 +
+ ...ay_comp_unfreeze_weighted_otherkey_20260716.csv |    7 +
+ ..._assist_trainonly_keycells_comp135_20260716.csv |    7 +
+ ...trict_dual_delay_none_ours_comp135_20260716.csv |   37 +
+ .../LRCP/results/dair_lrcp_latency_ap.csv          |   20 +
+ ...ir_detector_no_comp_strict_comp135_20260716.csv |   19 +
+ ...story2_rf_trainonly_strict_comp135_20260716.csv |   19 +
+ ...ector_tclf_receiver_strict_comp135_20260716.csv |   19 +
+ ...late_fusion_no_comp_strict_comp135_20260716.csv |   19 +
+ ...story2_rf_trainonly_strict_comp135_20260716.csv |   19 +
+ ...usion_tclf_receiver_strict_comp135_20260716.csv |   19 +
+ .../config.yaml                                    |  281 +++
+ .../net_epoch1.pth.split/net_epoch1.pth.part000    |  Bin 0 -> 41943040 bytes
+ .../net_epoch1.pth.split/net_epoch1.pth.part001    |  Bin 0 -> 12729545 bytes
+ .../train_metrics.csv                              |   52 +
+ .../config.yaml                                    |  281 +++
+ .../net_epoch1.pth.split/net_epoch1.pth.part000    |  Bin 0 -> 41943040 bytes
+ .../net_epoch1.pth.split/net_epoch1.pth.part001    |  Bin 0 -> 12729545 bytes
+ .../train_metrics.csv                              |   12 +
+ .../config.yaml                                    |  281 +++
+ .../net_epoch1.pth.split/net_epoch1.pth.part000    |  Bin 0 -> 41943040 bytes
+ .../net_epoch1.pth.split/net_epoch1.pth.part001    |  Bin 0 -> 12729545 bytes
+ .../train_metrics.csv                              |   17 +
+ .../config.yaml                                    |  281 +++
+ .../net_epoch1.pth.split/net_epoch1.pth.part000    |  Bin 0 -> 41943040 bytes
+ .../net_epoch1.pth.split/net_epoch1.pth.part001    |  Bin 0 -> 12729545 bytes
+ .../train_metrics.csv                              |   12 +
+ .../config.yaml                                    |  281 +++
+ .../net_epoch1.pth.split/net_epoch1.pth.part000    |  Bin 0 -> 41943040 bytes
+ .../net_epoch1.pth.split/net_epoch1.pth.part001    |  Bin 0 -> 12729545 bytes
+ .../train_metrics.csv                              |   17 +
+ .../results/download_status_20260710_111249.json   |   10 +
+ .../results/download_status_insecure_20260708.json |   10 +
+ .../trafalign_baseline_comp1_spconv2121.csv        |    7 +
+ .../trafalign_baseline_comp3_spconv2121.csv        |    7 +
+ .../trafalign_baseline_comp5_spconv2121.csv        |    7 +
+ .../TraF-Align/results/trafalign_comp2_smoke.csv   |    2 +
+ ...y_comp_adaptive_bypass_comp0_3_4_5_20260716.csv |   37 +
+ ...lay_comp_adaptive_bypass_comp0_4_5_20260716.csv |   37 +
+ ...y_comp_comp2_adaptive_comp4_bypass_20260714.csv |   13 +
+ .../trafalign_joint_delay_comp_key_comp0.csv       |    2 +
+ ...lay_comp_only_adaptive2to4_comp1_spconv2121.csv |    7 +
+ ...lay_comp_only_adaptive2to4_comp3_spconv2121.csv |    7 +
+ ...lay_comp_only_adaptive2to4_comp5_spconv2121.csv |    7 +
+ ...elay_comp_only_adaptive2to4_key_comp2_comm0.csv |    2 +
+ ...elay_comp_only_adaptive2to4_key_comp2_comm5.csv |    2 +
+ ...elay_comp_only_adaptive2to4_key_comp4_comm5.csv |    2 +
+ ...p_only_adaptive2to4_min005_comp2_spconv2121.csv |    7 +
+ ...p_only_adaptive2to4_min005_comp4_spconv2121.csv |    7 +
+ ...nt_delay_comp_only_adaptive_key_comp2_comm0.csv |    2 +
+ ...nt_delay_comp_only_adaptive_key_comp4_comm5.csv |    2 +
+ ...lign_joint_delay_comp_only_comp1_spconv2121.csv |    7 +
+ ..._comp_only_comp2_4_targeted_key_comp2_comm0.csv |    2 +
+ ..._comp_only_comp2_4_targeted_key_comp4_comm5.csv |    2 +
+ ...lign_joint_delay_comp_only_comp3_spconv2121.csv |    7 +
+ ...lign_joint_delay_comp_only_comp5_spconv2121.csv |    7 +
+ .../trafalign_joint_delay_comp_only_key_comp0.csv  |    2 +
+ ...align_joint_delay_comp_only_key_comp2_comm0.csv |    2 +
+ ...align_joint_delay_comp_only_key_comp4_comm5.csv |    2 +
+ ...int_delay_comp_only_scale01_key_comp2_comm0.csv |    2 +
+ ...int_delay_comp_only_scale01_key_comp4_comm5.csv |    2 +
+ ...int_delay_comp_only_scale02_key_comp2_comm0.csv |    2 +
+ ...int_delay_comp_only_scale02_key_comp4_comm5.csv |    2 +
+ .../trafalign_joint_delay_comp_smoke_eval.csv      |    2 +
+ .../results/trafalign_official_check_0_400ms.csv   |    3 +
+ ...falign_ours_t10n10_comp1_spconv2121_comp135.csv |    7 +
+ ...falign_ours_t10n10_comp3_spconv2121_comp135.csv |    7 +
+ ...falign_ours_t10n10_comp5_spconv2121_comp135.csv |    7 +
+ ...rafalign_ours_t10n10_missing_comp0_delay500.csv |    2 +
+ ...rafalign_ours_t10n10_missing_comp2_delay700.csv |    2 +
+ ...rafalign_ours_t10n10_missing_comp4_delay800.csv |    2 +
+ ...rafalign_ours_t10n10_missing_comp4_delay900.csv |    2 +
+ .../TraF-Align/results/trafalign_sanity_0ms_2b.csv |    2 +
+ ...ield_offset_gate06_key_comp0_comm0_20260722.csv |    2 +
+ ...eeze_field_offset_gate06_key_comp2_20260722.csv |    3 +
+ ...eeze_field_offset_gate06_key_comp4_20260722.csv |    3 +
+ ...reeze_field_offset_key_comp0_comm0_20260722.csv |    2 +
+ ...gn_unfreeze_field_offset_key_comp2_20260722.csv |    3 +
+ ...gn_unfreeze_field_offset_key_comp4_20260722.csv |    3 +
+ ...e_fusion_tail_head_key_comp0_comm0_20260722.csv |    2 +
+ ...e_tail_head_gate06_key_comp0_comm0_20260722.csv |    2 +
+ ...unfreeze_tail_head_key_comp0_comm0_20260722.csv |    2 +
+ ...align_unfreeze_tail_head_key_comp2_20260722.csv |    3 +
+ ...align_unfreeze_tail_head_key_comp4_20260722.csv |    3 +
+ ...nfreeze_traj_align_key_comp0_comm0_20260722.csv |    2 +
+ .../CHECKPOINT_SPLIT_MANIFEST.csv                  |   19 +-
+ .../260704_experiment_artifacts/MANIFEST.csv       |  794 ++++---
+ .../MANIFEST_EXCLUDED_LARGE_CACHE.csv              |   12 +-
+ .../MANIFEST_MISSING.csv                           |    7 +-
+ .../260704_experiment_artifacts/README.md          |    3 +
+ .../materialize_runtime_paths.py                   |  143 ++
+ .../summary/260704_referenced_artifact_audit.csv   |  159 ++
+ scripts/download_dair_v2x_seq_hf_mirror_parts.sh   |   57 +
+ scripts/download_dair_v2x_seq_spd.py               |  162 ++
+ scripts/extract_dair_v2x_seq_spd_parts.sh          |  167 ++
+ scripts/generate_dair_lrcp_flow_offsets.py         |  260 +++
+ scripts/monitor_dair_v2x_seq_download.sh           |  135 ++
+ scripts/prepare_dair_lrcp_inputs.py                |  154 ++
+ scripts/prepare_trafalign_dair_compat.py           |  291 +++
+ scripts/run_dair_data_feature_t10n10_comp.py       |  830 +++++++
+ scripts/run_dair_data_hybrid_rf_assist.py          |  390 ++++
+ scripts/run_dair_data_joint_delay_comp.py          |  537 +++++
+ scripts/run_dair_data_rf_ours_box_comp_grid.py     |  701 ++++++
+ scripts/run_dair_data_strict_dual_delay_grid.py    |  295 +++
+ scripts/run_dair_late_fusion_comp_grid.py          |  283 +++
+ scripts/run_dair_lrcp_latency_grid.py              |  357 +++
+ .../run_dair_lrcp_strict_dual_delay_parallel.py    |  175 ++
+ scripts/run_dair_strict_dual_delay_grid.py         |  281 +++
+ scripts/run_data_v2xsim_compensation_grid.py       |  202 ++
+ scripts/run_trafalign_dair_compat_eval.py          |  197 ++
+ scripts/run_trafalign_dair_v2x_seq_eval.py         |  446 ++++
+ scripts/run_v2xsim_data_joint_delay_comp.py        |  531 +++++
+ scripts/smoke_dair_lrcp_dataset.py                 |   67 +
+ scripts/smoke_dair_lrcp_forward.py                 |   66 +
+ scripts/train_dair_history_motion_compensator.py   |  493 ++++
+ scripts/train_dair_motion_compensator.py           |  458 ++++
+ .../train_trafalign_feature_t10n10_predictor.py    |  369 +++
+ scripts/train_trafalign_joint_delay_comp.py        |  394 ++++
+ scripts/update_260704_comp135_tables.py            |  249 ++
+ scripts/update_260704_dair_tables.py               |  106 +
+ 155 files changed, 16943 insertions(+), 649 deletions(-)

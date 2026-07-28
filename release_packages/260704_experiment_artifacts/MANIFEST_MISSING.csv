@@ -1,1 +1,6 @@
-source_path,intended_package_path,dataset,baseline,experiment,role,note
+item,status,resolution
+V2X-Sim 2.0 raw dataset,not uploaded,download from public source listed in 260704_EXTERNAL_RESOURCES.md
+DAIR-V2X-C raw dataset,not uploaded,download from public source listed in 260704_EXTERNAL_RESOURCES.md
+DAIR-V2X-Seq/SPD raw dataset,not uploaded,download from public source listed in 260704_EXTERNAL_RESOURCES.md
+V2X-Sim info pkl files,not uploaded,regenerate locally; summary is in 00_reproduction_assets/dataset_info/v2xsim2_info/summary.json
+full conda/pip lockfiles,partial,requirements/env refs are uploaded; exact lock should be captured on target machine

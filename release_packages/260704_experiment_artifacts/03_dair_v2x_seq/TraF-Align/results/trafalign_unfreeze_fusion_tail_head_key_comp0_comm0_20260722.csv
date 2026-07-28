@@ -1,0 +1,2 @@
+dataset,method,split,delay_ms,delay_ego_ms,samples,AP@0.5,AP@0.7,notes
+DAIR-V2X-Seq/SPD,TraF-Align + Ours unfreeze fusion-tail/head,test,0,0,3316,75.23,56.73,"checkpoint=checkpoints/curated/ours_models/trafalign_joint_unfreeze_fusion_tail_head_20260722; epoch=1; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"

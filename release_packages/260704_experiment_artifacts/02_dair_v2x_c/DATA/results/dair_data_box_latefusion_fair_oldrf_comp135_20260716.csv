@@ -1,0 +1,19 @@
+dataset,method,comp_delay,comm_delay,ap30,ap50,ap70,skipped,total,rf_model
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,1,0,52.8430,37.3469,14.5404,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,1,1,51.9183,36.0681,13.8067,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,1,2,51.1835,34.8340,13.4087,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,1,3,50.2409,34.1458,13.1012,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,1,4,49.5296,33.5983,12.8346,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,1,5,49.0774,33.2044,12.6791,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,3,0,44.3126,27.1202,8.6411,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,3,1,43.2498,26.4130,8.3478,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,3,2,42.4797,25.8277,8.0954,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,3,3,41.9003,25.4488,7.9655,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,3,4,41.4566,25.1056,7.8262,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,3,5,41.2121,24.8843,7.7536,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,5,0,33.2950,18.5649,5.7298,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,5,1,32.6683,18.1847,5.5993,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,5,2,32.2261,17.8772,5.4853,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,5,3,31.9776,17.7005,5.4275,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,5,4,31.6913,17.4505,5.3353,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl
+DAIR-V2X-C,DATA box late-fusion + Ours RF 2f,5,5,31.3956,17.1918,5.2124,0,1783,/raid/xuyifan/v2x_code_ckpt/checkpoints/curated/ours_models/dair_v2x_late_fusion_rf2_ours.pkl

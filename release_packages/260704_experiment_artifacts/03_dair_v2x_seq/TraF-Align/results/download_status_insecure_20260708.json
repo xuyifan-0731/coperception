@@ -1,0 +1,10 @@
+{
+  "updated_at": "2026-07-08T09:35:51Z",
+  "folder_url": "https://drive.google.com/drive/folders/1gnrw5llXAIxuB9sEKKCm6xTaJ5HQAw2e?usp=sharing",
+  "out_dir": "/raid/xuyifan/v2x_code_ckpt/datasets/DAIR-V2X-Seq",
+  "proxy": "http://127.0.0.1:18889",
+  "listed_files": [],
+  "selected_files": [],
+  "downloaded": [],
+  "error": "SSLError: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /embeddedfolderview?id=1gnrw5llXAIxuB9sEKKCm6xTaJ5HQAw2e (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+}

@@ -1,0 +1,7 @@
+dataset,method,split,delay_ms,delay_ego_ms,samples,AP@0.5,AP@0.7,notes
+DAIR-V2X-Seq/SPD,TraF-Align,test,300,300,3316,27.74,12.70,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align,test,400,300,3316,26.96,12.42,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align,test,500,300,3316,26.17,12.05,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align,test,600,300,3316,25.35,11.67,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align,test,700,300,3316,24.55,11.31,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
+DAIR-V2X-Seq/SPD,TraF-Align,test,800,300,3316,23.94,10.96,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"

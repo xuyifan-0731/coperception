@@ -20,26 +20,29 @@ release_packages/260704_experiment_artifacts/
 
 ### 新人阅读顺序
 
-1. `release_packages/260704_experiment_artifacts/00_docs/260704_ARTIFACT_INDEX.md`  
+1. `release_packages/260704_experiment_artifacts/00_docs/260704_ARTIFACT_INDEX.md`
    先看整体目录结构、每个文件夹的含义、哪些内容已经上传、哪些内容没有上传。
 
-2. `release_packages/260704_experiment_artifacts/00_docs/260704_REPRODUCTION_CHECKLIST.md`  
+2. `release_packages/260704_experiment_artifacts/00_docs/260704_REPRODUCTION_CHECKLIST.md`
    按步骤准备复现环境，包括数据集下载、external baseline 克隆、patch 应用、split 文件放置、checkpoint 恢复。
 
-3. `release_packages/260704_experiment_artifacts/00_docs/260704_results.md`  
+3. `release_packages/260704_experiment_artifacts/00_docs/260704_results.md`
    查看最终实验结果。
 
-4. `release_packages/260704_experiment_artifacts/00_docs/260704_EXTERNAL_RESOURCES.md`  
+4. `release_packages/260704_experiment_artifacts/00_docs/260704_EXTERNAL_RESOURCES.md`
    查看公开数据集地址、外部 baseline 代码地址、外部 checkpoint 状态、环境要求和仍然缺失的条件。
 
-5. `release_packages/260704_experiment_artifacts/00_reproduction_assets/README.md`  
+5. `release_packages/260704_experiment_artifacts/00_reproduction_assets/README.md`
    查看本仓库已经补充的小型复现材料，包括外部代码 patch、split 文件、环境 requirements 参考和 V2X-Sim info summary。
 
-6. `release_packages/260704_experiment_artifacts/00_docs/260704_RUNBOOK.md`  
+6. `release_packages/260704_experiment_artifacts/00_docs/260704_RUNBOOK.md`
    按数据集和 baseline 找具体训练、测试、评估命令。
 
-7. `release_packages/260704_experiment_artifacts/MANIFEST.csv`  
+7. `release_packages/260704_experiment_artifacts/MANIFEST.csv`
    校验每个上传文件的位置、大小和 SHA256。
+
+8. `release_packages/260704_experiment_artifacts/00_docs/260704_GITHUB_SYNC_AUDIT.md`
+   查看本轮 GitHub 同步核查：哪些 checkpoint、结果 CSV、脚本和配置已经补齐，哪些大型 cache/原始数据没有上传以及如何重建。
 
 ### 快速定位
 
@@ -72,7 +75,10 @@ release_packages/260704_experiment_artifacts/
 ```bash
 cd release_packages/260704_experiment_artifacts
 python restore_split_checkpoints.py
+python materialize_runtime_paths.py --repo-root /path/to/coperception --traf-root /tmp/TraF-Align_partial --mode symlink
 ```
+
+`restore_split_checkpoints.py` 只在归档包内恢复 checkpoint；`materialize_runtime_paths.py` 会把这些 checkpoint/config 软链接或复制到训练、测试脚本默认查找的历史路径。
 
 ### 260704 实验包主目录
 

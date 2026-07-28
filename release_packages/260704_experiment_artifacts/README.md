@@ -20,10 +20,13 @@ The DAIR-V2X-C TraF-Align compatibility smoke directory is also not copied in fu
 
 Checkpoint files larger than 45MB are split into `*.split/*.partNNN` files for plain GitHub upload without Git LFS. Run `python restore_split_checkpoints.py` from this package root to reconstruct the exact original checkpoint files; original sizes and SHA256 hashes are recorded in `CHECKPOINT_SPLIT_MANIFEST.csv`.
 
+After restoring checkpoint files, run `python materialize_runtime_paths.py --repo-root /path/to/coperception --traf-root /tmp/TraF-Align_partial --mode symlink` if you want to place or symlink the restored checkpoints back to the historical paths expected by the scripts.
+
 Additional reproduction documentation:
 
 - `00_docs/260704_ARTIFACT_INDEX.md`: beginner-facing Chinese directory map, artifact index, and remaining reproduction gaps.
 - `00_docs/260704_REPRODUCTION_CHECKLIST.md`: Chinese newcomer checklist for preparing data, external code, patches, environments, checkpoints, and reruns.
 - `00_docs/260704_EXTERNAL_RESOURCES.md`: public datasets, external baseline code/checkpoints, environment requirements, and missing conditions.
 - `00_docs/260704_RUNBOOK.md`: command-level runbook organized by dataset, baseline, and experiment.
+- `00_docs/260704_GITHUB_SYNC_AUDIT.md`: current GitHub synchronization audit, including newly synced checkpoints/results and intentionally excluded caches.
 - `00_reproduction_assets/README.md`: explains the packaged patch bundles, split files, dataset summaries, and environment references.

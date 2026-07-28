@@ -1,0 +1,2 @@
+dataset,method,split,delay_ms,delay_ego_ms,samples,AP@0.5,AP@0.7,notes
+DAIR-V2X-Seq/SPD,TraF-Align,test,200,200,1,0.00,0.00,"checkpoint=/tmp/TraF-Align_partial/checkpoints/dair_v2x_seq_Trafalign_2024_12_28_04_42_36; epoch=60; load_info={'transformed': 0, 'missing': 0, 'unexpected': 0}"
